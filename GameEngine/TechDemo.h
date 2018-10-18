@@ -9,6 +9,7 @@ class TechDemo :public Game
 {
 	int frames = 1000;
 public:
+	TechDemo();
 	string GetWindowName();
 	virtual void Update();
 };

@@ -68,21 +68,14 @@ void Engine::Loop()
 	}
 }
 
-float randFloat()
-{
-	return (rand() % 2001)*0.001f - 1.0f;
-}
+
 void Engine::Render()
 {
 	glClearColor(0.2f, 0.2f, 0.2f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glBegin(GL_TRIANGLES);
-	glColor3f(0.0f, 1.0f, 0.0f);
-	glVertex2f(randFloat(), randFloat());
-	glVertex2f(randFloat(), randFloat());
-	glVertex2f(randFloat(), randFloat());
-	glEnd();
+	auto scene = ManagedGame->GetScene();
+	if (scene)scene->Draw();
 
 	SDL_GL_SwapWindow(Window);
 }
