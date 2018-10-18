@@ -46,7 +46,7 @@ bool Engine::InitOpenGL()
 
 	glShadeModel(GL_SMOOTH);
 	glClearDepth(1.0f);
-	//glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
