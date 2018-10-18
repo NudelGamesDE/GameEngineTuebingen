@@ -27,7 +27,8 @@ TechDemo::TechDemo()
 	{
 		auto mesh = GenerateTreeMesh();
 		auto renderer = Renderer_ptr(new Renderer());
-		renderer->Mesh = mesh;
+		renderer->material = Material_ptr(new Material());
+		renderer->mesh = mesh;
 		scene->Renderers.push_back(renderer);
 	}
 }

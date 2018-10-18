@@ -39,6 +39,15 @@
     <ClCompile Include="TechDemo.cpp">
       <Filter>TechDemo</Filter>
     </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -61,6 +70,12 @@
     </ClInclude>
     <ClInclude Include="TechDemo.h">
       <Filter>TechDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

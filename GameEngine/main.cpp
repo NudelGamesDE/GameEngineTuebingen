@@ -1,10 +1,9 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
-using namespace std;
-
 #include "Engine.h"
 #include "TechDemo.h"
+using namespace std;
 
 int main(int argc, char** argv)
 {

@@ -2,14 +2,14 @@
 
 #include <GL\glew.h>
 
-void Mesh::Draw()
+void Mesh::Draw(mat4 aModelViewMatrix)
 {
 	glBegin(GL_TRIANGLES);
-	glColor3f(0.0f, 1.0f, 0.0f);
 
 	for (int i = 0; i < Vertices.size(); i++)
 	{
-		auto vertex = Vertices[i];
+		auto vertex = aModelViewMatrix * vec4(Vertices[i], 1.0f);
+		vertex.y /= vertex.w;
 		glVertex3f(vertex.x, vertex.y, vertex.z);
 	}
 	glEnd();

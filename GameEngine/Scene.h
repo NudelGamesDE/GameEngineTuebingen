@@ -10,7 +10,7 @@ using namespace std;
 class Scene
 {
 public:
-	Camera_ptr ActiveCamera = Camera_ptr(new Camera());
+	Camera_ptr camera = Camera_ptr(new Camera());
 	vector<Renderer_ptr> Renderers;
 	void Draw();
 };

@@ -1,6 +1,10 @@
 #include "Renderer.h"
 
-void Renderer::Draw()
+void Renderer::Draw(mat4 aViewMatrix)
 {
-	if (Mesh)Mesh->Draw();
+	if (material && mesh)
+	{
+		material->Use();
+		mesh->Draw(aViewMatrix * transform.GetMatrix());
+	}
 }
