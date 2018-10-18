@@ -1,9 +1,33 @@
 #include "Engine.h"
 
+constexpr int SCREEN_WIDTH = 800;
+constexpr int SCREEN_HEIGHT = 600;
+constexpr int OPENGL_MAJOR_VERSION = 2;
+constexpr int OPENGL_MINOR_VERSION = 1;
+constexpr SDL_GLprofile OPENGL_PROFILE = SDL_GLprofile::SDL_GL_CONTEXT_PROFILE_CORE;
+
+
 
 
 bool Engine::InitSDL()
 {
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	{
+		//Error SDL_GetError();
+		return false;
+	}
+
+	SDL_GL_SetAttribute(SDL_GL_SHARE_WITH_CURRENT_CONTEXT, 0);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, OPENGL_PROFILE);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, OPENGL_MAJOR_VERSION);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, OPENGL_MINOR_VERSION);
+
+	unsigned int Flags = SDL_WINDOW_OPENGL;
+	Flags |= SDL_WINDOW_RESIZABLE;
+
+	Window = SDL_CreateWindow(ManagedGame->GetWindowName().c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, Flags);
+	if (Window == nullptr)return false;
+
 	return true;
 }
 
