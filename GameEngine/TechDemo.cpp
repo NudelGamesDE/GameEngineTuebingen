@@ -19,17 +19,18 @@ Mesh_ptr GenerateTreeMesh()
 	return ret;
 }
 
-
 TechDemo::TechDemo()
 {
 	auto scene = GetScene();
 	if (scene)
 	{
 		auto mesh = GenerateTreeMesh();
-		auto renderer = Renderer_ptr(new Renderer());
-		renderer->material = Material_ptr(new Material());
-		renderer->mesh = mesh;
+		auto renderer = Renderer_ptr(new Renderer(mesh, Material_ptr(new Material()), Transform(vec3(0.0f, -2.0f, 10.0f))));
 		scene->Renderers.push_back(renderer);
+
+		auto camera = Camera_ptr(new Camera());
+		camera->MakePerspective(45.0f / 180.0f * 3.14159f, 0.1f, 1000.0f);
+		scene->camera = camera;
 	}
 }
 

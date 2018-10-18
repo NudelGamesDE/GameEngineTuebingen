@@ -9,9 +9,10 @@ using namespace glm;
 
 class Camera
 {
-	mat4 Perspective;
+	mat4 Projection;
 public:
 	Transform transform;
+	void MakePerspective(float aFOV, float aNear, float aFar);
 	mat4 GetViewMatrix();
 };
 using Camera_ptr = shared_ptr<Camera>;

@@ -9,7 +9,9 @@ void Mesh::Draw(mat4 aModelViewMatrix)
 	for (int i = 0; i < Vertices.size(); i++)
 	{
 		auto vertex = aModelViewMatrix * vec4(Vertices[i], 1.0f);
+		vertex.x /= vertex.w;
 		vertex.y /= vertex.w;
+		vertex.z /= vertex.w;
 		glVertex3f(vertex.x, vertex.y, vertex.z);
 	}
 	glEnd();

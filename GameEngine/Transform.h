@@ -8,7 +8,12 @@ using namespace glm;
 class Transform
 {
 public:
+	Transform();
+	Transform(vec3 aPosition);
+	Transform(vec3 aPosition, float aScale);
+	Transform(vec3 aPosition, vec3 aScale);
 	vec3 Position;
+	vec3 Scale;
 	mat4 GetMatrix();
 };
 

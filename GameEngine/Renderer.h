@@ -12,6 +12,8 @@ using namespace glm;
 class Renderer
 {
 public:
+	Renderer();
+	Renderer(Mesh_ptr aMesh, Material_ptr aMaterial, Transform aTransform);
 	Transform transform;
 	Material_ptr material;
 	Mesh_ptr mesh;
