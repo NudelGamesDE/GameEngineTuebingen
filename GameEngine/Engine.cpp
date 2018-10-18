@@ -6,9 +6,6 @@ constexpr int OPENGL_MAJOR_VERSION = 2;
 constexpr int OPENGL_MINOR_VERSION = 1;
 constexpr SDL_GLprofile OPENGL_PROFILE = SDL_GLprofile::SDL_GL_CONTEXT_PROFILE_CORE;
 
-
-
-
 bool Engine::InitSDL()
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -33,6 +30,30 @@ bool Engine::InitSDL()
 
 bool Engine::InitOpenGL()
 {
+	GLContext = SDL_GL_CreateContext(Window);
+	if (GLContext == nullptr)return false;
+
+	const unsigned char *_version = glGetString(GL_VERSION);
+
+	glewInit();
+	SDL_GL_SetSwapInterval(0);
+	glEnable(GL_CLIP_DISTANCE0);
+
+	//GLint _maxTextures;
+	//glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &_maxTextures);
+
+	SDL_GL_MakeCurrent(Window, GLContext);
+
+	glShadeModel(GL_SMOOTH);
+	glClearDepth(1.0f);
+	//glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LEQUAL);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+
+	//glCullFace(GL_BACK);
+
 	return true;
 }
 
@@ -47,9 +68,23 @@ void Engine::Loop()
 	}
 }
 
+float randFloat()
+{
+	return (rand() % 2001)*0.001f - 1.0f;
+}
 void Engine::Render()
 {
+	glClearColor(0.2f, 0.2f, 0.2f, 0.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	glBegin(GL_TRIANGLES);
+	glColor3f(0.0f, 1.0f, 0.0f);
+	glVertex2f(randFloat(), randFloat());
+	glVertex2f(randFloat(), randFloat());
+	glVertex2f(randFloat(), randFloat());
+	glEnd();
+
+	SDL_GL_SwapWindow(Window);
 }
 
 

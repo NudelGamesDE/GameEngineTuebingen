@@ -7,5 +7,7 @@ string TechDemo::GetWindowName()
 
 void TechDemo::Update()
 {
-	Stop();
+	frames--;
+	if (frames < 0)
+		Stop();
 }
