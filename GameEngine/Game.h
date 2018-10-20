@@ -8,18 +8,17 @@ using namespace std;
 
 class Game
 {
-	Scene_ptr CurrentScene = Scene_ptr(new Scene());
+	shared_ptr<Scene> CurrentScene = make_shared<Scene>();
 	bool stoped = false;
 protected:
 	void Stop();
-	void SetScene(Scene_ptr aScene);
+	void SetScene(shared_ptr<Scene> aScene);
 public:
 	virtual string GetWindowName() = 0;
 	virtual void Update() = 0;
 	bool isStoped();
-	Scene_ptr GetScene();
+	shared_ptr<Scene> GetScene();
 };
-using Game_ptr = shared_ptr<Game>;
 
 #else
 class Game;

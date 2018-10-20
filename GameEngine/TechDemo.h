@@ -7,7 +7,7 @@ using namespace std;
 
 class TechDemo :public Game
 {
-	int frames = 1000;
+	int frames = 10;
 public:
 	TechDemo();
 	string GetWindowName();

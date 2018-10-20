@@ -7,7 +7,7 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-	Engine().Start(Game_ptr(new TechDemo()));
+	Engine().Start(make_shared<TechDemo>());
 
 	cout << "end";
 	this_thread::sleep_for(chrono::seconds(1));

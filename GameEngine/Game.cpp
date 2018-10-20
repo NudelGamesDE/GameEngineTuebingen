@@ -5,7 +5,7 @@ void Game::Stop()
 	stoped = true;
 }
 
-void Game::SetScene(Scene_ptr aScene)
+void Game::SetScene(shared_ptr<Scene> aScene)
 {
 	CurrentScene = aScene;
 }
@@ -15,7 +15,7 @@ bool Game::isStoped()
 	return stoped;
 }
 
-Scene_ptr Game::GetScene()
+shared_ptr<Scene> Game::GetScene()
 {
 	return CurrentScene;
 }

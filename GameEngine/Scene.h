@@ -5,16 +5,18 @@
 #include <vector>
 #include "Renderer.h"
 #include "Camera.h"
+#include "Ray.h"
+#include "RayHit.h"
 using namespace std;
 
 class Scene
 {
 public:
-	Camera_ptr camera = Camera_ptr(new Camera());
-	vector<Renderer_ptr> Renderers;
+	shared_ptr<Camera> camera;
+	vector<shared_ptr<Renderer>> Renderers;
 	void Draw();
+	shared_ptr<RayHit> Intersect(Ray& aRay);
 };
-using Scene_ptr = shared_ptr<Scene>;
 
 #else
 class SCene;

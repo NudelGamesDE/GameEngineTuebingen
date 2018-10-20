@@ -2,7 +2,7 @@
 
 Renderer::Renderer() {}
 
-Renderer::Renderer(Mesh_ptr aMesh, Material_ptr aMaterial, Transform aTransform)
+Renderer::Renderer(shared_ptr<Mesh> aMesh, shared_ptr<Material> aMaterial, Transform aTransform)
 {
 	mesh = aMesh;
 	material = aMaterial;
@@ -17,4 +17,19 @@ void Renderer::Draw(mat4 aViewMatrix)
 		auto test = transform.GetMatrix();
 		mesh->Draw(aViewMatrix * transform.GetMatrix());
 	}
+}
+
+shared_ptr<RayHit> Renderer::Intersect(Ray& aRay)
+{
+	if (!mesh)return nullptr;
+
+	auto transformationMatrix = transform.GetMatrix();
+	auto inverseTransformationMatrix = inverse(transformationMatrix);
+
+	auto transformedRay = aRay;
+
+	transformedRay.Origin = inverseTransformationMatrix * vec4(transformedRay.Origin, 1);
+	transformedRay.Direction = inverseTransformationMatrix * vec4(transformedRay.Direction, 0);
+
+	return mesh->Intersect(transformedRay);
 }

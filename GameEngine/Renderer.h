@@ -6,6 +6,8 @@
 #include "Mesh.h"
 #include "Material.h"
 #include "Transform.h"
+#include "RayHit.h"
+#include "Ray.h"
 using namespace std;
 using namespace glm;
 
@@ -13,13 +15,13 @@ class Renderer
 {
 public:
 	Renderer();
-	Renderer(Mesh_ptr aMesh, Material_ptr aMaterial, Transform aTransform);
+	Renderer(shared_ptr<Mesh> aMesh, shared_ptr<Material> aMaterial, Transform aTransform);
 	Transform transform;
-	Material_ptr material;
-	Mesh_ptr mesh;
+	shared_ptr<Material> material;
+	shared_ptr<Mesh> mesh;
 	void Draw(mat4 aViewMatrix);
+	shared_ptr<RayHit> Intersect(Ray& aRay);
 };
-using Renderer_ptr = shared_ptr<Renderer>;
 
 #else
 class Renderer;

@@ -81,7 +81,7 @@ void Engine::Render()
 }
 
 
-void Engine::Start(Game_ptr aGame)
+void Engine::Start(shared_ptr<Game> aGame)
 {
 	if (!aGame)return;
 	ManagedGame = aGame;

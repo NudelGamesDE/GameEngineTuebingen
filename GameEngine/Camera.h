@@ -1,10 +1,9 @@
 #ifndef _CAMERA_H
 #define _CAMERA_H
 
-#include <memory>
 #include <glm\matrix.hpp>
 #include "Transform.h"
-using namespace std;
+#include "Ray.h"
 using namespace glm;
 
 class Camera
@@ -12,10 +11,10 @@ class Camera
 	mat4 Projection;
 public:
 	Transform transform;
-	void MakePerspective(float aFOV, float aNear, float aFar);
-	mat4 GetViewMatrix();
+	virtual mat4 GetViewMatrix() = 0;
+
+	virtual Ray GenerateRay(vec2 aPosition) = 0;
 };
-using Camera_ptr = shared_ptr<Camera>;
 
 #else
 class Camera;

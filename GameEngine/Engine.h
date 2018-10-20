@@ -1,14 +1,16 @@
 #ifndef _ENGINE_H
 #define _ENGINE_H
 
+#include<memory>
 #include <GL\glew.h>
 #include <SDL.h>
 #include <SDL_opengl.h>
 #include "Game.h"
+using namespace std;
 
 class Engine
 {
-	Game_ptr ManagedGame;
+	shared_ptr<Game> ManagedGame;
 	SDL_Window* Window = nullptr;
 	SDL_GLContext GLContext = nullptr;
 
@@ -18,7 +20,7 @@ class Engine
 	void Render();
 
 public:
-	void Start(Game_ptr aGame);
+	void Start(shared_ptr<Game> aGame);
 };
 
 #else
