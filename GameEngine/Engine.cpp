@@ -62,7 +62,9 @@ void Engine::Loop()
 	while (true)
 	{
 		if (ManagedGame->isStoped())return;
-		ManagedGame->frameData = GenerateFrameData();
+		auto frameData = GenerateFrameData();
+		HandleEvents(frameData);
+		ManagedGame->frameData = frameData;
 		ManagedGame->Update();
 		if (ManagedGame->isStoped())return;
 		Render();
@@ -80,6 +82,52 @@ void Engine::Render()
 	SDL_GL_SwapWindow(Window);
 }
 
+void Engine::HandleEvents(shared_ptr<FrameData> aFrameData)
+{
+	SDL_Event _event;
+	while (SDL_PollEvent(&_event) != 0)
+	{
+		switch (_event.type)
+		{
+		case SDL_WINDOWEVENT:
+			switch (_event.window.event)
+			{
+			case SDL_WINDOWEVENT_CLOSE:
+				aFrameData->windowCloseEvent = true;
+				break;
+			}
+			break;
+		case SDL_KEYDOWN:
+			aFrameData->AddKeyDown(_event.key.keysym.sym);
+			KeysPressed->insert(_event.key.keysym.sym);
+			break;
+		case SDL_KEYUP:
+			aFrameData->AddKeyUp(_event.key.keysym.sym);
+			KeysPressed->erase(_event.key.keysym.sym);
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+			//_event.button.button
+			break;
+		case SDL_MOUSEBUTTONUP:
+			//_event.button.button
+			break;
+		case SDL_MOUSEMOTION:
+			//_event.wheel.windowID
+			//_event.motion.x
+			//_event.motion.y
+			break;
+		case SDL_MOUSEWHEEL:
+			//_event.wheel.windowID
+			//_event.wheel.y
+			break;
+		case SDL_TEXTINPUT:
+			//_event.wheel.windowID
+			//_event.text.text
+			break;
+		}
+	}
+}
+
 shared_ptr<FrameData> Engine::GenerateFrameData()
 {
 	auto ret = make_shared<FrameData>();
@@ -87,6 +135,7 @@ shared_ptr<FrameData> Engine::GenerateFrameData()
 	auto deltaTime = newTimer - timer;
 	timer = newTimer;
 	ret->deltaTime = deltaTime / float(CLOCKS_PER_SEC);
+	ret->SetKeyPressed(KeysPressed);
 	return ret;
 }
 

@@ -48,6 +48,9 @@
     <ClCompile Include="PerspectiveCamera.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="FrameData.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">

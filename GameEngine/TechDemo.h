@@ -10,7 +10,6 @@ using namespace std;
 class TechDemo :public Game
 {
 	shared_ptr<PerspectiveCamera> Camera;
-	float timer = 0.0f;
 public:
 	TechDemo();
 	string GetWindowName();

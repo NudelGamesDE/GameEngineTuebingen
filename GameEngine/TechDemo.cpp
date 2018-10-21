@@ -1,5 +1,6 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
+#include <SDL_keycode.h>
 #include "TechDemo.h"
 #include "PerspectiveCamera.h"
 using namespace std;
@@ -40,7 +41,7 @@ TechDemo::TechDemo()
 			material->Color.r = randFloat(0.0f, 0.5f);
 			material->Color.g = randFloat(0.6f, 1.0f);
 			material->Color.b = randFloat(0.0f, 0.3f);
-			auto renderer = make_shared<Renderer>(mesh, material, Transform(vec3(randFloat(-25.0f, 25.0f), 0.0f, randFloat(-50.0f, 50.0f))));
+			auto renderer = make_shared<Renderer>(mesh, material, Transform(vec3(randFloat(-25.0f, 25.0f), 0.0f, randFloat(-50.0f, 50.0f)), randFloat(0.5f, 1.5f)));
 			scene->Renderers.push_back(renderer);
 		}
 
@@ -61,8 +62,15 @@ string TechDemo::GetWindowName()
 
 void TechDemo::Update()
 {
-	Camera->transform.Position.z += frameData->deltaTime * 15.0f;
-	timer += frameData->deltaTime;
+	const float speed = 15.0f;
+	if (frameData->IsKeyPressed(SDLK_LEFT))
+		Camera->transform.Position.x -= frameData->deltaTime * speed;
+	if (frameData->IsKeyPressed(SDLK_RIGHT))
+		Camera->transform.Position.x += frameData->deltaTime * speed;
+	if (frameData->IsKeyPressed(SDLK_UP))
+		Camera->transform.Position.z += frameData->deltaTime * speed;
+	if (frameData->IsKeyPressed(SDLK_DOWN))
+		Camera->transform.Position.z -= frameData->deltaTime * speed;
 
 	auto worldRay = Camera->GenerateRay(vec2(0, -0.5f));
 	auto raycast = GetScene()->Intersect(worldRay);
@@ -70,13 +78,13 @@ void TechDemo::Update()
 	if (raycast)
 	{
 		auto material = make_shared<Material>();
-		material->Color.r = randFloat(0.7f, 1.0f);
-		material->Color.g = randFloat(0.0f, 0.3f);
-		material->Color.b = randFloat(0.0f, 0.3f);
+		material->Color.r = randFloat(0.5f, 1.0f);
+		material->Color.g = randFloat(0.0f, 0.5f);
+		material->Color.b = randFloat(0.0f, 0.5f);
 		raycast->RendererHit->material = material;
 	}
 
-	if (timer > 10)
+	if (frameData->windowCloseEvent)
 	{
 		Stop();
 	}
