@@ -4,6 +4,7 @@
 #include <string>
 #include <memory>
 #include "Scene.h"
+#include "FrameData.h"
 using namespace std;
 
 class Game
@@ -18,6 +19,7 @@ public:
 	virtual void Update() = 0;
 	bool isStoped();
 	shared_ptr<Scene> GetScene();
+	shared_ptr<FrameData> frameData = make_shared<FrameData>();
 };
 
 #else

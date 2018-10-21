@@ -13,9 +13,11 @@ shared_ptr<RayHit> Scene::Intersect(Ray& aRay)
 	shared_ptr<RayHit> ret = nullptr;
 	for (int i = 0; i < Renderers.size(); i++)
 	{
-		auto intersection = Renderers[i]->Intersect(aRay);
+		auto renderer = Renderers[i];
+		auto intersection = renderer->Intersect(aRay);
 		if (intersection)
 		{
+			intersection->RendererHit = renderer;
 			if (ret)
 			{
 				if (ret->DirectionDistance > intersection->DirectionDistance)

@@ -1,7 +1,5 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
-#include <thread>
-#include <chrono>
 #include "TechDemo.h"
 #include "PerspectiveCamera.h"
 using namespace std;
@@ -36,10 +34,7 @@ TechDemo::TechDemo()
 	{
 		auto mesh = GenerateTreeMesh();
 
-		auto testRay = Ray();
-		testRay.Origin = vec3(0, 1.5f, -1);
-
-		for (int i = 0; i < 500; i++)
+		for (int i = 0; i < 200; i++)
 		{
 			auto material = make_shared<Material>();
 			material->Color.r = randFloat(0.0f, 0.5f);
@@ -49,17 +44,13 @@ TechDemo::TechDemo()
 			scene->Renderers.push_back(renderer);
 		}
 
-		auto intersection = scene->Intersect(testRay);
 
-		auto camera = make_shared<PerspectiveCamera>();
-		camera->FOV = 45.0f / 180.0f * float(M_PI);
-		camera->Near = 0.01f;
-		camera->Far = 1000;
-		camera->transform.Position = vec3(0, 3, -60);
-		scene->camera = camera;
-
-		auto worldRay = camera->GenerateRay(vec2(0, 0));
-		worldRay.Min = 0;
+		Camera = make_shared<PerspectiveCamera>();
+		Camera->FOV = 45.0f / 180.0f * float(M_PI);
+		Camera->Near = 0.01f;
+		Camera->Far = 1000;
+		Camera->transform.Position = vec3(0, 3, -100);
+		scene->camera = Camera;
 	}
 }
 
@@ -70,10 +61,23 @@ string TechDemo::GetWindowName()
 
 void TechDemo::Update()
 {
-	frames--;
-	if (frames < 0)
+	Camera->transform.Position.z += frameData->deltaTime * 15.0f;
+	timer += frameData->deltaTime;
+
+	auto worldRay = Camera->GenerateRay(vec2(0, -0.5f));
+	auto raycast = GetScene()->Intersect(worldRay);
+
+	if (raycast)
+	{
+		auto material = make_shared<Material>();
+		material->Color.r = randFloat(0.7f, 1.0f);
+		material->Color.g = randFloat(0.0f, 0.3f);
+		material->Color.b = randFloat(0.0f, 0.3f);
+		raycast->RendererHit->material = material;
+	}
+
+	if (timer > 10)
 	{
 		Stop();
-		this_thread::sleep_for(chrono::seconds(5));
 	}
 }

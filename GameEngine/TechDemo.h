@@ -2,12 +2,15 @@
 #define _TECHDEMO_H
 
 #include <string>
+#include <memory>
 #include "Game.h"
+#include "PerspectiveCamera.h"
 using namespace std;
 
 class TechDemo :public Game
 {
-	int frames = 10;
+	shared_ptr<PerspectiveCamera> Camera;
+	float timer = 0.0f;
 public:
 	TechDemo();
 	string GetWindowName();

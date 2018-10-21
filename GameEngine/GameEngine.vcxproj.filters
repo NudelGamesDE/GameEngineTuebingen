@@ -86,5 +86,8 @@
     <ClInclude Include="RayHit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FrameData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

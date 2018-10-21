@@ -62,12 +62,12 @@ void Engine::Loop()
 	while (true)
 	{
 		if (ManagedGame->isStoped())return;
+		ManagedGame->frameData = GenerateFrameData();
 		ManagedGame->Update();
 		if (ManagedGame->isStoped())return;
 		Render();
 	}
 }
-
 
 void Engine::Render()
 {
@@ -80,6 +80,15 @@ void Engine::Render()
 	SDL_GL_SwapWindow(Window);
 }
 
+shared_ptr<FrameData> Engine::GenerateFrameData()
+{
+	auto ret = make_shared<FrameData>();
+	auto newTimer = clock();
+	auto deltaTime = newTimer - timer;
+	timer = newTimer;
+	ret->deltaTime = deltaTime / float(CLOCKS_PER_SEC);
+	return ret;
+}
 
 void Engine::Start(shared_ptr<Game> aGame)
 {
