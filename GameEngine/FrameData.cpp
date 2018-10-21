@@ -29,3 +29,9 @@ void FrameData::SetKeyPressed(shared_ptr<unordered_set<SDL_Keycode>> aKeysPresse
 {
 	KeysPressed = aKeysPressed;
 }
+
+shared_ptr<vec2> FrameData::GetViewMousePosition()
+{
+	if (!MousePosition)return nullptr;
+	return make_shared<vec2>(float((MousePosition->x / WindowSize.x)*2.0f - 1.0f), float(1.0f - (MousePosition->y / WindowSize.y)*2.0f));
+}

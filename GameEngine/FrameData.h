@@ -4,7 +4,9 @@
 #include <unordered_set>
 #include <memory>
 #include <SDL_keycode.h>
+#include <glm\vec2.hpp>
 using namespace std;
+using namespace glm;
 
 class FrameData
 {
@@ -14,12 +16,15 @@ class FrameData
 public:
 	float deltaTime;
 	bool windowCloseEvent;
+	shared_ptr<vec2> MousePosition;
+	vec2 WindowSize;
 	bool IsKeyDown(SDL_Keycode aKey);
 	bool IsKeyUp(SDL_Keycode aKey);
 	bool IsKeyPressed(SDL_Keycode aKey);
 	void AddKeyDown(SDL_Keycode aKey);
 	void AddKeyUp(SDL_Keycode aKey);
 	void SetKeyPressed(shared_ptr<unordered_set<SDL_Keycode>> aKeysPressed);
+	shared_ptr<vec2> GetViewMousePosition();
 };
 
 #else

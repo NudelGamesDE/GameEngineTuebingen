@@ -95,6 +95,9 @@ void Engine::HandleEvents(shared_ptr<FrameData> aFrameData)
 			case SDL_WINDOWEVENT_CLOSE:
 				aFrameData->windowCloseEvent = true;
 				break;
+			case SDL_WINDOWEVENT_LEAVE:
+				MousePosition = nullptr;
+				break;
 			}
 			break;
 		case SDL_KEYDOWN:
@@ -113,8 +116,7 @@ void Engine::HandleEvents(shared_ptr<FrameData> aFrameData)
 			break;
 		case SDL_MOUSEMOTION:
 			//_event.wheel.windowID
-			//_event.motion.x
-			//_event.motion.y
+			MousePosition = make_shared<vec2>(float(_event.motion.x), float(_event.motion.y));
 			break;
 		case SDL_MOUSEWHEEL:
 			//_event.wheel.windowID
@@ -126,6 +128,7 @@ void Engine::HandleEvents(shared_ptr<FrameData> aFrameData)
 			break;
 		}
 	}
+	aFrameData->MousePosition = MousePosition;
 }
 
 shared_ptr<FrameData> Engine::GenerateFrameData()
@@ -136,6 +139,11 @@ shared_ptr<FrameData> Engine::GenerateFrameData()
 	timer = newTimer;
 	ret->deltaTime = deltaTime / float(CLOCKS_PER_SEC);
 	ret->SetKeyPressed(KeysPressed);
+	int width;
+	int height;
+	SDL_GetWindowSize(Window, &width, &height);
+	glViewport(0, 0, (GLsizei)width, (GLsizei)height);
+	ret->WindowSize = vec2(width, height);
 	return ret;
 }
 

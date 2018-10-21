@@ -41,7 +41,7 @@ TechDemo::TechDemo()
 			material->Color.r = randFloat(0.0f, 0.5f);
 			material->Color.g = randFloat(0.6f, 1.0f);
 			material->Color.b = randFloat(0.0f, 0.3f);
-			auto renderer = make_shared<Renderer>(mesh, material, Transform(vec3(randFloat(-25.0f, 25.0f), 0.0f, randFloat(-50.0f, 50.0f)), randFloat(0.5f, 1.5f)));
+			auto renderer = make_shared<Renderer>(mesh, material, Transform(vec3(randFloat(-25.0f, 25.0f), 0.0f, randFloat(-50.0f, 50.0f)), randFloat(0.75f, 1.25f)));
 			scene->Renderers.push_back(renderer);
 		}
 
@@ -60,6 +60,7 @@ string TechDemo::GetWindowName()
 	return "Test Window";
 }
 
+#include <iostream>
 void TechDemo::Update()
 {
 	const float speed = 15.0f;
@@ -72,16 +73,21 @@ void TechDemo::Update()
 	if (frameData->IsKeyPressed(SDLK_DOWN))
 		Camera->transform.Position.z -= frameData->deltaTime * speed;
 
-	auto worldRay = Camera->GenerateRay(vec2(0, -0.5f));
-	auto raycast = GetScene()->Intersect(worldRay);
+	auto mouseposition = frameData->GetViewMousePosition();
 
-	if (raycast)
+	if (mouseposition)
 	{
-		auto material = make_shared<Material>();
-		material->Color.r = randFloat(0.5f, 1.0f);
-		material->Color.g = randFloat(0.0f, 0.5f);
-		material->Color.b = randFloat(0.0f, 0.5f);
-		raycast->RendererHit->material = material;
+		auto worldRay = Camera->GenerateRay(*mouseposition);
+		auto raycast = GetScene()->Intersect(worldRay);
+
+		if (raycast)
+		{
+			auto material = make_shared<Material>();
+			material->Color.r = randFloat(0.5f, 1.0f);
+			material->Color.g = randFloat(0.2f, 0.6f);
+			material->Color.b = randFloat(0.0f, 0.3f);
+			raycast->RendererHit->material = material;
+		}
 	}
 
 	if (frameData->windowCloseEvent)
