@@ -7,21 +7,21 @@ using namespace std;
 
 shared_ptr<Mesh> GenerateTreeMesh()
 {
-	auto ret = make_shared<Mesh>();
+	auto positions = vector<vec3>();
 
-	ret->Vertices.push_back(vec3(1.0f, 0.5f, 0.0f));
-	ret->Vertices.push_back(vec3(0.0f, 2.0f, 0.0f));
-	ret->Vertices.push_back(vec3(-1.0f, 0.5f, 0.0f));
+	positions.push_back(vec3(1.0f, 0.5f, 0.0f));
+	positions.push_back(vec3(0.0f, 2.0f, 0.0f));
+	positions.push_back(vec3(-1.0f, 0.5f, 0.0f));
 
-	ret->Vertices.push_back(vec3(0.5f, 0.5f, 0.0f));
-	ret->Vertices.push_back(vec3(-0.5f, 0.5f, 0.0f));
-	ret->Vertices.push_back(vec3(-0.5f, 0.0f, 0.0f));
+	positions.push_back(vec3(0.5f, 0.5f, 0.0f));
+	positions.push_back(vec3(-0.5f, 0.5f, 0.0f));
+	positions.push_back(vec3(-0.5f, 0.0f, 0.0f));
 
-	ret->Vertices.push_back(vec3(-0.5f, 0.0f, 0.0f));
-	ret->Vertices.push_back(vec3(0.5f, 0.0f, 0.0f));
-	ret->Vertices.push_back(vec3(0.5f, 0.5f, 0.0f));
+	positions.push_back(vec3(-0.5f, 0.0f, 0.0f));
+	positions.push_back(vec3(0.5f, 0.0f, 0.0f));
+	positions.push_back(vec3(0.5f, 0.5f, 0.0f));
 
-	return ret;
+	return make_shared<Mesh>(positions, vector<vec2>(), vector<vec3>());
 }
 
 float randFloat(float aMin, float aMax)

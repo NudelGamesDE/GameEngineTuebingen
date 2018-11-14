@@ -2,6 +2,11 @@
 
 #include <GL\glew.h>
 
+Mesh::Mesh(vector<vec3> aPositions, vector<vec2> aTextureCoords, vector<vec3> aNormals)
+{
+	Vertices = aPositions;
+}
+
 void Mesh::Draw(mat4 aModelViewMatrix)
 {
 	glBegin(GL_TRIANGLES);
