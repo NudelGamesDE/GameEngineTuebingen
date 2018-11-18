@@ -84,7 +84,8 @@ shared_ptr<Texture> GenerateWoodTexture()
 void CalcBigTree(shared_ptr<Renderer> aBigTree, float& aTimer)
 {
 	aBigTree->transform.Position = vec3(-5, 0, cos(aTimer / 4) * 5 - 15);
-	aBigTree->transform.Scale = vec3(cos(aTimer), cos(aTimer + 1.0f), cos(aTimer)) * 2.0f + vec3(8);
+	aBigTree->transform.Scale = vec3(sin(aTimer * 2), cos(aTimer * 2), sin(aTimer * 2)) * 2.0f + vec3(8);
+	aBigTree->transform.Rotation = quat(cos(aTimer * 3), 0, sin(aTimer * 3), 0);
 }
 
 

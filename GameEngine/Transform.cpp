@@ -1,25 +1,25 @@
 #include "Transform.h"
 
-#include <glm/gtx/transform.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 Transform::Transform()
 {
 	Scale = vec3(1.0f);
+	Rotation = quat(1, 0, 0, 0);
 }
 
-Transform::Transform(vec3 aPosition)
+Transform::Transform(vec3 aPosition) :Transform()
 {
 	Position = aPosition;
-	Scale = vec3(1.0f);
 }
 
-Transform::Transform(vec3 aPosition, float aScale)
+Transform::Transform(vec3 aPosition, float aScale) :Transform()
 {
 	Position = aPosition;
 	Scale = vec3(aScale);
 }
 
-Transform::Transform(vec3 aPosition, vec3 aScale)
+Transform::Transform(vec3 aPosition, vec3 aScale) :Transform()
 {
 	Position = aPosition;
 	Scale = aScale;
@@ -27,5 +27,5 @@ Transform::Transform(vec3 aPosition, vec3 aScale)
 
 mat4 Transform::GetMatrix()
 {
-	return translate(Position) * scale(Scale);
+	return translate(mat4(1), Position) * (mat4)Rotation * scale(mat4(1), Scale);
 }
