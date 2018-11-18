@@ -5,6 +5,8 @@
 Mesh::Mesh(vector<vec3> aPositions, vector<vec2> aTextureCoords, vector<vec3> aNormals)
 {
 	Vertices = aPositions;
+	Uvs = aTextureCoords;
+	Normals = aNormals;
 }
 
 void Mesh::Draw(mat4 aModelViewMatrix)
