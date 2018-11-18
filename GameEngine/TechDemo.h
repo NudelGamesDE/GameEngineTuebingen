@@ -9,7 +9,10 @@ using namespace std;
 
 class TechDemo :public Game
 {
+	shared_ptr<Texture> WoodTexture;
 	shared_ptr<PerspectiveCamera> Camera;
+	shared_ptr<Renderer> BigTree;
+	float Timer;
 public:
 	virtual void Start();
 	string GetWindowName();

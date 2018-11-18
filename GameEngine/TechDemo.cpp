@@ -33,9 +33,9 @@ shared_ptr<Mesh> GenerateTreeMesh()
 			positions.push_back(aTop);
 			positions.push_back(aSide);
 			positions.push_back(nextSide);
-			uvs.push_back(vec2(0, 0));
-			uvs.push_back(vec2(0, 0));
-			uvs.push_back(vec2(0, 0));
+			uvs.push_back(vec2(0, 1));
+			uvs.push_back(vec2(float(i) / segments, 0));
+			uvs.push_back(vec2(float(i + 1) / segments, 0));
 			normals.push_back(normal);
 			normals.push_back(normal);
 			normals.push_back(normal);
@@ -75,12 +75,26 @@ shared_ptr<Shader> GenerateTreeShader()
 		"}");
 }
 
+shared_ptr<Texture> GenerateWoodTexture()
+{
+	return make_shared<Texture>("../WoodFlooring.jpg");
+}
+
+
+void CalcBigTree(shared_ptr<Renderer> aBigTree, float& aTimer)
+{
+	aBigTree->transform.Position = vec3(-5, 0, cos(aTimer / 4) * 5 - 15);
+	aBigTree->transform.Scale = vec3(cos(aTimer), cos(aTimer + 1.0f), cos(aTimer)) * 2.0f + vec3(8);
+}
+
+
 float randFloat(float aMin, float aMax)
 {
 	return (rand() % 10001) / 10000.0f*(aMax - aMin) + aMin;
 }
 void TechDemo::Start()
 {
+	WoodTexture = GenerateWoodTexture();
 	auto scene = GetScene();
 	if (scene)
 	{
@@ -98,6 +112,14 @@ void TechDemo::Start()
 			scene->Renderers.push_back(renderer);
 		}
 
+		auto bigTreeMaterial = make_shared<Material>();
+		bigTreeMaterial->Shader = Shader::BlinnPhongTextured();
+		bigTreeMaterial->ColorTexture = make_shared<Texture>("../GroundForest.jpg");
+		bigTreeMaterial->DiffuseColor = vec3(1);
+		bigTreeMaterial->SpecularColor = vec3(1);
+		bigTreeMaterial->AmbientColor = vec3(0.3f, 0.1f, 0.1f);
+		BigTree = make_shared<Renderer>(mesh, bigTreeMaterial, Transform());
+		scene->Renderers.push_back(BigTree);
 
 		Camera = make_shared<PerspectiveCamera>();
 		Camera->FOV = 45.0f / 180.0f * float(M_PI);
@@ -106,6 +128,8 @@ void TechDemo::Start()
 		Camera->transform.Position = vec3(0, 3, -100);
 		scene->camera = Camera;
 	}
+	Timer = 0.0f;
+	CalcBigTree(BigTree, Timer);
 }
 
 string TechDemo::GetWindowName()
@@ -135,10 +159,12 @@ void TechDemo::Update()
 
 		if (raycast)
 		{
-			auto material = raycast->RendererHit->material;
-			material->DiffuseColor.r = randFloat(0.5f, 1.0f);
-			material->DiffuseColor.g = randFloat(0.2f, 0.6f);
-			material->DiffuseColor.b = randFloat(0.0f, 0.3f);
+			auto material = make_shared<Material>();
+			material->DiffuseColor.r = randFloat(0.7f, 1);
+			material->DiffuseColor.g = randFloat(0.7f, 1);
+			material->DiffuseColor.b = randFloat(0.7f, 1);
+			material->ColorTexture = WoodTexture;
+			material->Shader = Shader::FlatTextured();
 			raycast->RendererHit->material = material;
 		}
 	}
@@ -147,4 +173,6 @@ void TechDemo::Update()
 	{
 		Stop();
 	}
+	Timer += frameData->deltaTime;
+	CalcBigTree(BigTree, Timer);
 }

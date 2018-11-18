@@ -9,6 +9,7 @@ const string VertexBeginning =
 "uniform mat4 Model;"
 "uniform mat4 Projection;"
 "uniform mat4 View;"
+"uniform mat4 InverseView;"
 
 "layout(location = 0)in vec3 position;"
 "layout(location = 1)in vec2 texCoord;"
@@ -17,10 +18,13 @@ const string VertexBeginning =
 const string FragmentBeginning =
 "#version 400\n"
 
+"uniform sampler2D ColorTexture;"
+"uniform sampler2D NormalTexture;"
 "uniform vec3 DiffuseColor;"
+"uniform vec3 SpecularColor;"
+"uniform vec3 AmbientColor;"
 
 "out vec4 ColorOut;";
-
 
 void CompileShader(GLuint Shader, string aSource)
 {
@@ -54,6 +58,10 @@ vector<string> GetAttributes()
 	ret.push_back("InverseView");
 	ret.push_back("Projection");
 	ret.push_back("DiffuseColor");
+	ret.push_back("SpecularColor");
+	ret.push_back("AmbientColor");
+	ret.push_back("ColorTexture");
+	ret.push_back("NormalTexture");
 	return ret;
 }
 
@@ -152,3 +160,76 @@ Shader::~Shader()
 {
 	glDeleteProgram(Program);
 }
+
+shared_ptr<Shader> FlatTexturedShader;
+shared_ptr<Shader> Shader::FlatTextured()
+{
+	if (!FlatTexturedShader)
+	{
+		FlatTexturedShader = make_shared<Shader>(
+			"out vec2 VTexCoord;"
+			"void main()"
+			"{"
+			"	gl_Position = Projection * View * Model * vec4(position, 1.0);"
+			"	VTexCoord = texCoord;"
+			"}",
+
+			"in vec2 VTexCoord;"
+			"void main()"
+			"{"
+			"	ColorOut = vec4(texture2D(ColorTexture, VTexCoord).xyz * DiffuseColor, 1.0);"
+			"}");
+	}
+	return FlatTexturedShader;
+}
+
+
+shared_ptr<Shader> BlinnPhongTexturedShader;
+shared_ptr<Shader> Shader::BlinnPhongTextured()
+{
+	if (!BlinnPhongTexturedShader)
+	{
+		BlinnPhongTexturedShader = make_shared<Shader>(
+			"out vec3 VNormal;"
+			"out vec3 VToCamera;"
+			"out vec3 VToLight;"
+			"out vec2 VTexCoord;"
+
+			"void main()"
+			"{"
+			"	vec4 worldPos = Model * vec4(position, 1.0);"
+			"	gl_Position = Projection * View * worldPos;"
+
+			"	VToLight = vec3(5.0,20.0,-5.0) - worldPos.xyz;"
+			"	VNormal = (Model * vec4(normal, 0.0)).xyz;"
+
+			"	VToCamera = (InverseView * vec4(0.0, 0.0, 0.0, 1.0)).xyz - worldPos.xyz;"
+			"	VTexCoord = texCoord;"
+			"}",
+
+			"in vec3 VNormal;"
+			"in vec3 VToCamera;"
+			"in vec3 VToLight;"
+			"in vec2 VTexCoord;"
+
+			"void main()"
+			"{"
+			"	vec3 toCamera = normalize(VToCamera);"
+			"	vec3 toLight = normalize(VToLight);"
+			"	vec3 unitNormal = normalize(VNormal);"
+			"	vec3 h = normalize(toCamera + toLight);"
+
+			"	float specM = 64.0;"
+			"	float angleH = clamp(dot(h, unitNormal), 0.0, 1.0);"
+
+			"	vec3 textureColor = texture2D(ColorTexture, VTexCoord).xyz;"
+			"	vec3 spec = (specM + 8.0) / 8.0 * pow(angleH, specM) * SpecularColor;"
+			"	vec3 diff = clamp(dot(unitNormal, toLight), 0.0, 1.0) * textureColor * DiffuseColor;"
+
+			"	ColorOut = vec4(pow(spec + diff, vec3(0.45)) + AmbientColor * textureColor, 1.0);"
+			"}");
+	}
+	return BlinnPhongTexturedShader;
+}
+
+
