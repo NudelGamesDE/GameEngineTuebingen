@@ -1,25 +1,43 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
 #include <SDL_keycode.h>
+#include "glm\gtc\quaternion.hpp"
 #include "TechDemo.h"
 #include "PerspectiveCamera.h"
 using namespace std;
+using namespace glm;
 
 shared_ptr<Mesh> GenerateTreeMesh()
 {
 	auto positions = vector<vec3>();
 
-	positions.push_back(vec3(1.0f, 0.5f, 0.0f));
-	positions.push_back(vec3(0.0f, 2.0f, 0.0f));
-	positions.push_back(vec3(-1.0f, 0.5f, 0.0f));
+	auto segments = 8;
+	auto angle = (float)M_PI / segments;
+	auto rotation = quat(cos(angle), 0, sin(angle), 0);
+	auto rotationCon = conjugate(rotation);
 
-	positions.push_back(vec3(0.5f, 0.5f, 0.0f));
-	positions.push_back(vec3(-0.5f, 0.5f, 0.0f));
-	positions.push_back(vec3(-0.5f, 0.0f, 0.0f));
+	auto rotate = [rotation, rotationCon](vec3 aPoint)
+	{
+		auto ret = rotationCon * quat(0, aPoint.x, aPoint.y, aPoint.z) * rotation;
+		return vec3(ret.x, ret.y, ret.z);
+	};
 
-	positions.push_back(vec3(-0.5f, 0.0f, 0.0f));
-	positions.push_back(vec3(0.5f, 0.0f, 0.0f));
-	positions.push_back(vec3(0.5f, 0.5f, 0.0f));
+	auto addSegment = [rotate, segments, &positions](vec3 aTop, vec3 aSide)
+	{
+		for (auto i = 0; i < segments; i++)
+		{
+			auto nextSide = rotate(aSide);
+			positions.push_back(aTop);
+			positions.push_back(aSide);
+			positions.push_back(nextSide);
+			aSide = nextSide;
+		}
+	};
+
+	addSegment(vec3(0, 1, 0), vec3(0.25f, 0.75f, 0));
+	addSegment(vec3(0, 1, 0), vec3(0.4f, 0.5f, 0));
+	addSegment(vec3(0, 1, 0), vec3(0.5f, 0.25f, 0));
+	addSegment(vec3(0, 1, 0), vec3(0.1f, 0, 0));
 
 	return make_shared<Mesh>(positions, vector<vec2>(), vector<vec3>());
 }
@@ -35,7 +53,7 @@ TechDemo::TechDemo()
 	{
 		auto mesh = GenerateTreeMesh();
 
-		for (int i = 0; i < 200; i++)
+		for (int i = 0; i < 50; i++)
 		{
 			auto material = make_shared<Material>();
 			material->Color.r = randFloat(0.0f, 0.5f);
