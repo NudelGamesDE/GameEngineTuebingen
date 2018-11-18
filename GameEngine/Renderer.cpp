@@ -9,13 +9,13 @@ Renderer::Renderer(shared_ptr<Mesh> aMesh, shared_ptr<Material> aMaterial, Trans
 	transform = aTransform;
 }
 
-void Renderer::Draw(mat4 aViewMatrix)
+void Renderer::Draw(mat4* aView, mat4* aInverseView, mat4* aProjection)
 {
 	if (material && mesh)
 	{
-		material->Use();
-		auto test = transform.GetMatrix();
-		mesh->Draw(aViewMatrix * transform.GetMatrix());
+		auto model = transform.GetMatrix();
+		material->Use(&model, aView, aInverseView, aProjection);
+		mesh->Draw();
 	}
 }
 

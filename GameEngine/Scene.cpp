@@ -3,9 +3,17 @@
 void Scene::Draw()
 {
 	if (!camera)return;
-	auto viewMatrix = camera->GetViewMatrix();
+	bool isInverse;
+	auto viewMatrix = camera->GetViewMatrix(&isInverse);
+	auto inverseViewMatrix = viewMatrix;
+	if (isInverse)
+		viewMatrix = inverse(inverseViewMatrix);
+	else
+		inverseViewMatrix = inverse(viewMatrix);
+	auto projection = camera->GetProjectionMatrix();
+
 	for (int i = 0; i < Renderers.size(); i++)
-		Renderers[i]->Draw(viewMatrix);
+		Renderers[i]->Draw(&viewMatrix, &inverseViewMatrix, &projection);
 }
 
 shared_ptr<RayHit> Scene::Intersect(Ray& aRay)

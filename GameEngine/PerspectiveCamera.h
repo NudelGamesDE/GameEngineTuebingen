@@ -10,7 +10,8 @@ public:
 	float FOV;
 	float Near;
 	float Far;
-	mat4 GetViewMatrix();
+	virtual mat4 GetViewMatrix(bool* aIsInverse);
+	virtual mat4 GetProjectionMatrix();
 	Ray GenerateRay(vec2 aPosition);
 };
 

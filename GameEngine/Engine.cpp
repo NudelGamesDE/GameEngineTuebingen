@@ -59,6 +59,7 @@ bool Engine::InitOpenGL()
 
 void Engine::Loop()
 {
+	ManagedGame->Start();
 	while (true)
 	{
 		if (ManagedGame->isStoped())return;

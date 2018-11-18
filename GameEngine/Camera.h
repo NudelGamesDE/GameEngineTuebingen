@@ -11,7 +11,8 @@ class Camera
 	mat4 Projection;
 public:
 	Transform transform;
-	virtual mat4 GetViewMatrix() = 0;
+	virtual mat4 GetViewMatrix(bool* aIsInverse) = 0;
+	virtual mat4 GetProjectionMatrix() = 0;
 
 	virtual Ray GenerateRay(vec2 aPosition) = 0;
 };

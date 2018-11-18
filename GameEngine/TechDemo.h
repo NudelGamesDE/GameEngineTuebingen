@@ -11,7 +11,7 @@ class TechDemo :public Game
 {
 	shared_ptr<PerspectiveCamera> Camera;
 public:
-	TechDemo();
+	virtual void Start();
 	string GetWindowName();
 	virtual void Update();
 };

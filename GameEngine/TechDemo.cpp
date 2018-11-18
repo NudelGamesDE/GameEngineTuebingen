@@ -10,6 +10,8 @@ using namespace glm;
 shared_ptr<Mesh> GenerateTreeMesh()
 {
 	auto positions = vector<vec3>();
+	auto uvs = vector<vec2>();
+	auto normals = vector<vec3>();
 
 	auto segments = 8;
 	auto angle = (float)M_PI / segments;
@@ -22,14 +24,21 @@ shared_ptr<Mesh> GenerateTreeMesh()
 		return vec3(ret.x, ret.y, ret.z);
 	};
 
-	auto addSegment = [rotate, segments, &positions](vec3 aTop, vec3 aSide)
+	auto addSegment = [rotate, segments, &positions, &uvs, &normals](vec3 aTop, vec3 aSide)
 	{
 		for (auto i = 0; i < segments; i++)
 		{
 			auto nextSide = rotate(aSide);
+			auto normal = normalize(cross(nextSide - aTop, aSide - aTop));
 			positions.push_back(aTop);
 			positions.push_back(aSide);
 			positions.push_back(nextSide);
+			uvs.push_back(vec2(0, 0));
+			uvs.push_back(vec2(0, 0));
+			uvs.push_back(vec2(0, 0));
+			normals.push_back(normal);
+			normals.push_back(normal);
+			normals.push_back(normal);
 			aSide = nextSide;
 		}
 	};
@@ -39,23 +48,49 @@ shared_ptr<Mesh> GenerateTreeMesh()
 	addSegment(vec3(0, 1, 0), vec3(0.5f, 0.25f, 0));
 	addSegment(vec3(0, 1, 0), vec3(0.1f, 0, 0));
 
-	return make_shared<Mesh>(positions, vector<vec2>(), vector<vec3>());
+	return make_shared<Mesh>(positions, uvs, normals);
+}
+
+shared_ptr<Shader> GenerateTreeShader()
+{
+	return make_shared<Shader>(
+		"out vec3 VNormal;"
+
+		"void main()"
+		"{"
+		"	gl_Position = Projection * View * Model * vec4(position, 1.0);"
+
+		"	VNormal = (Model * vec4(normal, 0.0)).xyz;"
+		"}",
+
+
+		"in vec3 VNormal;"
+
+		"void main()"
+		"{"
+		"	vec3 toLight = normalize(vec3(0.5, 1.0, 0.0));"
+		"	vec3 unitNormal = normalize(VNormal + vec3(0.0, 0.01, 0.0));"
+		"	float brightness = dot(toLight, unitNormal);"
+		"	ColorOut = vec4(Color.xyz  * max(brightness, 0.2), 1.0);"
+		"}");
 }
 
 float randFloat(float aMin, float aMax)
 {
 	return (rand() % 10001) / 10000.0f*(aMax - aMin) + aMin;
 }
-TechDemo::TechDemo()
+void TechDemo::Start()
 {
 	auto scene = GetScene();
 	if (scene)
 	{
 		auto mesh = GenerateTreeMesh();
+		auto shader = GenerateTreeShader();
 
-		for (int i = 0; i < 50; i++)
+		for (int i = 0; i < 200; i++)
 		{
 			auto material = make_shared<Material>();
+			material->Shader = shader;
 			material->Color.r = randFloat(0.0f, 0.5f);
 			material->Color.g = randFloat(0.6f, 1.0f);
 			material->Color.b = randFloat(0.0f, 0.3f);
@@ -100,7 +135,7 @@ void TechDemo::Update()
 
 		if (raycast)
 		{
-			auto material = make_shared<Material>();
+			auto material = raycast->RendererHit->material;
 			material->Color.r = randFloat(0.5f, 1.0f);
 			material->Color.g = randFloat(0.2f, 0.6f);
 			material->Color.b = randFloat(0.0f, 0.3f);

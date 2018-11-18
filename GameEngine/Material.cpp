@@ -1,8 +1,15 @@
+#include <GL\glew.h>
 #include "Material.h"
 
-#include <GL\glew.h>
 
-void Material::Use()
+void Material::Use(mat4* aModel, mat4* aView, mat4* aInverseView, mat4* aProjection)
 {
-	glColor4f(Color.r, Color.g, Color.b, Color.a);
+	if (!Shader)return;
+	Shader->Bind();
+
+	Shader->Uniform4f("Color", Color);
+	Shader->UniformMat4("Model", *aModel);
+	Shader->UniformMat4("View", *aView);
+	Shader->UniformMat4("InverseView", *aInverseView);
+	Shader->UniformMat4("Projection", *aProjection);
 }

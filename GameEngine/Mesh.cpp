@@ -1,24 +1,66 @@
+#include <GL\glew.h>
 #include "Mesh.h"
 
-#include <GL\glew.h>
 
 Mesh::Mesh(vector<vec3> aPositions, vector<vec2> aTextureCoords, vector<vec3> aNormals)
 {
 	Vertices = aPositions;
-}
 
-void Mesh::Draw(mat4 aModelViewMatrix)
-{
-	glBegin(GL_TRIANGLES);
+	glGenBuffers(1, &DataVBO);
+	glGenBuffers(1, &IndicesVBO);
 
-	for (int i = 0; i < Vertices.size(); i++)
+	auto DataCount = min(aPositions.size(), min(aTextureCoords.size(), aNormals.size())) * 8;
+	auto Data = shared_ptr<float[]>(new float[DataCount]);
+	for (unsigned long i = 0; i < DataCount / 8; i++)
 	{
-		auto vertex = aModelViewMatrix * vec4(Vertices[i], 1.0f);
-		vertex /= vertex.w;
-		glVertex3f(vertex.x, vertex.y, vertex.z);
+		Data.get()[i * 8] = aPositions[i].x;
+		Data.get()[i * 8 + 1] = aPositions[i].y;
+		Data.get()[i * 8 + 2] = aPositions[i].z;
+		Data.get()[i * 8 + 3] = aTextureCoords[i].x;
+		Data.get()[i * 8 + 4] = aTextureCoords[i].y;
+		Data.get()[i * 8 + 5] = aNormals[i].x;
+		Data.get()[i * 8 + 6] = aNormals[i].y;
+		Data.get()[i * 8 + 7] = aNormals[i].z;
 	}
-	glEnd();
+
+	glBindBuffer(GL_ARRAY_BUFFER, DataVBO);
+	glBufferData(GL_ARRAY_BUFFER, DataCount * 4, Data.get(), GL_DYNAMIC_DRAW);
+
+	IndicesCount = (unsigned long)aPositions.size() * 8;
+	auto Indices = shared_ptr<unsigned long[]>(new unsigned long[IndicesCount]);
+	for (unsigned long i = 0; i < IndicesCount; i++)
+		Indices.get()[i] = i;
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndicesVBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, IndicesCount * 4, Indices.get(), GL_DYNAMIC_DRAW);
+
+	glGenVertexArrays(1, &VAO);
+	glBindVertexArray(VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, DataVBO);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * 4, (const void*)(0 * 4));
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 8 * 4, (const void*)(3 * 4));
+	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 8 * 4, (const void*)(5 * 4));
 }
+
+void Mesh::Draw()
+{
+	glBindVertexArray(VAO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndicesVBO);
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+	glEnableVertexAttribArray(2);
+
+	glDrawElements(GL_TRIANGLES, IndicesCount, GL_UNSIGNED_INT, nullptr);
+	glBindVertexArray(0);
+}
+
+
+Mesh::~Mesh()
+{
+	glDeleteBuffers(1, &DataVBO);
+	glDeleteBuffers(1, &IndicesVBO);
+}
+
 
 
 bool test(
@@ -52,7 +94,7 @@ bool test(
 
 	const float t = dot(edge2, qvec) * invDet;
 
-	if (aRay.Min >= t || aRay .Max <= t)
+	if (aRay.Min >= t || aRay.Max <= t)
 		return false;
 
 	out = t;

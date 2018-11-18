@@ -15,6 +15,7 @@ protected:
 	void Stop();
 	void SetScene(shared_ptr<Scene> aScene);
 public:
+	virtual void Start() = 0;
 	virtual string GetWindowName() = 0;
 	virtual void Update() = 0;
 	bool isStoped();

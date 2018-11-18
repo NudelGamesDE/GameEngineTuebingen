@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <vector>
+#include <SDL_opengl.h>
 #include <glm\vec3.hpp>
 #include <glm\matrix.hpp>
 #include "Ray.h"
@@ -12,11 +13,16 @@ using namespace glm;
 
 class Mesh
 {
+	GLuint DataVBO;
+	GLuint IndicesVBO;
+	GLuint VAO;
+	unsigned long IndicesCount;
 public:
 	Mesh(vector<vec3> aPositions, vector<vec2> aTextureCoords, vector<vec3> aNormals);
 	vector<vec3> Vertices;
-	void Draw(mat4 aModelViewMatrix);
+	void Draw();
 	shared_ptr<RayHit> Intersect(Ray& aRay);
+	~Mesh();
 };
 
 #else

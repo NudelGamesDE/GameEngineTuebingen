@@ -19,7 +19,7 @@ public:
 	Transform transform;
 	shared_ptr<Material> material;
 	shared_ptr<Mesh> mesh;
-	void Draw(mat4 aViewMatrix);
+	void Draw(mat4* aView, mat4* aInverseView, mat4* aProjection);
 	shared_ptr<RayHit> Intersect(Ray& aRay);
 };
 

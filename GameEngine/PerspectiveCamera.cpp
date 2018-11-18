@@ -5,13 +5,15 @@
 using namespace std;
 using namespace glm;
 
-mat4 PerspectiveCamera::GetViewMatrix()
+mat4 PerspectiveCamera::GetViewMatrix(bool* aIsInverse)
 {
-	auto projection = perspectiveLH(FOV, 4 / 3.0f, Near, Far);
-
-	return projection * inverse(transform.GetMatrix());
+	*aIsInverse = true;
+	return transform.GetMatrix();
 }
-
+mat4 PerspectiveCamera::GetProjectionMatrix()
+{
+	return perspectiveLH(FOV, 4 / 3.0f, Near, Far);
+}
 Ray PerspectiveCamera::GenerateRay(vec2 aPosition)
 {
 	auto ret = Ray();
