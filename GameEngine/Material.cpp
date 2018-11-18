@@ -26,4 +26,13 @@ void Material::Use(mat4* aModel, mat4* aView, mat4* aInverseView, mat4* aProject
 	if (ColorTexture)BindTexture(ColorTexture, TextureCount, "ColorTexture", Shader);
 	if (NormalTexture)BindTexture(NormalTexture, TextureCount, "NormalTexture", Shader);
 
+	
+	//this is how you transfer you light data, direction is director from the light
+	vector<vec3> positions, colors, directions;
+	vector<int> types;
+	positions.push_back(vec3());
+	colors.push_back(vec3(1));
+	directions.push_back(normalize(vec3(-0.5f,-1.0f,0)));//needs to be normalized
+	types.push_back(0);//0: directional, 1 point, 2 spotlight(not implemented)
+	Shader->UniformLights(positions, colors, directions, types);
 }

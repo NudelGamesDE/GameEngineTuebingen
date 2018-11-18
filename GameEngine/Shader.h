@@ -39,6 +39,7 @@ public:
 	void Uniform4f(string aName, vec4 aVec);
 	void UniformMat4(string aName, mat4 aMat);
 	void Uniform1i(string aName, int aI);
+	void UniformLights(vector<vec3> aPositions, vector<vec3> aColor, vector<vec3> aDirection, vector<int> aType);
 	~Shader();
 
 
