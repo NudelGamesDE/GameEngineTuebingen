@@ -22,7 +22,7 @@ public:
 	vector<vec3> Vertices;
 	vector<vec2> Uvs;
 	vector<vec3> Normals;
-	void Draw(mat4 aModelViewMatrix);
+	void Draw();
 	shared_ptr<RayHit> Intersect(Ray& aRay);
 	~Mesh();
 };

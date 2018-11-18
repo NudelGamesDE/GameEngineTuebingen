@@ -71,7 +71,7 @@ shared_ptr<Shader> GenerateTreeShader()
 		"	vec3 toLight = normalize(vec3(0.5, 1.0, 0.0));"
 		"	vec3 unitNormal = normalize(VNormal + vec3(0.0, 0.01, 0.0));"
 		"	float brightness = dot(toLight, unitNormal);"
-		"	ColorOut = vec4(Color.xyz  * max(brightness, 0.2), 1.0);"
+		"	ColorOut = vec4(DiffuseColor * max(brightness, 0.2), 1.0);"
 		"}");
 }
 
@@ -91,9 +91,9 @@ void TechDemo::Start()
 		{
 			auto material = make_shared<Material>();
 			material->Shader = shader;
-			material->Color.r = randFloat(0.0f, 0.5f);
-			material->Color.g = randFloat(0.6f, 1.0f);
-			material->Color.b = randFloat(0.0f, 0.3f);
+			material->DiffuseColor.r = randFloat(0.0f, 0.5f);
+			material->DiffuseColor.g = randFloat(0.6f, 1.0f);
+			material->DiffuseColor.b = randFloat(0.0f, 0.3f);
 			auto renderer = make_shared<Renderer>(mesh, material, Transform(vec3(randFloat(-25.0f, 25.0f), 0.0f, randFloat(-50.0f, 50.0f)), randFloat(0.75f, 1.25f)));
 			scene->Renderers.push_back(renderer);
 		}
@@ -136,9 +136,9 @@ void TechDemo::Update()
 		if (raycast)
 		{
 			auto material = raycast->RendererHit->material;
-			material->Color.r = randFloat(0.5f, 1.0f);
-			material->Color.g = randFloat(0.2f, 0.6f);
-			material->Color.b = randFloat(0.0f, 0.3f);
+			material->DiffuseColor.r = randFloat(0.5f, 1.0f);
+			material->DiffuseColor.g = randFloat(0.2f, 0.6f);
+			material->DiffuseColor.b = randFloat(0.0f, 0.3f);
 			raycast->RendererHit->material = material;
 		}
 	}

@@ -17,7 +17,7 @@ const string VertexBeginning =
 const string FragmentBeginning =
 "#version 400\n"
 
-"uniform vec4 Color;"
+"uniform vec3 DiffuseColor;"
 
 "out vec4 ColorOut;";
 
@@ -53,7 +53,7 @@ vector<string> GetAttributes()
 	ret.push_back("View");
 	ret.push_back("InverseView");
 	ret.push_back("Projection");
-	ret.push_back("Color");
+	ret.push_back("DiffuseColor");
 	return ret;
 }
 

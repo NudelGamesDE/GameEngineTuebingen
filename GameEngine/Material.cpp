@@ -7,7 +7,7 @@ void Material::Use(mat4* aModel, mat4* aView, mat4* aInverseView, mat4* aProject
 	if (!Shader)return;
 	Shader->Bind();
 
-	Shader->Uniform4f("Color", Color);
+	Shader->Uniform3f("DiffuseColor", DiffuseColor);
 	Shader->UniformMat4("Model", *aModel);
 	Shader->UniformMat4("View", *aView);
 	Shader->UniformMat4("InverseView", *aInverseView);
