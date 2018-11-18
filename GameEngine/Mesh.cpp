@@ -5,6 +5,9 @@
 Mesh::Mesh(vector<vec3> aPositions, vector<vec2> aTextureCoords, vector<vec3> aNormals)
 {
 	Vertices = aPositions;
+	Uvs = aTextureCoords;
+	Normals = aNormals;
+}
 
 	glGenBuffers(1, &DataVBO);
 	glGenBuffers(1, &IndicesVBO);

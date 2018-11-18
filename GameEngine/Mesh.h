@@ -20,7 +20,9 @@ class Mesh
 public:
 	Mesh(vector<vec3> aPositions, vector<vec2> aTextureCoords, vector<vec3> aNormals);
 	vector<vec3> Vertices;
-	void Draw();
+	vector<vec2> Uvs;
+	vector<vec3> Normals;
+	void Draw(mat4 aModelViewMatrix);
 	shared_ptr<RayHit> Intersect(Ray& aRay);
 	~Mesh();
 };
