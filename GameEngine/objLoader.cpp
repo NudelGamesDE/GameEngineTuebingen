@@ -47,7 +47,7 @@ bool loadObj(
 		char firstWord[128];
 
 		int res = fscanf(file, "%s", firstWord);
-
+	
 		if (res == EOF) {
 			if (!vertexIndicesVector.empty()) {
 				vertexIndicesVector.push_back(vertexIndices);
@@ -59,42 +59,30 @@ bool loadObj(
 
 		if (strcmp(firstWord, "v") == 0) {
 			glm::vec3 vertex;
-			fscanf(file, "%f %f %f\n", &vertex.x, &vertex.y, &vertex.z);
+			fscanf(file, "%f %f %f", &vertex.x, &vertex.y, &vertex.z);
 			tempVer.push_back(vertex);
 		}
 		if (strcmp(firstWord, "vt") == 0) {
 			glm::vec2 uv;
-			fscanf(file, "%f %f\n", &uv.x, &uv.y);
+			fscanf(file, "%f %f", &uv.x, &uv.y);
 			tempUvs.push_back(uv);
 		}
-		if (strcmp(firstWord, "v") == 0) {
+		if (strcmp(firstWord, "vn") == 0) {
 			glm::vec3 normal;
-			fscanf(file, "%f %f %f\n", &normal.x, &normal.y, &normal.z);
+			fscanf(file, "%f %f %f", &normal.x, &normal.y, &normal.z);
 			tempNor.push_back(normal);
 		}
 		else if (strcmp(firstWord, "f") == 0) {
 			unsigned int vertexIndex[3], uvIndex[3], normalIndex[3];
 
-			int matches = fscanf(file, "%d/%d/%d %d/%d/%d %d/%d/%d\n", &vertexIndex[0], &uvIndex[0], &normalIndex[0], &vertexIndex[1], &uvIndex[1], &normalIndex[1], &vertexIndex[2], &uvIndex[2], &normalIndex[2]);
-			//int matches = fscanf(file, "%iu/%iu/%iu %iu/%iu/%iu %iu/%iu/%iu\n", &vertexIndex[0], &uvIndex[0], &normalIndex[0], &vertexIndex[1], &uvIndex[1], &normalIndex[1], &vertexIndex[2], &uvIndex[2], &normalIndex[2]);
+			int matches = fscanf(file, "%d/%d/%d %d/%d/%d %d/%d/%d", &vertexIndex[0], &uvIndex[0], &normalIndex[0], &vertexIndex[1], &uvIndex[1], &normalIndex[1], &vertexIndex[2], &uvIndex[2], &normalIndex[2]);
+		
 			if (matches != 9) {
 				std::printf("file can't be read\n");
 				fclose(file);
 				return false;
 			}
 		
-			/*for (int i = 0; i < 3;i++) {
-				if (vertexIndex[i] < 0) {
-					vertexIndex[i] *= -1;
-				}
-				if (uvIndex[i] < 0) {
-					uvIndex[i] *= -1;
-				}
-				if (normalIndex[i] < 0) {
-					normalIndex[i] *=-1;
-				}
-			}*/
-
 			vertexIndices.push_back(vertexIndex[0]);
 			vertexIndices.push_back(vertexIndex[1]);
 			vertexIndices.push_back(vertexIndex[2]);
@@ -109,7 +97,7 @@ bool loadObj(
 			usemtl = true;
 			fscanf(file, "%s", mtl);
 			for (int i = 0; i < tempMat.size(); i++) {
-				if (strcmp(tempMat[i]->name, mtl) == 0) {
+				if (strcmp(tempMat[i]->Name, mtl) == 0) {
 					currentMaterialIndex = i;
 					break;
 				}
@@ -139,21 +127,15 @@ bool loadObj(
 			fgets(stupidBuffer, 1000, file);
 		}
 	}
+	/*
+	std::printf("tempVer size: %i\n", tempVer.size());
+	std::printf("tempUvs size: %i\n", tempUvs.size());
+	std::printf("tempNor size: %i\n", tempNor.size());
 
-	/*printf("%s\n", "yeah");
-
-	printf("%i\n", vertexIndicesVector.size());
-
-	printf("%i\n", uvIndicesVector.size());
-
-	printf("%i\n", normalIndicesVector.size());
-
-	printf("%i\n", vertexIndices.size());
-
-	printf("%i\n", uvIndices.size());
-
-	printf("%i\n", normalIndices.size());*/
-
+	std::printf("vertexIndices size: %i\n", vertexIndices.size());
+	std::printf("uvIndices: %i\n", uvIndices.size());
+	std::printf("normalIndices size: %i\n", normalIndices.size());
+	*/
 	if (!vertexIndicesVector.empty()) {
 		for (int i = 0; i < vertexIndicesVector.size(); i++) {
 			for (unsigned int j = 0; j < vertexIndicesVector[i].size(); j++) {
@@ -170,10 +152,7 @@ bool loadObj(
 				out_uvs.push_back(uv);
 				out_normals.push_back(normal);
 			}
-			auto mesh = make_shared<Mesh>();
-			mesh->Vertices = out_vertices;
-			mesh->Uvs = out_uvs;
-			mesh->Normals = out_normals;
+			auto mesh = make_shared<Mesh>(out_vertices, out_uvs, out_normals);
 			meshes.push_back(mesh);
 			out_vertices.clear();
 			out_uvs.clear();
@@ -183,7 +162,6 @@ bool loadObj(
 	else {
 		for (unsigned int i = 0; i < vertexIndices.size(); i++) {
 
-			
 			unsigned int vertexIndex = vertexIndices[i];
 			unsigned int uvIndex = uvIndices[i];
 			unsigned int normalIndex = normalIndices[i];
@@ -196,10 +174,7 @@ bool loadObj(
 			out_uvs.push_back(uv);
 			out_normals.push_back(normal);
 		}
-		auto mesh = make_shared<Mesh>();
-		mesh->Vertices = out_vertices;
-		mesh->Uvs = out_uvs;
-		mesh->Normals = out_normals;
+		auto mesh = make_shared<Mesh>(out_vertices, out_uvs, out_normals);
 		meshes.push_back(mesh);
 	}
 

@@ -54,7 +54,14 @@
     <ClCompile Include="Shader.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="mtlLoader.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="objLoader.cpp">
+=======
     <ClCompile Include="Texture.cpp">
+>>>>>>> 25ae24915359d69c2ab86a42a0338791f332c887
       <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -102,6 +109,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="objLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mtlLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
