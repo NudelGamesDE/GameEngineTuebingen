@@ -40,6 +40,9 @@ public:
 	void UniformMat4(string aName, mat4 aMat);
 	void Uniform1i(string aName, int aI);
 	~Shader();
+
+
+	static shared_ptr<Shader> FlatTextured();
 };
 
 #else

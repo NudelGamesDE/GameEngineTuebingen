@@ -9,6 +9,7 @@ using namespace std;
 
 class TechDemo :public Game
 {
+	shared_ptr<Texture> WoodTexture;
 	shared_ptr<PerspectiveCamera> Camera;
 public:
 	virtual void Start();

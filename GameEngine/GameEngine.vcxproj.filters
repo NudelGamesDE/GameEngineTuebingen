@@ -51,10 +51,10 @@
     <ClCompile Include="FrameData.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="Shader.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -17,6 +17,8 @@ const string VertexBeginning =
 const string FragmentBeginning =
 "#version 400\n"
 
+"uniform sampler2D ColorTexture;"
+"uniform sampler2D NormalTexture;"
 "uniform vec3 DiffuseColor;"
 
 "out vec4 ColorOut;";
@@ -54,6 +56,8 @@ vector<string> GetAttributes()
 	ret.push_back("InverseView");
 	ret.push_back("Projection");
 	ret.push_back("DiffuseColor");
+	ret.push_back("ColorTexture");
+	ret.push_back("NormalTexture");
 	return ret;
 }
 
@@ -151,4 +155,26 @@ shared_ptr<Shader::ShaderAttribute> Shader::FindAttribute(string aName)
 Shader::~Shader()
 {
 	glDeleteProgram(Program);
+}
+
+shared_ptr<Shader> FlatTexturedShader;
+shared_ptr<Shader> Shader::FlatTextured()
+{
+	if (!FlatTexturedShader)
+	{
+		FlatTexturedShader = make_shared<Shader>(
+			"out vec2 VTexCoord;"
+			"void main()"
+			"{"
+			"	gl_Position = Projection * View * Model * vec4(position, 1.0);"
+			"	VTexCoord = texCoord;"
+			"}",
+
+			"in vec2 VTexCoord;"
+			"void main()"
+			"{"
+			"	ColorOut = vec4(texture2D(ColorTexture, VTexCoord).xyz * DiffuseColor, 1.0);"
+			"}");
+	}
+	return FlatTexturedShader;
 }
