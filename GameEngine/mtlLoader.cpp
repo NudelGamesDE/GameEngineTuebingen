@@ -190,13 +190,13 @@ bool loadMtl(
 	for (int i = 0; i < name.size(); i++) {
 
 		auto mat = make_shared<Material>();
-		mat->name = name[i];
-		mat->ambientColor = ambientColor[i];
-		mat->specularColor = specularColor[i];
-		mat->diffuseColor = diffuseColor[i];
-		mat->illum = illum[i];
-		mat->shininess = shininess[i];
-		mat->transparency = transparency[i];
+		mat->Name = name[i];
+		mat->AmbientColor = ambientColor[i];
+		mat->SpecularColor = specularColor[i];
+		mat->DiffuseColor = diffuseColor[i];
+		mat->Illum = illum[i];
+		mat->Shininess = shininess[i];
+		mat->Transparency = transparency[i];
 
 		materials.push_back(mat);
 	}
@@ -207,6 +207,7 @@ bool loadMtl(
 }
 
 shared_ptr<Material> getDefaultMaterial() {
+	char defaultName[128] = "defaultName";
 	glm::vec3 defaultVector(0.0f, 0.0f, 0.0f);
 	float defaultShininess = 0.0f;
 	unsigned int defaultIllum = 0;
@@ -214,12 +215,13 @@ shared_ptr<Material> getDefaultMaterial() {
 	float defaultTransparencyTr = 0.0f;
 
 	auto defaultMaterial = make_shared<Material>();
-	defaultMaterial->ambientColor = defaultVector;
-	defaultMaterial->specularColor = defaultVector;
-	defaultMaterial->diffuseColor = defaultVector;
-	defaultMaterial->shininess = defaultShininess;
-	defaultMaterial->illum = defaultIllum;
-	defaultMaterial->transparency = defaultTransparencyD;
+	defaultMaterial->Name = defaultName;
+	defaultMaterial->AmbientColor = defaultVector;
+	defaultMaterial->SpecularColor = defaultVector;
+	defaultMaterial->DiffuseColor = defaultVector;
+	defaultMaterial->Shininess = defaultShininess;
+	defaultMaterial->Illum = defaultIllum;
+	defaultMaterial->Transparency = defaultTransparencyD;
 
 	return defaultMaterial;
 }
