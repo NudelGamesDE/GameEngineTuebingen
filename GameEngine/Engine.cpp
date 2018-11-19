@@ -62,13 +62,21 @@ void Engine::Loop()
 	ManagedGame->Start();
 	while (true)
 	{
+		clock_t start_time = clock(); // beginning to take the time needed to compute one frame
 		if (ManagedGame->isStoped())return;
 		auto frameData = GenerateFrameData();
 		HandleEvents(frameData);
 		ManagedGame->frameData = frameData;
 		ManagedGame->Update();
 		if (ManagedGame->isStoped())return;
+		clock_t start_render_time = clock(); // beginning of the rendering process
 		Render();
+		clock_t end_time = clock(); // end of the time measurement.
+		hardware::render_time(start_render_time, end_time);
+		hardware::frames_per_second(start_time, end_time);
+
+		std::cout << render_time_in_ms << " ms. \n"; // Temporary cout of render time
+		std::cout << FPS << " FPS. \n";				// and FPS.
 	}
 }
 

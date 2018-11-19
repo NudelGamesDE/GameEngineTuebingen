@@ -11,6 +11,8 @@
 #include <glm\vec2.hpp>
 #include "Game.h"
 #include "FrameData.h"
+#include "hardware.h"
+
 using namespace std;
 using namespace glm;
 
