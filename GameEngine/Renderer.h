@@ -8,6 +8,7 @@
 #include "Transform.h"
 #include "RayHit.h"
 #include "Ray.h"
+#include "Light.h"
 using namespace std;
 using namespace glm;
 
@@ -19,7 +20,7 @@ public:
 	Transform transform;
 	shared_ptr<Material> material;
 	shared_ptr<Mesh> mesh;
-	void Draw(mat4* aView, mat4* aInverseView, mat4* aProjection);
+	void Draw(mat4* aView, mat4* aInverseView, mat4* aProjection, vector<shared_ptr<Light>> aLights);
 	shared_ptr<RayHit> Intersect(Ray& aRay);
 };
 

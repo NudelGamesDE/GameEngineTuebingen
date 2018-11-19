@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "Ray.h"
 #include "RayHit.h"
+#include "Light.h"
 using namespace std;
 
 class Scene
@@ -14,6 +15,7 @@ class Scene
 public:
 	shared_ptr<Camera> camera;
 	vector<shared_ptr<Renderer>> Renderers;
+	vector<shared_ptr<Light>> Lights;
 	void Draw();
 	shared_ptr<RayHit> Intersect(Ray& aRay);
 };

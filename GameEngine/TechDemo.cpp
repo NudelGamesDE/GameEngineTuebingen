@@ -4,6 +4,7 @@
 #include "glm\gtc\quaternion.hpp"
 #include "TechDemo.h"
 #include "PerspectiveCamera.h"
+#include "objLoader.h"
 using namespace std;
 using namespace glm;
 
@@ -102,6 +103,9 @@ void TechDemo::Start()
 		auto mesh = GenerateTreeMesh();
 		auto shader = GenerateTreeShader();
 
+		auto light = make_shared<Light>(vec3(), vec3(1), vec3(-0.5f, -1.0f, 0), 0);
+		scene->Lights.push_back(light);
+
 		for (int i = 0; i < 200; i++)
 		{
 			auto material = make_shared<Material>();
@@ -110,6 +114,18 @@ void TechDemo::Start()
 			material->DiffuseColor.g = randFloat(0.6f, 1.0f);
 			material->DiffuseColor.b = randFloat(0.0f, 0.3f);
 			auto renderer = make_shared<Renderer>(mesh, material, Transform(vec3(randFloat(-25.0f, 25.0f), 0.0f, randFloat(-50.0f, 50.0f)), randFloat(0.75f, 1.25f)));
+			scene->Renderers.push_back(renderer);
+		}
+
+		vector<shared_ptr<Mesh>> capsuleObj;
+		vector<shared_ptr<Material>> capsuleMtl;
+
+		loadObj("../capsule.obj", capsuleObj, capsuleMtl, "../capsule.mtl");
+
+		for (int i = 0; i < capsuleObj.size(); i++) {
+			capsuleMtl[i]->Shader = Shader::BlinnPhongTextured();
+			capsuleMtl[i]->ColorTexture = make_shared<Texture>("../GroundForest.jpg");
+			auto renderer = make_shared<Renderer>(capsuleObj[i], capsuleMtl[i], Transform(vec3(0.0f, 15.0f, 0.0f), vec3(5.0f)));
 			scene->Renderers.push_back(renderer);
 		}
 

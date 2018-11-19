@@ -13,7 +13,7 @@ void Scene::Draw()
 	auto projection = camera->GetProjectionMatrix();
 
 	for (int i = 0; i < Renderers.size(); i++)
-		Renderers[i]->Draw(&viewMatrix, &inverseViewMatrix, &projection);
+		Renderers[i]->Draw(&viewMatrix, &inverseViewMatrix, &projection, Lights);
 }
 
 shared_ptr<RayHit> Scene::Intersect(Ray& aRay)
