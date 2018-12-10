@@ -18,6 +18,7 @@
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="hardware.cpp" />
+    <ClCompile Include="SceneGraphNode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -39,5 +40,6 @@
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="hardware.h" />
+    <ClInclude Include="SceneGraphNode.h" />
   </ItemGroup>
 </Project>
