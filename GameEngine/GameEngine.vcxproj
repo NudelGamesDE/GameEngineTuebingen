@@ -143,7 +143,6 @@
     <ClCompile Include="SceneGraphNode.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Skybox.cpp" />
-    <ClCompile Include="Skybox2.cpp" />
     <ClCompile Include="TechDemo.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Transform.cpp" />
@@ -168,7 +167,6 @@
     <ClInclude Include="SceneGraphNode.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Skybox.h" />
-    <ClInclude Include="Skybox2.h" />
     <ClInclude Include="TechDemo.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Transform.h" />

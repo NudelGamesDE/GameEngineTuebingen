@@ -7,11 +7,11 @@ Renderer::Renderer(shared_ptr<Mesh> aMesh, shared_ptr<Material> aMaterial, Trans
 	mesh = aMesh;
 	material = aMaterial;
 	transform = aTransform;
+	secondTransform = mat4(1.0f);
 }
 
 Renderer::Renderer(shared_ptr<Mesh> aMesh, shared_ptr<Material> aMaterial, Transform aLocalTransform, mat4 aWorldTransform) :Renderer()
 {
-	scenegraph = true;
 	mesh = aMesh;
 	material = aMaterial;
 	transform = aLocalTransform;
@@ -24,12 +24,7 @@ void Renderer::Draw(mat4* aView, mat4* aInverseView, mat4* aProjection, vector<s
 
 	if (material && mesh)
 	{
-		auto model = transform.GetMatrix();
-
-		if (scenegraph)
-		{
-			model = secondTransform * transform.GetMatrix();
-		}
+		auto model = secondTransform * transform.GetMatrix();
 
 		material->Use(&model, aView, aInverseView, aProjection, aLights);
 		mesh->Draw();

@@ -16,6 +16,7 @@ public:
 	shared_ptr<Shader> Shader;
 	shared_ptr<Texture> ColorTexture;
 	shared_ptr<Texture> NormalTexture;
+	shared_ptr<Texture> CubemapTexture;
 	void Use(mat4* aModel, mat4* aView, mat4* aInverseView, mat4* aProjection, vector<shared_ptr<Light>> aLights);
 	char *Name;
 	vec3 AmbientColor;

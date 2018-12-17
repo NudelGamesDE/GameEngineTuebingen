@@ -25,7 +25,7 @@ void Material::Use(mat4* aModel, mat4* aView, mat4* aInverseView, mat4* aProject
 	auto TextureCount = 0;
 	if (ColorTexture)BindTexture(ColorTexture, TextureCount, "ColorTexture", Shader);
 	if (NormalTexture)BindTexture(NormalTexture, TextureCount, "NormalTexture", Shader);
-
+	if (CubemapTexture)BindTexture(CubemapTexture, TextureCount, "CubemapTexture", Shader);
 	
 	//this is how you transfer you light data, direction is director from the light
 	vector<vec3> positions, colors, directions;

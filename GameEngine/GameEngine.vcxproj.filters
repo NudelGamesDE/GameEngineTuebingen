@@ -19,9 +19,8 @@
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="hardware.cpp" />
     <ClCompile Include="CubeMap.cpp" />
-    <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="SceneGraphNode.cpp" />
-    <ClCompile Include="Skybox2.cpp" />
+    <ClCompile Include="Skybox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -43,9 +42,8 @@
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="hardware.h" />
-    <ClInclude Include="Skybox.h" />
     <ClInclude Include="CubeMap.h" />
     <ClInclude Include="SceneGraphNode.h" />
-    <ClInclude Include="Skybox2.h" />
+    <ClInclude Include="Skybox.h" />
   </ItemGroup>
 </Project>

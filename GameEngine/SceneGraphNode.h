@@ -14,18 +14,19 @@ using namespace glm;
 class SceneGraphNode {
 
 public:
-	SceneGraphNode(Transform aTransform, shared_ptr<Mesh> aMesh, shared_ptr<Material> aMaterial);
+	SceneGraphNode(shared_ptr<Mesh> aMesh, shared_ptr<Material> aMaterial, Transform aTransform);
 	mat4 worldTransform;
 	Transform localTransform;
 	shared_ptr<Mesh> mesh;
 	shared_ptr<Material> material;
-	shared_ptr<SceneGraphNode> parent;
-	shared_ptr<SceneGraphNode> self;
+	SceneGraphNode* parent;
 	vector<shared_ptr<SceneGraphNode>> children;
+	shared_ptr<Renderer> renderer;
+	bool root;
 
 	void addChild(shared_ptr<SceneGraphNode> aNode);
 	virtual void update(float aTimer);
-	void addRenderers(shared_ptr<Scene> aScene);
+	void getRenderers(shared_ptr<Scene> aScene);
 };
 
 #else
