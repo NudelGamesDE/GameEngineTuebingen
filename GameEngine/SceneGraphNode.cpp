@@ -28,16 +28,6 @@ void SceneGraphNode::update(float aTimer)
 		renderer->transform = localTransform;
 		renderer->secondTransform = parent->worldTransform;
 	}
-	
-	/*
-	if (parent == nullptr) {
-		renderer->transform = localTransform;
-	}
-	else {
-		renderer->transform = localTransform;
-		renderer->secondTransform = parent->worldTransform;
-	}
-	*/
 
 	for (int i = 0; i < children.size(); i++) {
 		children[i]->update(aTimer);

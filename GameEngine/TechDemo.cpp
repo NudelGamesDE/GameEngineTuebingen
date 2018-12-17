@@ -5,6 +5,7 @@
 #include "TechDemo.h"
 #include "PerspectiveCamera.h"
 #include "objLoader.h"
+#include <iostream>
 using namespace std;
 using namespace glm;
 
@@ -82,11 +83,12 @@ shared_ptr<Texture> GenerateWoodTexture()
 }
 
 
-void CalcBigTree(shared_ptr<Renderer> aBigTree, float& aTimer)
+void CalcBigTree(shared_ptr<SceneGraphNode> aBigTree, float& aTimer)
 {
-	aBigTree->transform.Position = vec3(-5, 0, cos(aTimer / 4) * 5 - 15);
-	aBigTree->transform.Scale = vec3(sin(aTimer * 2), cos(aTimer * 2), sin(aTimer * 2)) * 2.0f + vec3(8);
-	aBigTree->transform.Rotation = quat(cos(aTimer * 3), 0, sin(aTimer * 3), 0);
+	aBigTree->localTransform.Position = vec3(-5, 0, cos(aTimer / 4) * 5 - 15);
+	aBigTree->localTransform.Scale = vec3(sin(aTimer * 2), cos(aTimer * 2), sin(aTimer * 2)) * 2.0f + vec3(8);
+	aBigTree->localTransform.Rotation = quat(cos(aTimer * 3), 0, sin(aTimer * 3), 0);
+	aBigTree->update(aTimer);
 }
 
 
@@ -106,6 +108,18 @@ shared_ptr<Skybox> GenerateSkybox()
 	return make_shared<Skybox>(posx, negx, posy, negy, posz, negz);
 }
 
+shared_ptr<SceneGraphNode> GenerateSceneGraphRoot()
+{
+	auto mesh = GenerateTreeMesh();
+	auto bigTreeMaterial = make_shared<Material>();
+	bigTreeMaterial->Shader = Shader::BlinnPhongTextured();
+	bigTreeMaterial->ColorTexture = make_shared<Texture>("../GroundForest.jpg");
+	bigTreeMaterial->DiffuseColor = vec3(1);
+	bigTreeMaterial->SpecularColor = vec3(1);
+	bigTreeMaterial->AmbientColor = vec3(0.3f, 0.1f, 0.1f);
+	return make_shared<SceneGraphNode>(mesh, bigTreeMaterial, Transform(vec4(0.0f), 10.0f));
+}
+
 void TechDemo::Start()
 {
 	WoodTexture = GenerateWoodTexture();
@@ -116,6 +130,8 @@ void TechDemo::Start()
 		auto shader = GenerateTreeShader();
 
 		scene->Skybox = GenerateSkybox();
+
+		BigTree = GenerateSceneGraphRoot();
 
 		auto light = make_shared<Light>(vec3(), vec3(1), vec3(-0.5f, -1.0f, 0), 0);
 		scene->Lights.push_back(light);
@@ -139,18 +155,9 @@ void TechDemo::Start()
 		for (int i = 0; i < capsuleObj.size(); i++) {
 			capsuleMtl[i]->Shader = Shader::BlinnPhongTextured();
 			capsuleMtl[i]->ColorTexture = make_shared<Texture>("../GroundForest.jpg");
-			auto renderer = make_shared<Renderer>(capsuleObj[i], capsuleMtl[i], Transform(vec3(0.0f, 15.0f, 0.0f), vec3(5.0f)));
-			scene->Renderers.push_back(renderer);
+			auto node = make_shared<SceneGraphNode>(capsuleObj[i], capsuleMtl[i], Transform(vec3(0.5,3,0)));
+			BigTree->addChild(node);
 		}
-
-		auto bigTreeMaterial = make_shared<Material>();
-		bigTreeMaterial->Shader = Shader::BlinnPhongTextured();
-		bigTreeMaterial->ColorTexture = make_shared<Texture>("../GroundForest.jpg");
-		bigTreeMaterial->DiffuseColor = vec3(1);
-		bigTreeMaterial->SpecularColor = vec3(1);
-		bigTreeMaterial->AmbientColor = vec3(0.3f, 0.1f, 0.1f);
-		BigTree = make_shared<Renderer>(mesh, bigTreeMaterial, Transform());
-		scene->Renderers.push_back(BigTree);
 
 		Camera = make_shared<PerspectiveCamera>();
 		Camera->FOV = 45.0f / 180.0f * float(M_PI);
@@ -158,6 +165,8 @@ void TechDemo::Start()
 		Camera->Far = 1000;
 		Camera->transform.Position = vec3(0, 3, -100);
 		scene->camera = Camera;
+
+		BigTree->getRenderers(scene);
 	}
 	Timer = 0.0f;
 	CalcBigTree(BigTree, Timer);

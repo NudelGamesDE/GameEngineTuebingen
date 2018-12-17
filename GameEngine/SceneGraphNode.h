@@ -22,7 +22,6 @@ public:
 	SceneGraphNode* parent;
 	vector<shared_ptr<SceneGraphNode>> children;
 	shared_ptr<Renderer> renderer;
-	bool root;
 
 	void addChild(shared_ptr<SceneGraphNode> aNode);
 	virtual void update(float aTimer);
