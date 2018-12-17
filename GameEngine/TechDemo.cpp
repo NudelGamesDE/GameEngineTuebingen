@@ -94,6 +94,18 @@ float randFloat(float aMin, float aMax)
 {
 	return (rand() % 10001) / 10000.0f*(aMax - aMin) + aMin;
 }
+
+shared_ptr<Skybox> GenerateSkybox()
+{
+	const char* posx = "../posx.jpg";
+	const char* negx = "../negx.jpg";
+	const char* posy = "../posy.jpg";
+	const char* negy = "../negy.jpg";
+	const char* posz = "../posz.jpg";
+	const char* negz = "../negz.jpg";
+	return make_shared<Skybox>(posx, negx, posy, negy, posz, negz);
+}
+
 void TechDemo::Start()
 {
 	WoodTexture = GenerateWoodTexture();
@@ -102,6 +114,8 @@ void TechDemo::Start()
 	{
 		auto mesh = GenerateTreeMesh();
 		auto shader = GenerateTreeShader();
+
+		scene->Skybox = GenerateSkybox();
 
 		auto light = make_shared<Light>(vec3(), vec3(1), vec3(-0.5f, -1.0f, 0), 0);
 		scene->Lights.push_back(light);

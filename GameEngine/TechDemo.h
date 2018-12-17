@@ -5,6 +5,7 @@
 #include <memory>
 #include "Game.h"
 #include "PerspectiveCamera.h"
+#include "SceneGraphNode.h"
 using namespace std;
 
 class TechDemo :public Game

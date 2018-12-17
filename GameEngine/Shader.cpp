@@ -26,6 +26,7 @@ const string FragmentBeginning =
 
 "uniform sampler2D ColorTexture;"
 "uniform sampler2D NormalTexture;"
+"uniform samplerCube CubemapTexture;"
 "uniform vec3 DiffuseColor;"
 "uniform vec3 SpecularColor;"
 "uniform vec3 AmbientColor;"
@@ -74,6 +75,7 @@ vector<string> GetAttributes()
 	ret.push_back("AmbientColor");
 	ret.push_back("ColorTexture");
 	ret.push_back("NormalTexture");
+	ret.push_back("CubemapTexture");
 	ret.push_back("lightPositions");
 	ret.push_back("lightColors");
 	ret.push_back("lightDirections");
@@ -297,15 +299,15 @@ shared_ptr<Shader> Shader::SkyBox() {
 			"void main()"
 			"{"
 			"	TexCoords = position;"
-			"	vec4 pos = Projection * View * vec4(position, 1.0);"
+			"	vec4 pos = Projection * View * Model * vec4(position, 1.0);"
 			"	gl_Position = pos.xyww;"
 			"}",
 
-			"uniform samplerCube skybox;"
+			"in vec3 TexCoords;"
 
 			"void main()"
 			"{"
-			"	ColorOut = texture(skybox, TexCoords);"
+			"	ColorOut = texture(CubemapTexture, TexCoords);"
 			"}");
 	}
 	return SkyBoxShader;
