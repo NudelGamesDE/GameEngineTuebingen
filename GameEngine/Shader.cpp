@@ -288,4 +288,25 @@ shared_ptr<Shader> Shader::BlinnPhongTextured()
 	return BlinnPhongTexturedShader;
 }
 
+shared_ptr<Shader> SkyBoxShader;
+shared_ptr<Shader> Shader::SkyBox() {
+	if (!SkyBoxShader) {
+		SkyBoxShader = make_shared<Shader>(
+			"out vec3 TexCoords;"
 
+			"void main()"
+			"{"
+			"	TexCoords = position;"
+			"	vec4 pos = Projection * View * vec4(position, 1.0);"
+			"	gl_Position = pos.xyww;"
+			"}",
+
+			"uniform samplerCube skybox;"
+
+			"void main()"
+			"{"
+			"	ColorOut = texture(skybox, TexCoords);"
+			"}");
+	}
+	return SkyBoxShader;
+}

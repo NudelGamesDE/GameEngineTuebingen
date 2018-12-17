@@ -1,6 +1,6 @@
 #include "SceneGraphNode.h"
 
-SceneGraphNode::SceneGraphNode(shared_ptr<Transform> aTransform, shared_ptr<Mesh> aMesh, shared_ptr<Material> aMaterial) {
+SceneGraphNode::SceneGraphNode(Transform aTransform, shared_ptr<Mesh> aMesh, shared_ptr<Material> aMaterial) {
 	localTransform = aTransform;
 	mesh = aMesh;
 	material = aMaterial;
@@ -14,10 +14,10 @@ void SceneGraphNode::addChild(shared_ptr<SceneGraphNode> aNode) {
 
 void SceneGraphNode::update(float aTimer) {
 	if (parent) {
-		worldTransform = parent->worldTransform * localTransform; //hier ist das Problem!
+		worldTransform = parent->worldTransform * localTransform.GetMatrix();
 	}
 	else {
-		worldTransform = localTransform;
+		worldTransform = localTransform.GetMatrix();
 	}
 
 	for (int i = 0; i < children.size(); i++) {
@@ -26,10 +26,10 @@ void SceneGraphNode::update(float aTimer) {
 }
 
 void SceneGraphNode::addRenderers(shared_ptr<Scene> aScene) {
-	auto renderer = make_shared<Renderer>(mesh, material, worldTransform);
+	auto renderer = make_shared<Renderer>(mesh, material, localTransform, worldTransform);
 	aScene->Renderers.push_back(renderer);
 
 	for (int i = 0; i < children.size(); i++) {
-		children[i]->draw(aScene);
+		children[i]->addRenderers(aScene);
 	}
 }

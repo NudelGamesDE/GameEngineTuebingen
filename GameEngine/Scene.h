@@ -8,6 +8,7 @@
 #include "Ray.h"
 #include "RayHit.h"
 #include "Light.h"
+#include "Skybox2.h"
 using namespace std;
 
 class Scene
@@ -16,6 +17,7 @@ public:
 	shared_ptr<Camera> camera;
 	vector<shared_ptr<Renderer>> Renderers;
 	vector<shared_ptr<Light>> Lights;
+	shared_ptr<Skybox2> Skybox;
 	void Draw();
 	shared_ptr<RayHit> Intersect(Ray& aRay);
 };

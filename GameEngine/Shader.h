@@ -30,7 +30,6 @@ class Shader
 
 public:
 	Shader(string aVertex, string aFragment);
-
 	void Bind();
 
 	void Uniform1f(string aName, float aValue);
@@ -45,6 +44,7 @@ public:
 
 	static shared_ptr<Shader> FlatTextured();
 	static shared_ptr<Shader> BlinnPhongTextured();
+	static shared_ptr<Shader> SkyBox();
 };
 
 #else

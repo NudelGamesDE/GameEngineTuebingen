@@ -2,22 +2,41 @@
 
 Renderer::Renderer() {}
 
-Renderer::Renderer(shared_ptr<Mesh> aMesh, shared_ptr<Material> aMaterial, Transform aTransform)
+Renderer::Renderer(shared_ptr<Mesh> aMesh, shared_ptr<Material> aMaterial, Transform aTransform) :Renderer()
 {
 	mesh = aMesh;
 	material = aMaterial;
 	transform = aTransform;
 }
 
+Renderer::Renderer(shared_ptr<Mesh> aMesh, shared_ptr<Material> aMaterial, Transform aLocalTransform, mat4 aWorldTransform) :Renderer()
+{
+	scenegraph = true;
+	mesh = aMesh;
+	material = aMaterial;
+	transform = aLocalTransform;
+	secondTransform = aWorldTransform;
+}
+
+
 void Renderer::Draw(mat4* aView, mat4* aInverseView, mat4* aProjection, vector<shared_ptr<Light>> aLights)
 {
+
 	if (material && mesh)
 	{
 		auto model = transform.GetMatrix();
+
+		if (scenegraph)
+		{
+			model = secondTransform * transform.GetMatrix();
+		}
+
 		material->Use(&model, aView, aInverseView, aProjection, aLights);
 		mesh->Draw();
 	}
 }
+	
+
 
 shared_ptr<RayHit> Renderer::Intersect(Ray& aRay)
 {

@@ -14,9 +14,9 @@ using namespace glm;
 class SceneGraphNode {
 
 public:
-	SceneGraphNode(shared_ptr<Transform> aTransform, shared_ptr<Mesh> aMesh, shared_ptr<Material> aMaterial);
-	shared_ptr<Transform> worldTransform;
-	shared_ptr<Transform> localTransform;
+	SceneGraphNode(Transform aTransform, shared_ptr<Mesh> aMesh, shared_ptr<Material> aMaterial);
+	mat4 worldTransform;
+	Transform localTransform;
 	shared_ptr<Mesh> mesh;
 	shared_ptr<Material> material;
 	shared_ptr<SceneGraphNode> parent;

@@ -12,6 +12,11 @@ void Scene::Draw()
 		inverseViewMatrix = inverse(viewMatrix);
 	auto projection = camera->GetProjectionMatrix();
 
+	if (Skybox) {
+		Skybox->transform = camera->transform;
+		Skybox->getRenderer()->Draw(&viewMatrix, &inverseViewMatrix, &projection, Lights);
+	}
+
 	for (int i = 0; i < Renderers.size(); i++)
 		Renderers[i]->Draw(&viewMatrix, &inverseViewMatrix, &projection, Lights);
 }
