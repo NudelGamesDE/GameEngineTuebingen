@@ -4,6 +4,7 @@
 #include <SDL_opengl.h>
 #include <memory>
 #include <vector>
+using namespace std;
 
 class Texture
 {

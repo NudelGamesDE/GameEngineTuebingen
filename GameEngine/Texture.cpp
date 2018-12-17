@@ -2,8 +2,6 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
-#include <memory>
-#include <vector>
 using namespace std;
 
 Texture::Texture() {}
