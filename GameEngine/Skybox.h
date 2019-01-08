@@ -18,6 +18,7 @@ public:
 		const char* negZFilename);
 	shared_ptr<Mesh> mesh;
 	shared_ptr<Material> material;
+	shared_ptr<Renderer> cachedRenderer;
 	Transform transform;
 	shared_ptr<Renderer> getRenderer();
 	vector<const char*> filenames;

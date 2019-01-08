@@ -25,10 +25,11 @@ Skybox::Skybox(
 	material = cubeMtl[0];
 }
 
-shared_ptr<Renderer> Skybox::getRenderer() 
+shared_ptr<Renderer> Skybox::getRenderer()
 {
+	if (cachedRenderer)return cachedRenderer;
 	material->Shader = Shader::SkyBox();
 	material->CubemapTexture = make_shared<Texture>(filenames);
 	auto renderer = make_shared<Renderer>(mesh, material, transform);
-	return renderer;
+	return cachedRenderer = renderer;
 }
