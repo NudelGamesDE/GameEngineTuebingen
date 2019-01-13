@@ -155,7 +155,7 @@ void TechDemo::Start()
 		for (int i = 0; i < capsuleObj.size(); i++) {
 			capsuleMtl[i]->Shader = Shader::BlinnPhongTextured();
 			capsuleMtl[i]->ColorTexture = make_shared<Texture>("../GroundForest.jpg");
-			auto node = make_shared<SceneGraphNode>(capsuleObj[i], capsuleMtl[i], Transform(vec3(0.5,3,0)));
+			auto node = make_shared<SceneGraphNode>(capsuleObj[i], capsuleMtl[i], Transform(vec3(0.5, 3, 0)));
 			BigTree->addChild(node);
 		}
 
@@ -181,14 +181,19 @@ string TechDemo::GetWindowName()
 void TechDemo::Update()
 {
 	const float speed = 15.0f;
-	if (frameData->IsKeyPressed(SDLK_LEFT))
+	const float rotationSpeed = 0.5f;
+	if (frameData->IsKeyPressed(SDLK_LEFT) || frameData->IsKeyPressed(SDLK_a))
 		Camera->transform.Position.x -= frameData->deltaTime * speed;
-	if (frameData->IsKeyPressed(SDLK_RIGHT))
+	if (frameData->IsKeyPressed(SDLK_RIGHT) || frameData->IsKeyPressed(SDLK_d))
 		Camera->transform.Position.x += frameData->deltaTime * speed;
-	if (frameData->IsKeyPressed(SDLK_UP))
+	if (frameData->IsKeyPressed(SDLK_UP) || frameData->IsKeyPressed(SDLK_w))
 		Camera->transform.Position.z += frameData->deltaTime * speed;
-	if (frameData->IsKeyPressed(SDLK_DOWN))
+	if (frameData->IsKeyPressed(SDLK_DOWN) || frameData->IsKeyPressed(SDLK_s))
 		Camera->transform.Position.z -= frameData->deltaTime * speed;
+	if (frameData->IsKeyPressed(SDLK_q))
+		Camera->transform.Rotation *= quat(vec3(0, -frameData->deltaTime * rotationSpeed, 0));
+	if (frameData->IsKeyPressed(SDLK_e))
+		Camera->transform.Rotation *= quat(vec3(0, frameData->deltaTime * rotationSpeed, 0));
 
 	auto mouseposition = frameData->GetViewMousePosition();
 

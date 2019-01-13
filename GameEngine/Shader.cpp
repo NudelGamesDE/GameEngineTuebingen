@@ -298,8 +298,11 @@ shared_ptr<Shader> Shader::SkyBox() {
 
 			"void main()"
 			"{"
+
 			"	TexCoords = position;"
-			"	vec4 pos = Projection * View * Model * vec4(position, 1.0);"
+			"	vec4 worldPos = Model * vec4(position, 1.0);"
+			"	vec4 pos = Projection * View * vec4(worldPos.xyz + (InverseView * vec4(0.0, 0.0, 0.0, 1.0)).xyz * 1.0, 1.0);"
+
 			"	gl_Position = pos.xyww;"
 			"}",
 
