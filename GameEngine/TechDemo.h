@@ -6,6 +6,7 @@
 #include "Game.h"
 #include "PerspectiveCamera.h"
 #include "SceneGraphNode.h"
+#include "Terrain.h"
 using namespace std;
 
 class TechDemo :public Game
@@ -13,6 +14,7 @@ class TechDemo :public Game
 	shared_ptr<Texture> WoodTexture;
 	shared_ptr<PerspectiveCamera> Camera;
 	shared_ptr<SceneGraphNode> BigTree;
+	shared_ptr<Terrain> TestTerrain;
 	float Timer;
 public:
 	virtual void Start();

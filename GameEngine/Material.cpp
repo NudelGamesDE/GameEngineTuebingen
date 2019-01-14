@@ -9,6 +9,12 @@ void BindTexture(shared_ptr<Texture> aTexture, int& aTextureCount, string aName,
 	aTextureCount++;
 }
 
+Material::Material()
+{
+	DiffuseColor = vec3(1);
+	SpecularColor = vec3(1);
+}
+
 void Material::Use(mat4* aModel, mat4* aView, mat4* aInverseView, mat4* aProjection, vector<shared_ptr<Light>> aLights)
 {
 	if (!Shader)return;
@@ -25,6 +31,7 @@ void Material::Use(mat4* aModel, mat4* aView, mat4* aInverseView, mat4* aProject
 	auto TextureCount = 0;
 	if (ColorTexture)BindTexture(ColorTexture, TextureCount, "ColorTexture", Shader);
 	if (NormalTexture)BindTexture(NormalTexture, TextureCount, "NormalTexture", Shader);
+	if (HeightTexture)BindTexture(HeightTexture, TextureCount, "HeightTexture", Shader);
 	if (CubemapTexture)BindTexture(CubemapTexture, TextureCount, "CubemapTexture", Shader);
 	
 	//this is how you transfer you light data, direction is director from the light

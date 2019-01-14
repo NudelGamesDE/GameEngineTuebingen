@@ -45,6 +45,7 @@ public:
 	static shared_ptr<Shader> FlatTextured();
 	static shared_ptr<Shader> BlinnPhongTextured();
 	static shared_ptr<Shader> SkyBox();
+	static shared_ptr<Shader> Terrain();
 };
 
 #else

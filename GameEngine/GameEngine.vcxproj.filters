@@ -20,6 +20,7 @@
     <ClCompile Include="hardware.cpp" />
     <ClCompile Include="SceneGraphNode.cpp" />
     <ClCompile Include="Skybox.cpp" />
+    <ClCompile Include="Terrain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -43,5 +44,6 @@
     <ClInclude Include="hardware.h" />
     <ClInclude Include="SceneGraphNode.h" />
     <ClInclude Include="Skybox.h" />
+    <ClInclude Include="Terrain.h" />
   </ItemGroup>
 </Project>

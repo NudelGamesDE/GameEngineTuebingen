@@ -13,6 +13,7 @@ public:
 	Texture();
 	Texture(const char* aPath);
 	Texture(vector<const char*> filenames);
+	void Change2D(void* aBytes, int aWidth, int aHeight, int aBytesPerPixel = 4);
 	bool cubemap =  false;
 	void Use();
 	~Texture();

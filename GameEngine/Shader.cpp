@@ -11,6 +11,8 @@ const string VertexBeginning =
 "uniform mat4 View;"
 "uniform mat4 InverseView;"
 
+"uniform sampler2D HeightTexture;"
+
 "uniform vec3 lightPositions[16];"
 "uniform vec3 lightColors[16];"
 "uniform vec3 lightDirections[16];"
@@ -26,6 +28,7 @@ const string FragmentBeginning =
 
 "uniform sampler2D ColorTexture;"
 "uniform sampler2D NormalTexture;"
+"uniform sampler2D HeightTexture;"
 "uniform samplerCube CubemapTexture;"
 "uniform vec3 DiffuseColor;"
 "uniform vec3 SpecularColor;"
@@ -75,6 +78,7 @@ vector<string> GetAttributes()
 	ret.push_back("AmbientColor");
 	ret.push_back("ColorTexture");
 	ret.push_back("NormalTexture");
+	ret.push_back("HeightTexture");
 	ret.push_back("CubemapTexture");
 	ret.push_back("lightPositions");
 	ret.push_back("lightColors");
@@ -301,7 +305,7 @@ shared_ptr<Shader> Shader::SkyBox() {
 
 			"	TexCoords = position;"
 			"	vec4 worldPos = Model * vec4(position, 1.0);"
-			"	vec4 pos = Projection * View * vec4(worldPos.xyz + (InverseView * vec4(0.0, 0.0, 0.0, 1.0)).xyz * 1.0, 1.0);"
+			"	vec4 pos = Projection * View * vec4(worldPos.xyz + (InverseView * vec4(0.0, 0.0, 0.0, 1.0)).xyz, 1.0);"
 
 			"	gl_Position = pos.xyww;"
 			"}",
@@ -314,4 +318,24 @@ shared_ptr<Shader> Shader::SkyBox() {
 			"}");
 	}
 	return SkyBoxShader;
+}
+
+shared_ptr<Shader> TerrainShader;
+shared_ptr<Shader> Shader::Terrain() {
+	if (!TerrainShader) {
+		TerrainShader = make_shared<Shader>(
+			"out vec2 VTexCoord;"
+			"void main()"
+			"{"
+			"	gl_Position = Projection * View * Model * vec4(position + vec3(0.0,texture2D(HeightTexture, texCoord).x,0.0), 1.0);"
+			"	VTexCoord = texCoord;"
+			"}",
+
+			"in vec2 VTexCoord;"
+			"void main()"
+			"{"
+			"	ColorOut = vec4(texture2D(ColorTexture, VTexCoord).xyz * DiffuseColor, 1.0);"
+			"}");
+	}
+	return TerrainShader;
 }

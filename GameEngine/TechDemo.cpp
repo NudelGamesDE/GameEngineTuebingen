@@ -6,6 +6,7 @@
 #include "PerspectiveCamera.h"
 #include "objLoader.h"
 #include <iostream>
+#include <glm/gtc/noise.hpp>
 using namespace std;
 using namespace glm;
 
@@ -120,6 +121,20 @@ shared_ptr<SceneGraphNode> GenerateSceneGraphRoot()
 	return make_shared<SceneGraphNode>(mesh, bigTreeMaterial, Transform(vec4(0.0f), 10.0f));
 }
 
+shared_ptr<Terrain> GenerateTerrain()
+{
+	auto ret = make_shared<Terrain>();
+	ret->getRenderer()->transform.Position = vec3(-50, -5, -50);
+	ret->getRenderer()->transform.Scale = vec3(100, 20, 100);
+	ret->getMaterial()->ColorTexture = make_shared<Texture>("../GroundForest.jpg");
+	ret->SetMeshResolution(200);
+	ret->SetHeightResolution(128);
+	ret->SetHeightValues([](vec3 position) {return perlin(vec2(position.x, position.z) / 10.0f); });
+	return ret;
+}
+
+vector<vec3> TreePositions;
+
 void TechDemo::Start()
 {
 	WoodTexture = GenerateWoodTexture();
@@ -132,6 +147,8 @@ void TechDemo::Start()
 		scene->Skybox = GenerateSkybox();
 
 		BigTree = GenerateSceneGraphRoot();
+		TestTerrain = GenerateTerrain();
+		scene->Renderers.push_back(TestTerrain->getRenderer());
 
 		auto light = make_shared<Light>(vec3(), vec3(1), vec3(-0.5f, -1.0f, 0), 0);
 		scene->Lights.push_back(light);
@@ -144,6 +161,7 @@ void TechDemo::Start()
 			material->DiffuseColor.g = randFloat(0.6f, 1.0f);
 			material->DiffuseColor.b = randFloat(0.0f, 0.3f);
 			auto renderer = make_shared<Renderer>(mesh, material, Transform(vec3(randFloat(-25.0f, 25.0f), 0.0f, randFloat(-50.0f, 50.0f)), randFloat(0.75f, 1.25f)));
+			TreePositions.push_back(renderer->transform.Position);
 			scene->Renderers.push_back(renderer);
 		}
 
@@ -161,7 +179,7 @@ void TechDemo::Start()
 
 		Camera = make_shared<PerspectiveCamera>();
 		Camera->FOV = 45.0f / 180.0f * float(M_PI);
-		Camera->Near = 0.01f;
+		Camera->Near = 0.1f;
 		Camera->Far = 1000;
 		Camera->transform.Position = vec3(0, 3, -100);
 		scene->camera = Camera;
@@ -194,6 +212,25 @@ void TechDemo::Update()
 		Camera->transform.Rotation *= quat(vec3(0, -frameData->deltaTime * rotationSpeed, 0));
 	if (frameData->IsKeyPressed(SDLK_e))
 		Camera->transform.Rotation *= quat(vec3(0, frameData->deltaTime * rotationSpeed, 0));
+
+	if (frameData->IsKeyDown(SDLK_t))
+	{
+		TestTerrain->ChangeHeightValues([](vec3 position, float previous)
+		{
+			float radius = 2;
+			auto minDistance = radius;
+
+			for (auto& tree : TreePositions)
+			{
+				auto delta = position - tree;
+				delta.y = 0;
+				minDistance = min(minDistance, length(delta));
+			}
+			minDistance /= radius;
+
+			return previous * minDistance + 0.25f * (1 - minDistance);
+		});
+	}
 
 	auto mouseposition = frameData->GetViewMousePosition();
 
