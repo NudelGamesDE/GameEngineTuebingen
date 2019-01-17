@@ -19,6 +19,8 @@ public:
 	Renderer();
 	Renderer(shared_ptr<Mesh> aMesh, shared_ptr<Material> aMaterial, Transform aTransform);
 	Renderer(shared_ptr<Mesh> aMesh, shared_ptr<Material> aMaterial, Transform aLocalTransform, mat4 aWorldTransform);
+	Renderer(shared_ptr<Mesh> aMesh, shared_ptr<Material> aMaterial, Transform aTransform, shared_ptr<RigidBody> aRigidBody);
+	Renderer(shared_ptr<Mesh> aMesh, shared_ptr<Material> aMaterial, Transform aLocalTransform, mat4 aWorldTransform, shared_ptr<RigidBody> aRigidBody);
 	Transform transform;
 	mat4 secondTransform;
 	shared_ptr<Material> material;
