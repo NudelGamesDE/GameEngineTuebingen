@@ -37,7 +37,7 @@ shared_ptr<RayHit> Renderer::Intersect(Ray& aRay)
 {
 	if (!mesh)return nullptr;
 
-	auto transformationMatrix = transform.GetMatrix();
+	auto transformationMatrix = secondTransform * transform.GetMatrix();
 	auto inverseTransformationMatrix = inverse(transformationMatrix);
 
 	auto transformedRay = aRay;
