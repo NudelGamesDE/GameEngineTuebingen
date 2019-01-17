@@ -169,11 +169,14 @@ void TechDemo::Start()
 		vector<shared_ptr<Material>> capsuleMtl;
 
 		loadObj("../capsule.obj", capsuleObj, capsuleMtl, "../capsule.mtl");
+		
+		rig = make_shared<RigidBody>();
 
 		for (int i = 0; i < capsuleObj.size(); i++) {
 			capsuleMtl[i]->Shader = Shader::BlinnPhongTextured();
 			capsuleMtl[i]->ColorTexture = make_shared<Texture>("../GroundForest.jpg");
 			auto node = make_shared<SceneGraphNode>(capsuleObj[i], capsuleMtl[i], Transform(vec3(0.5, 3, 0)));
+			node->renderer->rigidBody = rig;
 			BigTree->addChild(node);
 		}
 
@@ -257,4 +260,5 @@ void TechDemo::Update()
 	}
 	Timer += frameData->deltaTime;
 	CalcBigTree(BigTree, Timer);
+	rig->addForce(force);
 }

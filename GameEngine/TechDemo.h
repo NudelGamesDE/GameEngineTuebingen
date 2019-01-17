@@ -15,6 +15,8 @@ class TechDemo :public Game
 	shared_ptr<PerspectiveCamera> Camera;
 	shared_ptr<SceneGraphNode> BigTree;
 	shared_ptr<Terrain> TestTerrain;
+	vec3 force = vec3(0.0f, -0.2f, 0.0f);
+	shared_ptr<RigidBody> rig;
 	float Timer;
 public:
 	virtual void Start();
