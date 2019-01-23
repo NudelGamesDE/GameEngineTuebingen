@@ -131,6 +131,7 @@
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="mtlLoader.cpp" />
     <ClCompile Include="objLoader.cpp" />
+    <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="PerspectiveCamera.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="mtlLoader.h" />
     <ClInclude Include="objLoader.h" />
+    <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="PerspectiveCamera.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="RayHit.h" />

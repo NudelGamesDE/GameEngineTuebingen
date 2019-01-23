@@ -22,6 +22,7 @@
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="RigidBody.cpp" />
+    <ClCompile Include="ParticleSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -47,5 +48,6 @@
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="RigidBody.h" />
+    <ClInclude Include="ParticleSystem.h" />
   </ItemGroup>
 </Project>
