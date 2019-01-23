@@ -138,6 +138,7 @@
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneGraphNode.cpp" />
     <ClCompile Include="Shader.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Ray.h" />
     <ClInclude Include="RayHit.h" />
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="RigidBody.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneGraphNode.h" />
     <ClInclude Include="Shader.h" />
