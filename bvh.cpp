@@ -39,10 +39,9 @@ float bvh::difference(float x, float y)
 
  bvh::bvh_nope* bvh::generate_bvh_tree(vector<shared_ptr<Renderer>> objects)
  {
-	 std::cout << objects.size() <<"  Halt's Maul. \n";
-	 if (objects.size() < 1)
+	 // std::cout << objects.size() <<"  Objects in the layer. \n";
+	 if (objects.size() <= 1)
 	 {
-		 std::cout << "Halt den Rand. \n";
 		 return bvh::generate_bvh_nope(objects[0]->transform.Position.x,
 									   objects[0]->transform.Position.y, 
 									   objects[0]->transform.Position.z, 
@@ -50,8 +49,7 @@ float bvh::difference(float x, float y)
 									   objects[0]->transform.Position.y,
 									   objects[0]->transform.Position.z, objects, NULL, NULL);
 	 }
-	 float max_x = -10000;
-	 //std::cout << max_x << " Test. TEST! SCHEISSE! \n";
+	 float max_x = -INFINITY;
 	 float max_y = -INFINITY;
 	 float max_z = -INFINITY;
 	 float min_x = INFINITY;
@@ -59,8 +57,6 @@ float bvh::difference(float x, float y)
 	 float min_z = INFINITY;
 	 for (int i = 0; i < objects.size(); i++)
 	 {
-		 //std::cout << objects[i]->transform.Position.x << "Fuck that shit. \n";
-		//std::cout << objects[i]->transform.Position.z << " \n";
 		 if (objects[i]->transform.Position.x > max_x)
 		 {
 			 max_x = objects[i]->transform.Position.x;
@@ -90,55 +86,53 @@ float bvh::difference(float x, float y)
 	 float x_diff = abs(bvh::difference(max_x, min_x));
 	 float y_diff = abs(bvh::difference(max_y, min_y));
 	 float z_diff = abs(bvh::difference(max_z, min_z));
-	 std::cout << min_x << " - " << max_x << " X \n" << min_y << " - " << max_y << "Y \n" << " - " << min_z << " - " << max_z << " Z \n";
-	 //std::cout << x_diff << " - " << y_diff << " - " << z_diff << "\n";
+	 float mid_x = ((max_x + min_x) / 2);
+	 float mid_y = ((max_y + min_y) / 2);
+	 float mid_z = ((max_z + min_z) / 2);
+	 /* std::cout << min_x << " min_x coordinate - " << max_x << "max_x coordinate - " << x_diff << " x_diff " << mid_x << " mid_x \n" 
+		 << min_y << " min_y coordinate - " << max_y << "max_y coordinate - " << y_diff << " y_diff " << mid_y << " mid_y \n"
+		 << min_z << " min_z coordinate - " << max_z << " max_z coordinate - " << z_diff << " z_diff " << mid_z << " mid_z \n \n";
+	*/
 	 vector<shared_ptr<Renderer>> left;
 	 vector<shared_ptr<Renderer>> right;
-	 if ((max_x >= max_y) && (max_x >= max_z))
+	 if ((x_diff >= y_diff) && (x_diff >= z_diff))
 	 {
 		 for (int i = 0; i < objects.size(); i++)
 		 {
-			 if ((objects[i]->transform.Position.x - min_x) <= x_diff)
+			 if ((objects[i]->transform.Position.x) <= mid_x)
 			 {
-				 std::cout << "Tick. \n";
 				 left.push_back(objects[i]);
 			 }
 			 else
 			 {
-				 std::cout << "Tock. \n";
 				 right.push_back(objects[i]);
 			 }
 		 }
 	 }
-	 if ((max_y > max_x) && (max_y >= max_z))
+	 if ((y_diff > x_diff) && (y_diff >= z_diff))
 	 {
 		 for (int i = 0; i < objects.size(); i++)
 		 {
-			 if ((objects[i]->transform.Position.y - min_y) <= y_diff)
+			 if ((objects[i]->transform.Position.y) <= mid_y)
 			 {
-				 std::cout << "Tack. \n";
 				 left.push_back(objects[i]);
 			 }
 			 else
 			 {
-				 std::cout << "Tuck. \n";
 				 right.push_back(objects[i]);
 			 }
 		 }
 	 }
-	 if ((max_z > max_y) && (max_z > max_x))
+	 if ((z_diff > y_diff) && (z_diff > x_diff))
 	 {
 		 for (int i = 0; i < objects.size(); i++)
 		 {
-			 //std::cout << floor(max_z / 2) << "\n";
-			 if ((objects[i]->transform.Position.z - min_z) < z_diff)
+			 if ((objects[i]->transform.Position.z) < mid_z)
 			 {
-				 //std::cout << "Teck. \n";
 				 left.push_back(objects[i]);
 			 }
 			 else
 			 {
-				// std::cout << "Tyck. \n";
 				 right.push_back(objects[i]);
 			 }
 		 }
