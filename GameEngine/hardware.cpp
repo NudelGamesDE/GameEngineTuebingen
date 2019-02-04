@@ -1,6 +1,6 @@
 #include "hardware.h"
 
-int FPS;
+float FPS;
 float render_time_in_ms;
 
 /**	\brief Determines time to render a scene

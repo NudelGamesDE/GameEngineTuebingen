@@ -16,7 +16,7 @@
 using namespace std;
 using namespace glm;
 
-extern int FPS;
+extern float FPS;
 extern float render_time_in_ms;
 
 /**	\brief A hardware class
