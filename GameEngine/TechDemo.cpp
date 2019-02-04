@@ -135,6 +135,34 @@ shared_ptr<Terrain> GenerateTerrain()
 
 vector<vec3> TreePositions;
 
+ParticleSystem::ParticleData NewParticle()
+{
+	ParticleSystem::ParticleData ret;
+	ret.Lifetime = 0;
+	ret.LocalPosition = vec3(0);
+	ret.Scale = vec2(1);
+	ret.LocalVelocity = vec3(randFloat(-1, 1), randFloat(-1, 1), randFloat(-1, 1));
+	return ret;
+}
+
+void ChangeParticle(float aDeltaTime, ParticleSystem::ParticleData& aParticle)
+{
+	aParticle.Lifetime += aDeltaTime;
+	aParticle.LocalPosition += aParticle.LocalVelocity * aDeltaTime;
+}
+
+shared_ptr<ParticleSystem> GenerateParticleSystem(shared_ptr<Scene> aScene)
+{
+	auto ret = make_shared<ParticleSystem>(aScene, NewParticle, ChangeParticle);
+	ret->MaxLifetime = 5;
+	ret->Spawnfrequency = 10;
+	ret->ParticleMaterial = make_shared<Material>();
+	ret->ParticleMaterial->Shader = Shader::FlatTextured();
+	ret->ParticleMaterial->ColorTexture = make_shared<Texture>("../testParticle.png");
+	ret->transform.Position = vec3(0, 1, 3);
+	return ret;
+}
+
 void TechDemo::Start()
 {
 	WoodTexture = GenerateWoodTexture();
@@ -169,7 +197,7 @@ void TechDemo::Start()
 		vector<shared_ptr<Material>> capsuleMtl;
 
 		loadObj("../capsule.obj", capsuleObj, capsuleMtl, "../capsule.mtl");
-		
+
 		rig = make_shared<RigidBody>();
 
 		for (int i = 0; i < capsuleObj.size(); i++) {
@@ -188,6 +216,8 @@ void TechDemo::Start()
 		scene->camera = Camera;
 
 		BigTree->getRenderers(scene);
+
+		Particles = GenerateParticleSystem(scene);
 	}
 	Timer = 0.0f;
 	CalcBigTree(BigTree, Timer);
@@ -261,4 +291,6 @@ void TechDemo::Update()
 	Timer += frameData->deltaTime;
 	CalcBigTree(BigTree, Timer);
 	rig->addForce(force);
+
+	Particles->Update(frameData->deltaTime, Camera);
 }

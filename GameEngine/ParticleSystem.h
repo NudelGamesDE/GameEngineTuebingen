@@ -16,17 +16,28 @@ public:
 		float Lifetime;
 	};
 private:
+	struct Particle
+	{
+		ParticleData data;
+		shared_ptr<Renderer> renderer;
+	};
 	shared_ptr<Scene> scene;
 	function<ParticleData()> newParticle;
 	function<void(float, ParticleData&)> modifyParticle;
+	float SpawnTimer = 0.0f;
+	vector<Particle> Particles;
 public:
-
-
 	ParticleSystem(shared_ptr<Scene> aScene,
 		function<ParticleData()> aNewParticle,
 		function<void(float, ParticleData&)> aModifyParticle);
+	void Spawn();
 	Transform transform;
-	void Update(float aDeltaTime);
+	shared_ptr<Material> ParticleMaterial;
+	int MaxParticles = 100;
+	float MaxLifetime = 1.0f;
+	float Spawnfrequency = 1.0f;
+	void Update(float aDeltaTime, shared_ptr<Camera> aCamera);
+	void Clear();
 };
 
 #else
