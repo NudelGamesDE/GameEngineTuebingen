@@ -3,6 +3,11 @@
 #include <iostream>
 using namespace std;
 
+/** \brief Vertex shader beginning
+
+This string contains the beginning of each vertex shader created with this class.
+It contains necessary information like the OpenGL version we are using as well as all the uniform values we can assign.
+*/
 const string VertexBeginning =
 "#version 400\n"
 
@@ -23,6 +28,11 @@ const string VertexBeginning =
 "layout(location = 1)in vec2 texCoord;"
 "layout(location = 2)in vec3 normal;";
 
+/** \brief Fragment shader beginning
+
+This string contains the beginning of each fragment shader created with this class.
+It contains necessary information like the OpenGL version we are using as well as all the uniform values we can assign.
+*/
 const string FragmentBeginning =
 "#version 400\n"
 
@@ -42,6 +52,12 @@ const string FragmentBeginning =
 
 "out vec4 ColorOut;";
 
+/** \brief Compile a shader
+
+This function compiles a shader from a source string.
+\param Shader a GLuint representing the shader's unique ID
+\param aSource a string containing the necessary GLSL code
+*/
 void CompileShader(GLuint Shader, string aSource)
 {
 	/*auto _source = aSource.c_str();
@@ -66,6 +82,11 @@ void CompileShader(GLuint Shader, string aSource)
 		cout << error << endl;
 }
 
+/** \brief Get shader attributes
+
+The returned vector contains strings for assigning uniform values.
+\return a vector of strings
+*/
 vector<string> GetAttributes()
 {
 	auto ret = vector<string>();
@@ -88,6 +109,11 @@ vector<string> GetAttributes()
 	return ret;
 }
 
+/** \brief Constructor for a Shader instance
+
+\param aVertex a string containing the missing GLSL code including main function for the vertex shader
+\param aFragment a string containing the missing GLSL code including main function for the fragment shader
+*/
 Shader::Shader(string aVertex, string aFragment)
 {
 	auto attributes = GetAttributes();
@@ -117,6 +143,10 @@ Shader::Shader(string aVertex, string aFragment)
 	}
 }
 
+/** \brief Binds this shader
+
+To use a shader one needs to call glUseProgram, which is done here.
+*/
 void Shader::Bind()
 {
 	glUseProgram(Program);
@@ -129,37 +159,71 @@ void Shader::Bind()
 
 
 
+/** \brief Submit uniform float
 
+\param aName name of uniform variable specified in GLSL code
+\param aValue a float value
+*/
 void Shader::Uniform1f(string aName, float aValue)
 {
 	auto _attribute = FindAttribute(aName);
 	if (_attribute)
 		glUniform1f(_attribute->Location, aValue);
 }
+
+/** \brief Submit uniform vec2
+
+\param aName name of uniform variable specified in GLSL code
+\param aVec a vec2 value
+*/
 void Shader::Uniform2f(string aName, vec2 aVec)
 {
 	auto _attribute = FindAttribute(aName);
 	if (_attribute)
 		glUniform2f(_attribute->Location, aVec.x, aVec.y);
 }
+
+/** \brief Submit uniform vec3
+
+\param aName name of uniform variable specified in GLSL code
+\param aVec a vec3 value
+*/
 void Shader::Uniform3f(string aName, vec3 aVec)
 {
 	auto _attribute = FindAttribute(aName);
 	if (_attribute)
 		glUniform3f(_attribute->Location, aVec.x, aVec.y, aVec.z);
 }
+
+/** \brief Submit uniform vec4 
+
+\param aName name of uniform variable specified in GLSL code
+\param aVec a vec4 value
+*/
 void Shader::Uniform4f(string aName, vec4 aVec)
 {
 	auto _attribute = FindAttribute(aName);
 	if (_attribute)
 		glUniform4f(_attribute->Location, aVec.x, aVec.y, aVec.z, aVec.w);
 }
+
+/** \brief Submit uniform mat4
+
+\param aName name of uniform variable specified in GLSL code
+\param aMat a mat4 value
+*/
 void Shader::UniformMat4(string aName, mat4 aMat)
 {
 	auto _attribute = FindAttribute(aName);
 	if (_attribute)
 		glUniformMatrix4fv(_attribute->Location, 1, GL_FALSE, &aMat[0][0]);
 }
+
+/** \brief Submit uniform integer
+
+\param aName name of uniform variable specified in GLSL code
+\param aI an integer value
+*/
 void Shader::Uniform1i(string aName, int aI)
 {
 	auto _attribute = FindAttribute(aName);
@@ -167,6 +231,13 @@ void Shader::Uniform1i(string aName, int aI)
 		glUniform1i(_attribute->Location, aI);
 }
 
+/** \brief Submit uniform lights
+
+\param aPositions light positions
+\param aColor light colors
+\param aDirection light directions
+\param aType light types
+*/
 void Shader::UniformLights(vector<vec3> aPositions, vector<vec3> aColor, vector<vec3> aDirection, vector<int> aType)
 {
 	auto minSize = min((int)min(min(aPositions.size(), aColor.size()), min(aDirection.size(), aType.size())), 16);
@@ -198,7 +269,10 @@ void Shader::UniformLights(vector<vec3> aPositions, vector<vec3> aColor, vector<
 	if (countAttribute)glUniform1i(countAttribute->Location, minSize);
 }
 
+/** \brief Find an attribute
 
+\param aName name of the attribute to find
+*/
 shared_ptr<Shader::ShaderAttribute> Shader::FindAttribute(string aName)
 {
 	for (unsigned int i = 0; i < Attributes.size(); i++)
@@ -210,12 +284,21 @@ shared_ptr<Shader::ShaderAttribute> Shader::FindAttribute(string aName)
 	return nullptr;
 }
 
+/** \brief Destroy Shader instance
+
+Destroys this instance. This is done by calling glDeleteProgram.
+*/
 Shader::~Shader()
 {
 	glDeleteProgram(Program);
 }
 
 shared_ptr<Shader> FlatTexturedShader;
+
+/** \brief Flat Textured Shader
+
+\return a shared pointer to a flat textured shader
+*/
 shared_ptr<Shader> Shader::FlatTextured()
 {
 	if (!FlatTexturedShader)
@@ -239,6 +322,11 @@ shared_ptr<Shader> Shader::FlatTextured()
 
 
 shared_ptr<Shader> BlinnPhongTexturedShader;
+
+/** \brief Blinn Phong Textured Shader
+
+\return a shared pointer to a blinnphong textured shader
+*/
 shared_ptr<Shader> Shader::BlinnPhongTextured()
 {
 	if (!BlinnPhongTexturedShader)
@@ -295,6 +383,11 @@ shared_ptr<Shader> Shader::BlinnPhongTextured()
 }
 
 shared_ptr<Shader> SkyBoxShader;
+
+/** \brief Sky box shader
+
+\return a shared pointer to a sky box shader
+*/
 shared_ptr<Shader> Shader::SkyBox() {
 	if (!SkyBoxShader) {
 		SkyBoxShader = make_shared<Shader>(
@@ -321,6 +414,11 @@ shared_ptr<Shader> Shader::SkyBox() {
 }
 
 shared_ptr<Shader> TerrainShader;
+
+/** \brief Terrain Shader
+
+\return a shared pointer to a terrain shader
+*/
 shared_ptr<Shader> Shader::Terrain() {
 	if (!TerrainShader) {
 		TerrainShader = make_shared<Shader>(

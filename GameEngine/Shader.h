@@ -9,6 +9,11 @@
 using namespace glm;
 using namespace std;
 
+/** \brief A shader class
+
+This class creates a shader program from string sources (GLSL code) and implements functions for submitting uniform values to the shader.
+One can bind the shader by its unique ID.
+*/
 class Shader
 {
 	struct ShaderAttribute

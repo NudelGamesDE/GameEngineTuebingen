@@ -3,6 +3,11 @@
 vec4 dummy(0, 0, 0, 1);
 vector<vec4> world_coordinates;
 
+/** \brief Calculates Difference
+
+\param x a float
+\param y a float
+*/
 float bvh::difference(float x, float y)
 {
 	if (y < 0)
@@ -15,6 +20,18 @@ float bvh::difference(float x, float y)
 	}
 }
 
+/** \brief Generates a bvh node
+
+\param x maximum x
+\param y maximum y
+\param z maximum z
+\param nx minimum x
+\param ny minimum y
+\param nz minimum z
+\param obj a vector of renderers
+\param l left child node
+\param r right child node
+*/
  bvh::bvh_nope* bvh::generate_bvh_nope(int x, int y, int z, int nx, int ny, int nz, vector<shared_ptr<Renderer>> obj, bvh_nope *l, bvh_nope *r)
 {
 	bvh_nope *nope = new bvh_nope;
@@ -30,13 +47,20 @@ float bvh::difference(float x, float y)
 	return nope;
 }
 
+/** \brief Initialize bvh
+
+\param the_scene a scene to apply bvh to
+*/
  bvh::bvh_nope* bvh::initialise_bvh(Scene the_scene)
  {
 	 vector<shared_ptr<Renderer>> all_objects = the_scene.Renderers;
 	 return generate_bvh_tree(all_objects);
  }
 
+/** \brief Generates bvh tree
 
+\param objects a vector of renderers
+*/
  bvh::bvh_nope* bvh::generate_bvh_tree(vector<shared_ptr<Renderer>> objects)
  {
 	 // std::cout << objects.size() <<"  Objects in the layer. \n";

@@ -10,6 +10,9 @@
 #include <glm\glm.hpp>
 using namespace glm;
 
+/** \brief Functions for loading an mtl file
+*/
+
 bool loadMtl(
 	const char *path,
 	std::vector<shared_ptr<Material>> &materials

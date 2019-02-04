@@ -7,6 +7,10 @@
 #include "FrameData.h"
 using namespace std;
 
+/**	\brief A game class
+
+This class represents a game. It encapsulates the current scene that is to render as well as the rules that change the scene (i.e. your game mechanics).
+*/
 class Game
 {
 	shared_ptr<Scene> CurrentScene = make_shared<Scene>();

@@ -9,6 +9,10 @@
 using namespace std;
 using namespace glm;
 
+/** \brief A bvh class
+
+This class represents a bvh tree for collision detection.
+*/
 class bvh
 {
 public:

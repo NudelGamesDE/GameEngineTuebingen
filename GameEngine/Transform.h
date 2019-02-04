@@ -6,6 +6,10 @@
 #include <glm\gtc\quaternion.hpp>
 using namespace glm;
 
+/** \brief A transform class
+
+This class represents transformations in all different kinds. It provides parameters for changes in position, scale and rotation.
+*/
 class Transform
 {
 public:

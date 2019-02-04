@@ -7,6 +7,11 @@
 #include "Camera.h"
 #include "objLoader.h"
 
+/** \brief A sky box class
+
+This class represents a sky box. The sky box is a cube with textured inner sides located around the camera. This was done using a cubemap.
+Since we have a textured cube, we need a mesh, a material and therefore a renderer. To keep the box locked around the camera the cube also needs a transform.
+*/
 class Skybox {
 public:
 	Skybox(

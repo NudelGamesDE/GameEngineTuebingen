@@ -6,6 +6,10 @@
 using namespace std;
 using namespace glm;
 
+/** \brief A ray
+
+This struct describes a ray with an origin (most probably calculated from the mouse position on the screen), a direction and a certain length.
+*/
 struct Ray
 {
 	vec3 Origin = vec3(0, 0, 0);

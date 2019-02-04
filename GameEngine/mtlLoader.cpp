@@ -2,6 +2,13 @@
 
 #include "mtlLoader.h"
 
+/** \brief Loads mtl file
+
+This function parses an mtl file containing the most essential treats and writes them into a vector.
+\param path a path to the mtl file
+\param materials a vector the parsed materials can be stored in
+\return true on successful parsing
+*/
 bool loadMtl(
 	const char *path,
 	std::vector<shared_ptr<Material>> &materials
@@ -206,6 +213,10 @@ bool loadMtl(
 	return true;
 }
 
+/** \brief Generates a default material
+
+\return a shared pointer to a default material
+*/
 shared_ptr<Material> getDefaultMaterial() {
 	char defaultName[128] = "defaultName";
 	glm::vec3 defaultVector(0.0f, 0.0f, 0.0f);

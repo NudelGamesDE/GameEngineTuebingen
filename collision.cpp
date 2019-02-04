@@ -1,5 +1,10 @@
 #include "collision.h"
 
+/** \brief Checks for collision with bvh
+
+\param coordinates a vec4 of coordinates
+\param nope a bvh node
+*/
 vector<shared_ptr<Renderer>> collision::check_for_collision(vec4 coordinates, bvh::bvh_nope* nope)
 {
 	if ((nope->min_x < coordinates.x) && (coordinates.x < nope->max_x) &&

@@ -13,6 +13,12 @@
 using namespace std;
 using namespace glm;
 
+/** \brief A renderer class
+
+The renderer class is a container class containing a mesh, a material, a transform and eventually a second transform aalong with a rigid body. By calling the draw function of a renderer
+the material used takes care of most shader operations while the mesh actually draws the vertices. A second transform mostly only is applied when the renderer is part of a scenegraph.
+The rigid body only needs to be implemented in case the drawn object should be influencable by forces and velocity.
+*/
 class Renderer
 {
 public:

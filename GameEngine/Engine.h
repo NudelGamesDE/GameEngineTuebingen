@@ -16,6 +16,11 @@
 using namespace std;
 using namespace glm;
 
+/**	\brief An engine class
+
+The Engine class holds the game to be played and all kinds of meta data.
+It is responsible for setting up the window and OpenGL context. Also, the rendering loop and user events are handled here.
+*/
 class Engine
 {
 	shared_ptr<Game> ManagedGame;

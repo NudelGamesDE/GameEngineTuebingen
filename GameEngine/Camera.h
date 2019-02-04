@@ -6,6 +6,11 @@
 #include "Ray.h"
 using namespace glm;
 
+/** \brief A camera class
+
+The Camera class is a container for the projection matrix and the camera position.
+Also, the camera generates the ray for raycasting.
+*/
 class Camera
 {
 	mat4 Projection;

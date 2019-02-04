@@ -6,6 +6,11 @@ constexpr int OPENGL_MAJOR_VERSION = 2;
 constexpr int OPENGL_MINOR_VERSION = 1;
 constexpr SDL_GLprofile OPENGL_PROFILE = SDL_GLprofile::SDL_GL_CONTEXT_PROFILE_CORE;
 
+/**	\brief Initialize SDL
+
+Since OpenGL needs a canvas to draw to, we use SDL to create a window. All necessary attributes of that window are initialized and set here.
+\return true if initialization did not fail
+*/
 bool Engine::InitSDL()
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -28,6 +33,11 @@ bool Engine::InitSDL()
 	return true;
 }
 
+/**	\brief Initialize OpenGL
+
+Here, an OpenGL context is created. Also, Glew, which is needed to call OpenGL functions, is initialized. Global OpenGL settings are initiated.
+\return true if initialization did not fail
+*/
 bool Engine::InitOpenGL()
 {
 	GLContext = SDL_GL_CreateContext(Window);
@@ -57,6 +67,10 @@ bool Engine::InitOpenGL()
 	return true;
 }
 
+/** \brief The main game loop
+
+Time measuremeent, handling inputs, rendering and updating the actual game take place here.
+*/
 void Engine::Loop()
 {
 	ManagedGame->Start();
@@ -80,6 +94,11 @@ void Engine::Loop()
 	}
 }
 
+/** \brief Renders the scene
+
+This function renders the scene, which holds all lights, meshes etc.
+Background color is reset and color as well as depth buffer are cleared. Also the window is swapped and therefore updated.
+*/
 void Engine::Render()
 {
 	glClearColor(0.2f, 0.2f, 0.2f, 0.0f);
@@ -91,6 +110,11 @@ void Engine::Render()
 	SDL_GL_SwapWindow(Window);
 }
 
+/** \brief Handles input events
+
+This function handles the most important inputs. If events take place, they are passed so they can be used in the game.
+\param aFrameData a shared pointer to a FrameData instance, which handles inputs further.
+*/
 void Engine::HandleEvents(shared_ptr<FrameData> aFrameData)
 {
 	SDL_Event _event;
@@ -140,6 +164,11 @@ void Engine::HandleEvents(shared_ptr<FrameData> aFrameData)
 	aFrameData->MousePosition = MousePosition;
 }
 
+/** \brief Generate usefulk frame data
+
+Frame data is generated. This means key input, the size of the actual window and the time between frames.
+\return a shared pointer to the newly generated FrameData instance
+*/
 shared_ptr<FrameData> Engine::GenerateFrameData()
 {
 	auto ret = make_shared<FrameData>();
@@ -156,6 +185,11 @@ shared_ptr<FrameData> Engine::GenerateFrameData()
 	return ret;
 }
 
+/** \brief Starts the engine
+
+This is the entry point of the class. The engine gets a Game instance and handles it according to the rules in that instance.
+\param aGame a shared pointer to a Game instance
+*/
 void Engine::Start(shared_ptr<Game> aGame)
 {
 	if (!aGame)return;

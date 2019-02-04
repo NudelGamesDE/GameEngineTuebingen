@@ -5,12 +5,24 @@
 #include <iostream>
 using namespace std;
 
+/** \brief Constructor for a Texture instance
+
+Basically this constructor generates and then binds the texture.
+*/
 Texture::Texture()
 {
 	glGenTextures(1, &CurrentGLID);
 	glBindTexture(GL_TEXTURE_2D, CurrentGLID);
 }
 
+/** \brief Changes the texture format
+
+This function binds the texture and allows to dynamically set texture parameters.
+\param aBytes bytes
+\param aWidth a width
+\param aHeight a height
+\param aBytesPerPixel bytes per pixel
+*/
 void Texture::Change2D(void* aBytes, int aWidth, int aHeight, int aBytesPerPixel)
 {
 	int mode;
@@ -30,12 +42,22 @@ void Texture::Change2D(void* aBytes, int aWidth, int aHeight, int aBytesPerPixel
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 }
 
+/** \brief Overloaded constructor for a Texture instance
+
+This constructor loads an image from a path and then calls Change2D with the desired parameters.
+\param path a path to the image to be loaded
+*/
 Texture::Texture(const char* aPath) :Texture()
 {
 	auto _toUpload = shared_ptr<SDL_Surface>(IMG_Load(aPath), [](SDL_Surface* aSurface) {SDL_FreeSurface(aSurface); });
 	Change2D(_toUpload->pixels, _toUpload->w, _toUpload->h, _toUpload->format->BytesPerPixel);
 }
 
+/** \brief Overloaded constructor for a Texture instance
+
+This constructor generates a cubemap texture from six different textures.
+\param filenames vector of paths to the different textures
+*/
 Texture::Texture(vector<const char*> filenames)
 {
 
@@ -78,6 +100,8 @@ Texture::Texture(vector<const char*> filenames)
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 }
 
+/** \brief Binds texture
+*/
 void Texture::Use()
 {
 	if (cubemap)
@@ -90,6 +114,8 @@ void Texture::Use()
 	}
 }
 
+/** \brief Destroys texture
+*/
 Texture::~Texture()
 {
 	glDeleteTextures(1, &CurrentGLID);

@@ -6,6 +6,11 @@
 using namespace std;
 using namespace glm;
 
+/** \brief A collision class
+
+This class represents a collision.
+*/
+
 class collision
 {
 public:

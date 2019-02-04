@@ -1,6 +1,10 @@
 #include "Terrain.h"
 using namespace std;
 
+/** \brief Constructor for a Terrain instance
+
+The constructor generates all necessary renderers, materials and textures.
+*/
 Terrain::Terrain()
 {
 	TerrainRenderer = make_shared<Renderer>();
@@ -12,6 +16,11 @@ Terrain::Terrain()
 	SetHeightResolution(1);
 	SetMeshResolution(1);
 }
+
+/** \brief Setter for height resolution
+
+\param aResolution an integer being set as the CurrentHeight Resolution
+*/
 void Terrain::SetHeightResolution(int aResolution)
 {
 	CurrentHeightResolution = aResolution;
@@ -20,6 +29,11 @@ void Terrain::SetHeightResolution(int aResolution)
 		Heights[i] = 0;
 	HeightTexture->Change2D(Heights.get(), CurrentHeightResolution, CurrentHeightResolution, 1);
 }
+
+/** \brief Setter for mesh resolution
+
+\param aResolution an integer for setting the mesh resolution
+*/
 void Terrain::SetMeshResolution(int aResolution)
 {
 	vector<vec3> positions;
@@ -47,12 +61,24 @@ void Terrain::SetMeshResolution(int aResolution)
 
 	TerrainRenderer->mesh = make_shared<Mesh>(positions, texCoords, normals);
 }
+
+/** \brief Add a float to char
+
+\param aPrevious a char to be added to
+\param aAdd a float to add
+\return a char
+*/
 char addFloatToChar(char aPrevious, float aAdd)
 {
 	const auto New = float(unsigned char(aPrevious)) + aAdd * 255.0f;
 	auto ret = char(max(0.0f, min(255.0f, New)));
 	return ret;
 }
+
+/** \brief Setter for height values
+
+\param aFunction
+*/
 void Terrain::SetHeightValues(std::function<float(vec3)> aFunction)
 {
 	auto transformMatrix = TerrainRenderer->transform.GetMatrix();
@@ -65,6 +91,11 @@ void Terrain::SetHeightValues(std::function<float(vec3)> aFunction)
 		}
 	HeightTexture->Change2D(Heights.get(), CurrentHeightResolution, CurrentHeightResolution, 1);
 }
+
+/** \brief Add to height values
+
+\param aFunction
+*/
 void Terrain::AddHeightValues(std::function<float(vec3)> aFunction)
 {
 	auto transformMatrix = TerrainRenderer->transform.GetMatrix();
@@ -77,6 +108,11 @@ void Terrain::AddHeightValues(std::function<float(vec3)> aFunction)
 		}
 	HeightTexture->Change2D(Heights.get(), CurrentHeightResolution, CurrentHeightResolution, 1);
 }
+
+/** \brief Change height values
+
+\param aFunction
+*/
 void Terrain::ChangeHeightValues(std::function<float(vec3, float)> aFunction)
 {
 	auto transformMatrix = TerrainRenderer->transform.GetMatrix();
@@ -90,5 +126,14 @@ void Terrain::ChangeHeightValues(std::function<float(vec3, float)> aFunction)
 	HeightTexture->Change2D(Heights.get(), CurrentHeightResolution, CurrentHeightResolution, 1);
 }
 
+/** \brief Get terrain renderer
+
+\return a terrain renderer
+*/
 std::shared_ptr<Renderer> Terrain::getRenderer() { return TerrainRenderer; }
+
+/** \brief Get terrain material
+
+\return a terrain material
+*/
 std::shared_ptr<Material> Terrain::getMaterial() { return TerrainMaterial; }
