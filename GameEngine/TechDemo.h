@@ -7,6 +7,8 @@
 #include "PerspectiveCamera.h"
 #include "SceneGraphNode.h"
 #include "Terrain.h"
+#include "bvh.h"
+
 using namespace std;
 
 class TechDemo :public Game
@@ -14,6 +16,7 @@ class TechDemo :public Game
 	shared_ptr<Texture> WoodTexture;
 	shared_ptr<PerspectiveCamera> Camera;
 	shared_ptr<SceneGraphNode> BigTree;
+	shared_ptr<bvh::bvh_nope*> the_woot;
 	shared_ptr<Terrain> TestTerrain;
 	vec3 force = vec3(0.0f, -0.2f, 0.0f);
 	shared_ptr<RigidBody> rig;
