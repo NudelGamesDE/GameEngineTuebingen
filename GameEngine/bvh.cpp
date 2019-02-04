@@ -4,7 +4,8 @@
 //--------------------------------------------------------------------------------------------------
 //Change hitbox-size here!
 
-int dummy = 0; // <- Changes the size (radius) of the hitbox. Bad design, but performance gave in.
+int hitscan_positive_scale = 0; // <- Changes the size (radius) of the hitbox in positive direction. Bad design, but performance gave in.
+int hitbox_negativ_scale = 0; // <- Changes the size (radius) of the hitbox in negative direction. default is 0.
 
 //--------------------------------------------------------------------------------------------------
 
@@ -73,12 +74,12 @@ float bvh::difference(float x, float y)
 	 // std::cout << objects.size() <<"  Objects in the layer. \n";
 	 if (objects.size() <= 1)
 	 {
-		 return bvh::generate_bvh_nope(objects[0]->transform.Position.x + dummy,
-									   objects[0]->transform.Position.y + dummy,
-									   objects[0]->transform.Position.z + dummy,
-									   objects[0]->transform.Position.x - dummy,
-									   objects[0]->transform.Position.y - dummy,
-									   objects[0]->transform.Position.z - dummy, objects, NULL, NULL);
+		 return bvh::generate_bvh_nope(objects[0]->transform.Position.x + hitscan_positive_scale,
+									   objects[0]->transform.Position.y + hitscan_positive_scale,
+									   objects[0]->transform.Position.z + hitscan_positive_scale,
+									   objects[0]->transform.Position.x - hitbox_negativ_scale,
+									   objects[0]->transform.Position.y - hitbox_negativ_scale,
+									   objects[0]->transform.Position.z - hitbox_negativ_scale, objects, NULL, NULL);
 		 /*
 		 return bvh::generate_bvh_nope(objects[0]->transform.Position.x,
 									   objects[0]->transform.Position.y, 
@@ -176,5 +177,6 @@ float bvh::difference(float x, float y)
 			 }
 		 }
 	 }
-	 return bvh::generate_bvh_nope(max_x + dummy, max_y + dummy, max_z + dummy, min_x - dummy, min_y - dummy, min_z - dummy, objects, generate_bvh_tree(left), generate_bvh_tree(right));
+	 return bvh::generate_bvh_nope(max_x + hitscan_positive_scale, max_y + hitscan_positive_scale, max_z + hitscan_positive_scale, min_x - hitbox_negativ_scale, min_y - hitbox_negativ_scale, min_z - hitbox_negativ_scale,
+		    objects, generate_bvh_tree(left), generate_bvh_tree(right));
  }
