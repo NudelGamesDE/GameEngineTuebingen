@@ -1,6 +1,13 @@
 #include "bvh.h"
 
-vec4 dummy(0, 0, 0, 1);
+
+//--------------------------------------------------------------------------------------------------
+//Change hitbox-size here!
+
+int dummy = 0; // <- Changes the size (radius) of the hitbox. Bad design, but performance gave in.
+
+//--------------------------------------------------------------------------------------------------
+
 vector<vec4> world_coordinates;
 
 /** \brief Calculates Difference
@@ -66,12 +73,20 @@ float bvh::difference(float x, float y)
 	 // std::cout << objects.size() <<"  Objects in the layer. \n";
 	 if (objects.size() <= 1)
 	 {
+		 return bvh::generate_bvh_nope(objects[0]->transform.Position.x + dummy,
+									   objects[0]->transform.Position.y + dummy,
+									   objects[0]->transform.Position.z + dummy,
+									   objects[0]->transform.Position.x - dummy,
+									   objects[0]->transform.Position.y - dummy,
+									   objects[0]->transform.Position.z - dummy, objects, NULL, NULL);
+		 /*
 		 return bvh::generate_bvh_nope(objects[0]->transform.Position.x,
 									   objects[0]->transform.Position.y, 
 									   objects[0]->transform.Position.z, 
 									   objects[0]->transform.Position.x,
 									   objects[0]->transform.Position.y,
 									   objects[0]->transform.Position.z, objects, NULL, NULL);
+		 */
 	 }
 	 float max_x = -INFINITY;
 	 float max_y = -INFINITY;
@@ -161,5 +176,5 @@ float bvh::difference(float x, float y)
 			 }
 		 }
 	 }
-	 return bvh::generate_bvh_nope(max_x, max_y, max_z, min_x, min_y, min_z, objects, generate_bvh_tree(left), generate_bvh_tree(right));
+	 return bvh::generate_bvh_nope(max_x + dummy, max_y + dummy, max_z + dummy, min_x - dummy, min_y - dummy, min_z - dummy, objects, generate_bvh_tree(left), generate_bvh_tree(right));
  }

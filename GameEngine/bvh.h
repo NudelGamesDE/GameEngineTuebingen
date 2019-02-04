@@ -2,9 +2,12 @@
 #define _BVH_H
 
 #include <iostream>
+#include <ostream>
+#include <typeinfo>
 #include <limits>
 #include <cmath>
 #include "Scene.h"
+#include "Mesh.h"
 
 using namespace std;
 using namespace glm;
