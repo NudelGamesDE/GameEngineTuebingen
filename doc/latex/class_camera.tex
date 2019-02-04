@@ -1,0 +1,45 @@
+\section{Camera Class Reference}
+\label{class_camera}\index{Camera@{Camera}}
+
+
+A camera class.  
+
+
+
+
+{\ttfamily \#include $<$Camera.\+h$>$}
+
+Inheritance diagram for Camera\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_camera}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{class_camera_a1b838bed6d50f13c704860b8382a5af4}} 
+virtual mat4 {\bfseries Get\+View\+Matrix} (bool $\ast$a\+Is\+Inverse)=0
+\item 
+\mbox{\label{class_camera_ad8e1e93cc5e9cb91c5a0e26dcd8a1e99}} 
+virtual mat4 {\bfseries Get\+Projection\+Matrix} ()=0
+\item 
+\mbox{\label{class_camera_a6f3e5a2595c6d2c2b89334591220f092}} 
+virtual \textbf{ Ray} {\bfseries Generate\+Ray} (vec2 a\+Position)=0
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{class_camera_ad5cea63239e1519c1fe7d414f5e047a8}} 
+\textbf{ Transform} {\bfseries transform}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A camera class. 
+
+The \doxyref{Camera}{p.}{class_camera} class is a container for the projection matrix and the camera position. Also, the camera generates the ray for raycasting. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Game\+Engine/Camera.\+h\end{DoxyCompactItemize}

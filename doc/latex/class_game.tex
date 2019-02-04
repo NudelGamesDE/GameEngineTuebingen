@@ -1,0 +1,111 @@
+\section{Game Class Reference}
+\label{class_game}\index{Game@{Game}}
+
+
+A game class.  
+
+
+
+
+{\ttfamily \#include $<$Game.\+h$>$}
+
+Inheritance diagram for Game\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_game}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{class_game_aa78b4a3a3b487f6d7828b88d5024da73}} 
+virtual void {\bfseries Start} ()=0
+\item 
+\mbox{\label{class_game_ad7f52f86edc5796686eb910789548389}} 
+virtual string {\bfseries Get\+Window\+Name} ()=0
+\item 
+\mbox{\label{class_game_a0884e17cda1ac8432f44821ae2556b1e}} 
+virtual void {\bfseries Update} ()=0
+\item 
+bool \textbf{ is\+Stoped} ()
+\begin{DoxyCompactList}\small\item\em \doxyref{Game}{p.}{class_game} stopped? \end{DoxyCompactList}\item 
+shared\+\_\+ptr$<$ \textbf{ Scene} $>$ \textbf{ Get\+Scene} ()
+\begin{DoxyCompactList}\small\item\em Getter for current scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{class_game_a20e4c502cb64b8a42b2fa9f41e0f4886}} 
+shared\+\_\+ptr$<$ \textbf{ Frame\+Data} $>$ {\bfseries frame\+Data} = make\+\_\+shared$<$\textbf{ Frame\+Data}$>$()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ Stop} ()
+\begin{DoxyCompactList}\small\item\em Stop game. \end{DoxyCompactList}\item 
+void \textbf{ Set\+Scene} (shared\+\_\+ptr$<$ \textbf{ Scene} $>$ a\+Scene)
+\begin{DoxyCompactList}\small\item\em Setter for scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A game class. 
+
+This class represents a game. It encapsulates the current scene that is to render as well as the rules that change the scene (i.\+e. your game mechanics). 
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_game_ad5087bc79a3e2482aed9c9e0b1b8ae06}} 
+\index{Game@{Game}!GetScene@{GetScene}}
+\index{GetScene@{GetScene}!Game@{Game}}
+\subsubsection{GetScene()}
+{\footnotesize\ttfamily shared\+\_\+ptr$<$ \textbf{ Scene} $>$ Game\+::\+Get\+Scene (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter for current scene. 
+
+This function returns the current scene. \begin{DoxyReturn}{Returns}
+Current\+Scene the current scene 
+\end{DoxyReturn}
+\mbox{\label{class_game_a9ee497e834d2bd72aa7bdb4e6053033b}} 
+\index{Game@{Game}!isStoped@{isStoped}}
+\index{isStoped@{isStoped}!Game@{Game}}
+\subsubsection{isStoped()}
+{\footnotesize\ttfamily bool Game\+::is\+Stoped (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxyref{Game}{p.}{class_game} stopped? 
+
+Checks if game is stoped. \begin{DoxyReturn}{Returns}
+stoped an indicator if game is stoped 
+\end{DoxyReturn}
+\mbox{\label{class_game_ac99088b26ae7ab66eb1317e5516caec9}} 
+\index{Game@{Game}!SetScene@{SetScene}}
+\index{SetScene@{SetScene}!Game@{Game}}
+\subsubsection{SetScene()}
+{\footnotesize\ttfamily void Game\+::\+Set\+Scene (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \textbf{ Scene} $>$}]{a\+Scene }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Setter for scene. 
+
+This functions sets the scene for a game. 
+\begin{DoxyParams}{Parameters}
+{\em a\+Scene} & a shared pointer to a scene \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_game_af5bc8f48f5005fac17d6b5896ac86771}} 
+\index{Game@{Game}!Stop@{Stop}}
+\index{Stop@{Stop}!Game@{Game}}
+\subsubsection{Stop()}
+{\footnotesize\ttfamily void Game\+::\+Stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Stop game. 
+
+Stops the game by setting stoped to true. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game\+Engine/Game.\+h\item 
+Game\+Engine/Game.\+cpp\end{DoxyCompactItemize}

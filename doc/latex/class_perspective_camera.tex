@@ -1,0 +1,108 @@
+\section{Perspective\+Camera Class Reference}
+\label{class_perspective_camera}\index{PerspectiveCamera@{PerspectiveCamera}}
+
+
+A perspective camera class.  
+
+
+
+
+{\ttfamily \#include $<$Perspective\+Camera.\+h$>$}
+
+Inheritance diagram for Perspective\+Camera\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_perspective_camera}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual mat4 \textbf{ Get\+View\+Matrix} (bool $\ast$a\+Is\+Inverse)
+\begin{DoxyCompactList}\small\item\em Returns the view matrix. \end{DoxyCompactList}\item 
+virtual mat4 \textbf{ Get\+Projection\+Matrix} ()
+\begin{DoxyCompactList}\small\item\em Returns the projection matrix. \end{DoxyCompactList}\item 
+\textbf{ Ray} \textbf{ Generate\+Ray} (vec2 a\+Position)
+\begin{DoxyCompactList}\small\item\em Generates a ray. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{class_perspective_camera_adefd609d1c6f4b9d1f5a356cdfc36934}} 
+float {\bfseries F\+OV}
+\item 
+\mbox{\label{class_perspective_camera_a0c0c7252b0c0de2f555b6ae46733bef1}} 
+float {\bfseries Near}
+\item 
+\mbox{\label{class_perspective_camera_a04bee783d16be1738ea1100251852578}} 
+float {\bfseries Far}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A perspective camera class. 
+
+This class implements a perspective camera, getting its name from the perspective projection matrix (another one would be the orthogonal projection matrix). This class inherits its traits from the \doxyref{Camera}{p.}{class_camera} class. 
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_perspective_camera_a16bb197beddafb6b80a48ef34f1ac3c1}} 
+\index{PerspectiveCamera@{PerspectiveCamera}!GenerateRay@{GenerateRay}}
+\index{GenerateRay@{GenerateRay}!PerspectiveCamera@{PerspectiveCamera}}
+\subsubsection{GenerateRay()}
+{\footnotesize\ttfamily \textbf{ Ray} Perspective\+Camera\+::\+Generate\+Ray (\begin{DoxyParamCaption}\item[{vec2}]{a\+Position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Generates a ray. 
+
+This function returns a ray from the window coordinate into the 3D space. 
+\begin{DoxyParams}{Parameters}
+{\em a\+Position} & vec2 with x and y coordinates of the screen \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a \doxyref{Ray}{p.}{struct_ray} instance 
+\end{DoxyReturn}
+
+
+Implements \textbf{ Camera} \doxyref{}{p.}{class_camera}.
+
+\mbox{\label{class_perspective_camera_aabdaea284fdb7f705e5b0d1e18aca544}} 
+\index{PerspectiveCamera@{PerspectiveCamera}!GetProjectionMatrix@{GetProjectionMatrix}}
+\index{GetProjectionMatrix@{GetProjectionMatrix}!PerspectiveCamera@{PerspectiveCamera}}
+\subsubsection{GetProjectionMatrix()}
+{\footnotesize\ttfamily mat4 Perspective\+Camera\+::\+Get\+Projection\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns the projection matrix. 
+
+\begin{DoxyReturn}{Returns}
+the projection matrix 
+\end{DoxyReturn}
+
+
+Implements \textbf{ Camera} \doxyref{}{p.}{class_camera}.
+
+\mbox{\label{class_perspective_camera_abbfa2bd11647d085659563866ad132d3}} 
+\index{PerspectiveCamera@{PerspectiveCamera}!GetViewMatrix@{GetViewMatrix}}
+\index{GetViewMatrix@{GetViewMatrix}!PerspectiveCamera@{PerspectiveCamera}}
+\subsubsection{GetViewMatrix()}
+{\footnotesize\ttfamily mat4 Perspective\+Camera\+::\+Get\+View\+Matrix (\begin{DoxyParamCaption}\item[{bool $\ast$}]{a\+Is\+Inverse }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns the view matrix. 
+
+\begin{DoxyReturn}{Returns}
+the view matrix 
+\end{DoxyReturn}
+
+
+Implements \textbf{ Camera} \doxyref{}{p.}{class_camera}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game\+Engine/Perspective\+Camera.\+h\item 
+Game\+Engine/Perspective\+Camera.\+cpp\end{DoxyCompactItemize}

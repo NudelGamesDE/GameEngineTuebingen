@@ -1,0 +1,45 @@
+\section{Engine Class Reference}
+\label{class_engine}\index{Engine@{Engine}}
+
+
+An engine class.  
+
+
+
+
+{\ttfamily \#include $<$Engine.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ Start} (shared\+\_\+ptr$<$ \textbf{ Game} $>$ a\+Game)
+\begin{DoxyCompactList}\small\item\em Starts the engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+An engine class. 
+
+The \doxyref{Engine}{p.}{class_engine} class holds the game to be played and all kinds of meta data. It is responsible for setting up the window and Open\+GL context. Also, the rendering loop and user events are handled here. 
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_engine_adee8fdde73234a41ad9feecd0ed1c57f}} 
+\index{Engine@{Engine}!Start@{Start}}
+\index{Start@{Start}!Engine@{Engine}}
+\subsubsection{Start()}
+{\footnotesize\ttfamily void Engine\+::\+Start (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \textbf{ Game} $>$}]{a\+Game }\end{DoxyParamCaption})}
+
+
+
+Starts the engine. 
+
+This is the entry point of the class. The engine gets a \doxyref{Game}{p.}{class_game} instance and handles it according to the rules in that instance. 
+\begin{DoxyParams}{Parameters}
+{\em a\+Game} & a shared pointer to a \doxyref{Game}{p.}{class_game} instance \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game\+Engine/Engine.\+h\item 
+Game\+Engine/Engine.\+cpp\end{DoxyCompactItemize}
