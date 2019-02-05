@@ -7,6 +7,6 @@ var searchData=
   ['uniform4f',['Uniform4f',['../class_shader.html#a5b5d9d427eb90ac2cf39a802ec6b8748',1,'Shader']]],
   ['uniformlights',['UniformLights',['../class_shader.html#a9877b0966de94330532b1c1d19595f51',1,'Shader']]],
   ['uniformmat4',['UniformMat4',['../class_shader.html#ab646477233ff073af91e0c80752a062e',1,'Shader']]],
-  ['update',['update',['../class_scene_graph_node.html#a1d982622273de9f7fed6ff31ae483aff',1,'SceneGraphNode']]],
+  ['update',['update',['../class_scene_graph_node.html#a1d982622273de9f7fed6ff31ae483aff',1,'SceneGraphNode::update()'],['../class_particle_system.html#a45ba94547319a643d8e6bd26f8e4e110',1,'ParticleSystem::Update()']]],
   ['use',['Use',['../class_material.html#ac53e631a261a6df03a4133299a82eda4',1,'Material::Use()'],['../class_texture.html#a81c7ab6e8c996c6539cf4e1da203312d',1,'Texture::Use()']]]
 ];

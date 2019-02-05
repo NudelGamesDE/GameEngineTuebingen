@@ -1,6 +1,12 @@
 #include "ParticleSystem.h"
 #include <algorithm>
 
+/** \brief Constructor for a ParticleSystem instance
+
+\param aScene a scene to draw the particle system to
+\param aNewParticle a new paricle
+\param aModifyParticle a value to modify particles
+*/
 ParticleSystem::ParticleSystem(shared_ptr<Scene> aScene,
 	function<ParticleData()> aNewParticle,
 	function<void(float, ParticleData&)> aModifyParticle)
@@ -11,6 +17,11 @@ ParticleSystem::ParticleSystem(shared_ptr<Scene> aScene,
 }
 
 shared_ptr<Mesh> cachedMesh;
+
+/** \brief Generates a square Mesh
+
+\return a shared pointer to the mesh
+*/
 shared_ptr<Mesh> GenerateMesh()
 {
 	if (!cachedMesh) {
@@ -36,6 +47,8 @@ shared_ptr<Mesh> GenerateMesh()
 }
 
 #include<iostream>
+/** \brief Spawn particles
+*/
 void ParticleSystem::Spawn()
 {
 	if (!scene)return;
@@ -49,7 +62,11 @@ void ParticleSystem::Spawn()
 	Particles.push_back(particle);
 }
 
+/** \brief Update particle System
 
+\param aDeltaTime a timer for timing
+\param aCamera a camera for getting matrices
+*/
 void ParticleSystem::Update(float aDeltaTime, shared_ptr<Camera> aCamera)
 {
 	if (!scene)return;
@@ -83,6 +100,8 @@ void ParticleSystem::Update(float aDeltaTime, shared_ptr<Camera> aCamera)
 	}), Particles.end());
 }
 
+/** \brief Clear particle system
+*/
 void ParticleSystem::Clear()
 {
 	Particles.erase(std::remove_if(Particles.begin(), Particles.end(), [this](Particle aParticle)

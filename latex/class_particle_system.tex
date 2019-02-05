@@ -1,0 +1,100 @@
+\section{Particle\+System Class Reference}
+\label{class_particle_system}\index{ParticleSystem@{ParticleSystem}}
+
+
+A Particle System class.  
+
+
+
+
+{\ttfamily \#include $<$Particle\+System.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ Particle\+Data}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Particle\+System} (shared\+\_\+ptr$<$ \textbf{ Scene} $>$ a\+Scene, function$<$ \textbf{ Particle\+Data}()$>$ a\+New\+Particle, function$<$ void(float, \textbf{ Particle\+Data} \&)$>$ a\+Modify\+Particle)
+\begin{DoxyCompactList}\small\item\em Constructor for a \doxyref{Particle\+System}{p.}{class_particle_system} instance. \end{DoxyCompactList}\item 
+\mbox{\label{class_particle_system_aa2df9e0b4970a85b872d55bda1db2c06}} 
+void \textbf{ Spawn} ()
+\begin{DoxyCompactList}\small\item\em Spawn particles. \end{DoxyCompactList}\item 
+void \textbf{ Update} (float a\+Delta\+Time, shared\+\_\+ptr$<$ \textbf{ Camera} $>$ a\+Camera)
+\begin{DoxyCompactList}\small\item\em Update particle System. \end{DoxyCompactList}\item 
+\mbox{\label{class_particle_system_a81a2bd993f79e43495620438ed7838a0}} 
+void \textbf{ Clear} ()
+\begin{DoxyCompactList}\small\item\em Clear particle system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{class_particle_system_af843083e70de82743ab71b45bfc0c920}} 
+\textbf{ Transform} {\bfseries transform}
+\item 
+\mbox{\label{class_particle_system_ab8a76cd7a35172d039041b30eae5875c}} 
+shared\+\_\+ptr$<$ \textbf{ Material} $>$ {\bfseries Particle\+Material}
+\item 
+\mbox{\label{class_particle_system_a3fa2c7d727393f0bf6c3f73fa202cfc8}} 
+int {\bfseries Max\+Particles} = 100
+\item 
+\mbox{\label{class_particle_system_a055ba88c030afc36a859f288fa9c1009}} 
+float {\bfseries Max\+Lifetime} = 1.\+0f
+\item 
+\mbox{\label{class_particle_system_a01f6f2e93bcd7beab43b984351f04018}} 
+float {\bfseries Spawnfrequency} = 1.\+0f
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A Particle System class. 
+
+This class Generates, changes and destroys Billboards in the specified way. The Billboards with allways be rotated towards the camera 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_particle_system_a1b30da1bf099cffce8d1a13a3438fb7d}} 
+\index{ParticleSystem@{ParticleSystem}!ParticleSystem@{ParticleSystem}}
+\index{ParticleSystem@{ParticleSystem}!ParticleSystem@{ParticleSystem}}
+\subsubsection{ParticleSystem()}
+{\footnotesize\ttfamily Particle\+System\+::\+Particle\+System (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \textbf{ Scene} $>$}]{a\+Scene,  }\item[{function$<$ \textbf{ Particle\+Data}()$>$}]{a\+New\+Particle,  }\item[{function$<$ void(float, \textbf{ Particle\+Data} \&)$>$}]{a\+Modify\+Particle }\end{DoxyParamCaption})}
+
+
+
+Constructor for a \doxyref{Particle\+System}{p.}{class_particle_system} instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Scene} & a scene to draw the particle system to \\
+\hline
+{\em a\+New\+Particle} & a new paricle \\
+\hline
+{\em a\+Modify\+Particle} & a value to modify particles \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_particle_system_a45ba94547319a643d8e6bd26f8e4e110}} 
+\index{ParticleSystem@{ParticleSystem}!Update@{Update}}
+\index{Update@{Update}!ParticleSystem@{ParticleSystem}}
+\subsubsection{Update()}
+{\footnotesize\ttfamily void Particle\+System\+::\+Update (\begin{DoxyParamCaption}\item[{float}]{a\+Delta\+Time,  }\item[{shared\+\_\+ptr$<$ \textbf{ Camera} $>$}]{a\+Camera }\end{DoxyParamCaption})}
+
+
+
+Update particle System. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Delta\+Time} & a timer for timing \\
+\hline
+{\em a\+Camera} & a camera for getting matrices \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game\+Engine/Particle\+System.\+h\item 
+Game\+Engine/Particle\+System.\+cpp\end{DoxyCompactItemize}
