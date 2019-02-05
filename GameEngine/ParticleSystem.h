@@ -5,6 +5,10 @@
 #include "Transform.h"
 #include "Scene.h"
 
+/**	\brief A Particle System class
+
+This class Generates, changes and destroys Billboards in the specified way. The Billboards with allways be rotated towards the camera
+*/
 class ParticleSystem
 {
 public:
