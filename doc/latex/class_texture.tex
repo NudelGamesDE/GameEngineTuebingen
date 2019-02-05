@@ -1,0 +1,112 @@
+\section{Texture Class Reference}
+\label{class_texture}\index{Texture@{Texture}}
+
+
+A texture class.  
+
+
+
+
+{\ttfamily \#include $<$Texture.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Texture} ()
+\begin{DoxyCompactList}\small\item\em Constructor for a \doxyref{Texture}{p.}{class_texture} instance. \end{DoxyCompactList}\item 
+\textbf{ Texture} (const char $\ast$a\+Path)
+\begin{DoxyCompactList}\small\item\em Overloaded constructor for a \doxyref{Texture}{p.}{class_texture} instance. \end{DoxyCompactList}\item 
+\textbf{ Texture} (vector$<$ const char $\ast$ $>$ filenames)
+\begin{DoxyCompactList}\small\item\em Overloaded constructor for a \doxyref{Texture}{p.}{class_texture} instance. \end{DoxyCompactList}\item 
+void \textbf{ Change2D} (void $\ast$a\+Bytes, int a\+Width, int a\+Height, int a\+Bytes\+Per\+Pixel=4)
+\begin{DoxyCompactList}\small\item\em Changes the texture format. \end{DoxyCompactList}\item 
+\mbox{\label{class_texture_a81c7ab6e8c996c6539cf4e1da203312d}} 
+void \textbf{ Use} ()
+\begin{DoxyCompactList}\small\item\em Binds texture. \end{DoxyCompactList}\item 
+\mbox{\label{class_texture_a09c4bcb7462f64c1d20fa69dba3cee8a}} 
+\textbf{ $\sim$\+Texture} ()
+\begin{DoxyCompactList}\small\item\em Destroys texture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{class_texture_ab1fb12bea7f7eebaeb53fd48a0300a88}} 
+bool {\bfseries cubemap} = false
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A texture class. 
+
+This class represents a texture. This includes regular textures as well as cubemaps. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_texture_a6c275e3f186675ff6ed73ccf970e552f}} 
+\index{Texture@{Texture}!Texture@{Texture}}
+\index{Texture@{Texture}!Texture@{Texture}}
+\subsubsection{Texture()\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Texture\+::\+Texture (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor for a \doxyref{Texture}{p.}{class_texture} instance. 
+
+Basically this constructor generates and then binds the texture. \mbox{\label{class_texture_a88c9f699c5241cc41d861e0a74b664f0}} 
+\index{Texture@{Texture}!Texture@{Texture}}
+\index{Texture@{Texture}!Texture@{Texture}}
+\subsubsection{Texture()\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Texture\+::\+Texture (\begin{DoxyParamCaption}\item[{const char $\ast$}]{a\+Path }\end{DoxyParamCaption})}
+
+
+
+Overloaded constructor for a \doxyref{Texture}{p.}{class_texture} instance. 
+
+This constructor loads an image from a path and then calls Change2D with the desired parameters. 
+\begin{DoxyParams}{Parameters}
+{\em path} & a path to the image to be loaded \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_texture_aa1a8766b51f66a77ad12a38443172698}} 
+\index{Texture@{Texture}!Texture@{Texture}}
+\index{Texture@{Texture}!Texture@{Texture}}
+\subsubsection{Texture()\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Texture\+::\+Texture (\begin{DoxyParamCaption}\item[{vector$<$ const char $\ast$ $>$}]{filenames }\end{DoxyParamCaption})}
+
+
+
+Overloaded constructor for a \doxyref{Texture}{p.}{class_texture} instance. 
+
+This constructor generates a cubemap texture from six different textures. 
+\begin{DoxyParams}{Parameters}
+{\em filenames} & vector of paths to the different textures \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_texture_af59b9be82932b284b717f98c5c453e35}} 
+\index{Texture@{Texture}!Change2D@{Change2D}}
+\index{Change2D@{Change2D}!Texture@{Texture}}
+\subsubsection{Change2D()}
+{\footnotesize\ttfamily void Texture\+::\+Change2D (\begin{DoxyParamCaption}\item[{void $\ast$}]{a\+Bytes,  }\item[{int}]{a\+Width,  }\item[{int}]{a\+Height,  }\item[{int}]{a\+Bytes\+Per\+Pixel = {\ttfamily 4} }\end{DoxyParamCaption})}
+
+
+
+Changes the texture format. 
+
+This function binds the texture and allows to dynamically set texture parameters. 
+\begin{DoxyParams}{Parameters}
+{\em a\+Bytes} & bytes \\
+\hline
+{\em a\+Width} & a width \\
+\hline
+{\em a\+Height} & a height \\
+\hline
+{\em a\+Bytes\+Per\+Pixel} & bytes per pixel \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game\+Engine/Texture.\+h\item 
+Game\+Engine/Texture.\+cpp\end{DoxyCompactItemize}

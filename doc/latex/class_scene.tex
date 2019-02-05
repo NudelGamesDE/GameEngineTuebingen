@@ -1,0 +1,75 @@
+\section{Scene Class Reference}
+\label{class_scene}\index{Scene@{Scene}}
+
+
+A scene class.  
+
+
+
+
+{\ttfamily \#include $<$Scene.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ Draw} ()
+\begin{DoxyCompactList}\small\item\em Draw scene. \end{DoxyCompactList}\item 
+shared\+\_\+ptr$<$ \textbf{ Ray\+Hit} $>$ \textbf{ Intersect} (\textbf{ Ray} \&a\+Ray)
+\begin{DoxyCompactList}\small\item\em Checks for intersection. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{class_scene_a21042a03f09cc65fb2c61000788750dc}} 
+shared\+\_\+ptr$<$ \textbf{ Camera} $>$ {\bfseries camera}
+\item 
+\mbox{\label{class_scene_aee44650c6f69aeb6c9578747ee192176}} 
+vector$<$ shared\+\_\+ptr$<$ \textbf{ Renderer} $>$ $>$ {\bfseries Renderers}
+\item 
+\mbox{\label{class_scene_ae3999984ddb95f69c75727c86329555d}} 
+vector$<$ shared\+\_\+ptr$<$ \textbf{ Light} $>$ $>$ {\bfseries Lights}
+\item 
+\mbox{\label{class_scene_ab818462f1dc1b162c309358b3eb734cd}} 
+shared\+\_\+ptr$<$ \textbf{ Skybox} $>$ {\bfseries Skybox}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A scene class. 
+
+This class represents the scene, meaning everything we would like to render including multiple renderers for diefferent objects, a sky box, and lights. Since the scene holds all drawables it is just logical it also contains the camera. 
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_scene_a4813338ee7c6c995f5bb6f10e3673804}} 
+\index{Scene@{Scene}!Draw@{Draw}}
+\index{Draw@{Draw}!Scene@{Scene}}
+\subsubsection{Draw()}
+{\footnotesize\ttfamily void Scene\+::\+Draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Draw scene. 
+
+This function draws the scene with all its treats. It extracts the needed matrices from the camera and passes them to the renderers while calling their draw functions. \mbox{\label{class_scene_ae3312da2f54babb146160d18ab8635d9}} 
+\index{Scene@{Scene}!Intersect@{Intersect}}
+\index{Intersect@{Intersect}!Scene@{Scene}}
+\subsubsection{Intersect()}
+{\footnotesize\ttfamily shared\+\_\+ptr$<$ \textbf{ Ray\+Hit} $>$ Scene\+::\+Intersect (\begin{DoxyParamCaption}\item[{\textbf{ Ray} \&}]{a\+Ray }\end{DoxyParamCaption})}
+
+
+
+Checks for intersection. 
+
+This function checks for an intersection of a ray and all renderer\textquotesingle{}s meshes by calling their Intersect functions. 
+\begin{DoxyParams}{Parameters}
+{\em a\+Ray} & an incoming ray \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a \doxyref{Ray\+Hit}{p.}{struct_ray_hit} 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game\+Engine/Scene.\+h\item 
+Game\+Engine/Scene.\+cpp\end{DoxyCompactItemize}

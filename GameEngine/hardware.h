@@ -16,9 +16,13 @@
 using namespace std;
 using namespace glm;
 
-extern int FPS;
+extern float FPS;
 extern float render_time_in_ms;
 
+/**	\brief A hardware class
+
+This class determines the time it takes to render a frame and the current frames per second.
+*/
 class hardware
 {
 	public:

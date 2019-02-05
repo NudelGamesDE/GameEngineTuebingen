@@ -1,0 +1,96 @@
+\section{Rigid\+Body Class Reference}
+\label{class_rigid_body}\index{RigidBody@{RigidBody}}
+
+
+A rigid body class.  
+
+
+
+
+{\ttfamily \#include $<$Rigid\+Body.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{class_rigid_body_a28203d38d278da0695ace20c66ee5f0a}} 
+\textbf{ Rigid\+Body} ()
+\begin{DoxyCompactList}\small\item\em Constructor for a \doxyref{Rigid\+Body}{p.}{class_rigid_body} instance. \end{DoxyCompactList}\item 
+\textbf{ Rigid\+Body} (float weight, vec3 velocity)
+\begin{DoxyCompactList}\small\item\em Overloaded constructor for a \doxyref{Rigid\+Body}{p.}{class_rigid_body} instance. \end{DoxyCompactList}\item 
+void \textbf{ add\+Force} (vec3 a\+Force)
+\begin{DoxyCompactList}\small\item\em Adds a force to the rigid body. \end{DoxyCompactList}\item 
+void \textbf{ add\+Velocity} (vec3 a\+Velocity)
+\begin{DoxyCompactList}\small\item\em Adds a velocity to the rigid body. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{class_rigid_body_aa3e1f5aa05015d970cc4f0b33187a8e0}} 
+float {\bfseries Weight} = 1.\+0f
+\item 
+\mbox{\label{class_rigid_body_a293ccf2b2faf043da821ddcca10575c5}} 
+vec3 {\bfseries Velocity} = vec3(0.\+0f)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A rigid body class. 
+
+This class implements a rigid body with its own weight and velocity. A force can be added to the body as well as a velocity. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_rigid_body_a79bc99c4db0e90f3e29438d28b22b0e0}} 
+\index{RigidBody@{RigidBody}!RigidBody@{RigidBody}}
+\index{RigidBody@{RigidBody}!RigidBody@{RigidBody}}
+\subsubsection{RigidBody()}
+{\footnotesize\ttfamily Rigid\+Body\+::\+Rigid\+Body (\begin{DoxyParamCaption}\item[{float}]{weight,  }\item[{vec3}]{velocity }\end{DoxyParamCaption})}
+
+
+
+Overloaded constructor for a \doxyref{Rigid\+Body}{p.}{class_rigid_body} instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em weight} & a weight for the body \\
+\hline
+{\em velocity} & a velocity for the body \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_rigid_body_ac0ad32ce1c939d3a3d42e387c02d6ec8}} 
+\index{RigidBody@{RigidBody}!addForce@{addForce}}
+\index{addForce@{addForce}!RigidBody@{RigidBody}}
+\subsubsection{addForce()}
+{\footnotesize\ttfamily void Rigid\+Body\+::add\+Force (\begin{DoxyParamCaption}\item[{vec3}]{a\+Force }\end{DoxyParamCaption})}
+
+
+
+Adds a force to the rigid body. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Force} & a vec3 representing the forces direction and power \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_rigid_body_ac61b494058d8c50418a188c551598dcb}} 
+\index{RigidBody@{RigidBody}!addVelocity@{addVelocity}}
+\index{addVelocity@{addVelocity}!RigidBody@{RigidBody}}
+\subsubsection{addVelocity()}
+{\footnotesize\ttfamily void Rigid\+Body\+::add\+Velocity (\begin{DoxyParamCaption}\item[{vec3}]{a\+Velocity }\end{DoxyParamCaption})}
+
+
+
+Adds a velocity to the rigid body. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Velocity} & a vec3 representing a velocity and its direction \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game\+Engine/Rigid\+Body.\+h\item 
+Game\+Engine/Rigid\+Body.\+cpp\end{DoxyCompactItemize}

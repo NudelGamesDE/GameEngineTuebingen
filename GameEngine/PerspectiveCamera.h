@@ -3,6 +3,11 @@
 
 #include "Camera.h"
 
+/** \brief A perspective camera class
+
+This class implements a perspective camera, getting its name from the perspective projection matrix (another one would be the orthogonal projection matrix).
+This class inherits its traits from the Camera class.
+*/
 class PerspectiveCamera :public Camera
 {
 	float Ratio = 4 / 3.0f;

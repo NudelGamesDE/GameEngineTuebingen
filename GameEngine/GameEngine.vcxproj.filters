@@ -23,6 +23,8 @@
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
+    <ClCompile Include="bvh.cpp" />
+    <ClCompile Include="collision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -49,5 +51,7 @@
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="ParticleSystem.h" />
+    <ClInclude Include="bvh.h" />
+    <ClInclude Include="collision.h" />
   </ItemGroup>
 </Project>

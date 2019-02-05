@@ -8,6 +8,11 @@
 using namespace std;
 using namespace glm;
 
+/** \brief A frame data class
+
+This frame data class is a container class for all kinds of useful information.
+This includes the time between frames, mouse position, which key is pressed and the window size.
+*/
 class FrameData
 {
 	unordered_set<SDL_Keycode> KeysDown;

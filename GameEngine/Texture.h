@@ -6,6 +6,10 @@
 #include <vector>
 using namespace std;
 
+/** \brief A texture class
+
+This class represents a texture. This includes regular textures as well as cubemaps.
+*/
 class Texture
 {
 	GLuint CurrentGLID;

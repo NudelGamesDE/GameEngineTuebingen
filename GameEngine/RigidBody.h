@@ -4,6 +4,10 @@
 #include <glm/glm.hpp>
 using namespace glm;
 
+/** \brief A rigid body class
+
+This class implements a rigid body with its own weight and velocity. A force can be added to the body as well as a velocity.
+*/
 class RigidBody
 {
 public:

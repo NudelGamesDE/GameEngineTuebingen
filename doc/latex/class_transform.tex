@@ -1,0 +1,103 @@
+\section{Transform Class Reference}
+\label{class_transform}\index{Transform@{Transform}}
+
+
+A transform class.  
+
+
+
+
+{\ttfamily \#include $<$Transform.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Transform} ()
+\begin{DoxyCompactList}\small\item\em Constructor for a \doxyref{Transform}{p.}{class_transform} instance. \end{DoxyCompactList}\item 
+\textbf{ Transform} (vec3 a\+Position)
+\begin{DoxyCompactList}\small\item\em Overloaded constructor for a \doxyref{Transform}{p.}{class_transform} instance. \end{DoxyCompactList}\item 
+\textbf{ Transform} (vec3 a\+Position, float a\+Scale)
+\begin{DoxyCompactList}\small\item\em Overloaded constructor for a \doxyref{Transform}{p.}{class_transform} instance. \end{DoxyCompactList}\item 
+\textbf{ Transform} (vec3 a\+Position, vec3 a\+Scale)
+\begin{DoxyCompactList}\small\item\em Overloaded constructor for a \doxyref{Transform}{p.}{class_transform} instance. \end{DoxyCompactList}\item 
+mat4 \textbf{ Get\+Matrix} ()
+\begin{DoxyCompactList}\small\item\em Get transformation matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{class_transform_a5376a322aaadadd624999531f1e6af1b}} 
+vec3 {\bfseries Position}
+\item 
+\mbox{\label{class_transform_a0b7c255b1505df1c5ed1938cae4dd9e9}} 
+quat {\bfseries Rotation}
+\item 
+\mbox{\label{class_transform_ae8f711d38b9a1d520bfa01b72b14ead8}} 
+vec3 {\bfseries Scale}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A transform class. 
+
+This class represents transformations in all different kinds. It provides parameters for changes in position, scale and rotation. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_transform_aa08ca4266efabc768973cdeea51945ab}} 
+\index{Transform@{Transform}!Transform@{Transform}}
+\index{Transform@{Transform}!Transform@{Transform}}
+\subsubsection{Transform()\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily Transform\+::\+Transform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor for a \doxyref{Transform}{p.}{class_transform} instance. 
+
+This constructor initiates transformations with no effect until change. \mbox{\label{class_transform_ac08bec615f8da0aa7f4a3abbccd27111}} 
+\index{Transform@{Transform}!Transform@{Transform}}
+\index{Transform@{Transform}!Transform@{Transform}}
+\subsubsection{Transform()\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily Transform\+::\+Transform (\begin{DoxyParamCaption}\item[{vec3}]{a\+Position }\end{DoxyParamCaption})}
+
+
+
+Overloaded constructor for a \doxyref{Transform}{p.}{class_transform} instance. 
+
+This constructor changes the only position of the transformed object until change. \mbox{\label{class_transform_a38adbcb733b8930d6106300f411b9907}} 
+\index{Transform@{Transform}!Transform@{Transform}}
+\index{Transform@{Transform}!Transform@{Transform}}
+\subsubsection{Transform()\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily Transform\+::\+Transform (\begin{DoxyParamCaption}\item[{vec3}]{a\+Position,  }\item[{float}]{a\+Scale }\end{DoxyParamCaption})}
+
+
+
+Overloaded constructor for a \doxyref{Transform}{p.}{class_transform} instance. 
+
+This constructor changes only position and scale of the transformed object until change. \mbox{\label{class_transform_a1d194150641a996bc40461d4066fe67e}} 
+\index{Transform@{Transform}!Transform@{Transform}}
+\index{Transform@{Transform}!Transform@{Transform}}
+\subsubsection{Transform()\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily Transform\+::\+Transform (\begin{DoxyParamCaption}\item[{vec3}]{a\+Position,  }\item[{vec3}]{a\+Scale }\end{DoxyParamCaption})}
+
+
+
+Overloaded constructor for a \doxyref{Transform}{p.}{class_transform} instance. 
+
+This constructor changes only position and scale of the transformed object until change. 
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_transform_a73eb2a92a51602c5860813e98b27e080}} 
+\index{Transform@{Transform}!GetMatrix@{GetMatrix}}
+\index{GetMatrix@{GetMatrix}!Transform@{Transform}}
+\subsubsection{GetMatrix()}
+{\footnotesize\ttfamily mat4 Transform\+::\+Get\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get transformation matrix. 
+
+This function provides the full transformation matrix\+: translation matrix $\ast$ rotation matrix $\ast$ scaling matrix 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game\+Engine/Transform.\+h\item 
+Game\+Engine/Transform.\+cpp\end{DoxyCompactItemize}

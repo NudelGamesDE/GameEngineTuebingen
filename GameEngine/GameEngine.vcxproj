@@ -126,6 +126,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="bvh.cpp" />
+    <ClCompile Include="collision.cpp" />
     <ClCompile Include="FrameData.cpp" />
     <ClCompile Include="hardware.cpp" />
     <ClCompile Include="Light.cpp" />
@@ -150,7 +152,9 @@
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bvh.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="collision.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="FrameData.h" />
     <ClInclude Include="Game.h" />

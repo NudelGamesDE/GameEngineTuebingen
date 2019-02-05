@@ -1,0 +1,158 @@
+\section{Terrain Class Reference}
+\label{class_terrain}\index{Terrain@{Terrain}}
+
+
+A terrain class.  
+
+
+
+
+{\ttfamily \#include $<$Terrain.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Terrain} ()
+\begin{DoxyCompactList}\small\item\em Constructor for a \doxyref{Terrain}{p.}{class_terrain} instance. \end{DoxyCompactList}\item 
+void \textbf{ Set\+Height\+Resolution} (int a\+Resolution)
+\begin{DoxyCompactList}\small\item\em Setter for height resolution. \end{DoxyCompactList}\item 
+void \textbf{ Set\+Mesh\+Resolution} (int a\+Resolution)
+\begin{DoxyCompactList}\small\item\em Setter for mesh resolution. \end{DoxyCompactList}\item 
+void \textbf{ Set\+Height\+Values} (std\+::function$<$ float(vec3)$>$ a\+Function)
+\begin{DoxyCompactList}\small\item\em Setter for height values. \end{DoxyCompactList}\item 
+void \textbf{ Add\+Height\+Values} (std\+::function$<$ float(vec3)$>$ a\+Function)
+\begin{DoxyCompactList}\small\item\em Add to height values. \end{DoxyCompactList}\item 
+void \textbf{ Change\+Height\+Values} (std\+::function$<$ float(vec3, float)$>$ a\+Function)
+\begin{DoxyCompactList}\small\item\em Change height values. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \textbf{ Renderer} $>$ \textbf{ get\+Renderer} ()
+\begin{DoxyCompactList}\small\item\em Get terrain renderer. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \textbf{ Material} $>$ \textbf{ get\+Material} ()
+\begin{DoxyCompactList}\small\item\em Get terrain material. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A terrain class. 
+
+This class represents a terrain. It allows the terrain to be created with height textures and its own material, allowing different resolutions. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_terrain_a7160a06ab07a86ed97d23374405e8ef6}} 
+\index{Terrain@{Terrain}!Terrain@{Terrain}}
+\index{Terrain@{Terrain}!Terrain@{Terrain}}
+\subsubsection{Terrain()}
+{\footnotesize\ttfamily Terrain\+::\+Terrain (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor for a \doxyref{Terrain}{p.}{class_terrain} instance. 
+
+The constructor generates all necessary renderers, materials and textures. 
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_terrain_a487f7e65f4a4f46cc1cfeb691d4bf785}} 
+\index{Terrain@{Terrain}!AddHeightValues@{AddHeightValues}}
+\index{AddHeightValues@{AddHeightValues}!Terrain@{Terrain}}
+\subsubsection{AddHeightValues()}
+{\footnotesize\ttfamily void Terrain\+::\+Add\+Height\+Values (\begin{DoxyParamCaption}\item[{std\+::function$<$ float(vec3)$>$}]{a\+Function }\end{DoxyParamCaption})}
+
+
+
+Add to height values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Function} & \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_terrain_a430c7ae71b0017b8af0310f261602e50}} 
+\index{Terrain@{Terrain}!ChangeHeightValues@{ChangeHeightValues}}
+\index{ChangeHeightValues@{ChangeHeightValues}!Terrain@{Terrain}}
+\subsubsection{ChangeHeightValues()}
+{\footnotesize\ttfamily void Terrain\+::\+Change\+Height\+Values (\begin{DoxyParamCaption}\item[{std\+::function$<$ float(vec3, float)$>$}]{a\+Function }\end{DoxyParamCaption})}
+
+
+
+Change height values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Function} & \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_terrain_a99dd765750da3c166f98b6297e1a4248}} 
+\index{Terrain@{Terrain}!getMaterial@{getMaterial}}
+\index{getMaterial@{getMaterial}!Terrain@{Terrain}}
+\subsubsection{getMaterial()}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \textbf{ Material} $>$ Terrain\+::get\+Material (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get terrain material. 
+
+\begin{DoxyReturn}{Returns}
+a terrain material 
+\end{DoxyReturn}
+\mbox{\label{class_terrain_ad8ee65cb75b4c8ca32203dd22c1d6b21}} 
+\index{Terrain@{Terrain}!getRenderer@{getRenderer}}
+\index{getRenderer@{getRenderer}!Terrain@{Terrain}}
+\subsubsection{getRenderer()}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \textbf{ Renderer} $>$ Terrain\+::get\+Renderer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get terrain renderer. 
+
+\begin{DoxyReturn}{Returns}
+a terrain renderer 
+\end{DoxyReturn}
+\mbox{\label{class_terrain_aaa88aa6762b9c9a1c792ca5a132ac411}} 
+\index{Terrain@{Terrain}!SetHeightResolution@{SetHeightResolution}}
+\index{SetHeightResolution@{SetHeightResolution}!Terrain@{Terrain}}
+\subsubsection{SetHeightResolution()}
+{\footnotesize\ttfamily void Terrain\+::\+Set\+Height\+Resolution (\begin{DoxyParamCaption}\item[{int}]{a\+Resolution }\end{DoxyParamCaption})}
+
+
+
+Setter for height resolution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Resolution} & an integer being set as the Current\+Height Resolution \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_terrain_a96e0fa1a2b40896f0a54c79cc7d19c60}} 
+\index{Terrain@{Terrain}!SetHeightValues@{SetHeightValues}}
+\index{SetHeightValues@{SetHeightValues}!Terrain@{Terrain}}
+\subsubsection{SetHeightValues()}
+{\footnotesize\ttfamily void Terrain\+::\+Set\+Height\+Values (\begin{DoxyParamCaption}\item[{std\+::function$<$ float(vec3)$>$}]{a\+Function }\end{DoxyParamCaption})}
+
+
+
+Setter for height values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Function} & \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_terrain_a4cb0ac0ba437441d05143debb00ba212}} 
+\index{Terrain@{Terrain}!SetMeshResolution@{SetMeshResolution}}
+\index{SetMeshResolution@{SetMeshResolution}!Terrain@{Terrain}}
+\subsubsection{SetMeshResolution()}
+{\footnotesize\ttfamily void Terrain\+::\+Set\+Mesh\+Resolution (\begin{DoxyParamCaption}\item[{int}]{a\+Resolution }\end{DoxyParamCaption})}
+
+
+
+Setter for mesh resolution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Resolution} & an integer for setting the mesh resolution \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game\+Engine/Terrain.\+h\item 
+Game\+Engine/Terrain.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,127 @@
+\section{Scene\+Graph\+Node Class Reference}
+\label{class_scene_graph_node}\index{SceneGraphNode@{SceneGraphNode}}
+
+
+A scene graph node class.  
+
+
+
+
+{\ttfamily \#include $<$Scene\+Graph\+Node.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Scene\+Graph\+Node} (shared\+\_\+ptr$<$ \textbf{ Mesh} $>$ a\+Mesh, shared\+\_\+ptr$<$ \textbf{ Material} $>$ a\+Material, \textbf{ Transform} a\+Transform)
+\begin{DoxyCompactList}\small\item\em Constructor for a \doxyref{Scene\+Graph\+Node}{p.}{class_scene_graph_node} instance. \end{DoxyCompactList}\item 
+void \textbf{ add\+Child} (shared\+\_\+ptr$<$ \textbf{ Scene\+Graph\+Node} $>$ a\+Node)
+\begin{DoxyCompactList}\small\item\em Add child node. \end{DoxyCompactList}\item 
+virtual void \textbf{ update} (float a\+Timer)
+\begin{DoxyCompactList}\small\item\em Update node\textquotesingle{}s transforms. \end{DoxyCompactList}\item 
+void \textbf{ get\+Renderers} (shared\+\_\+ptr$<$ \textbf{ Scene} $>$ a\+Scene)
+\begin{DoxyCompactList}\small\item\em Add renderers to a scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{class_scene_graph_node_a2c92815e838166db332edef4fff2e1cd}} 
+mat4 {\bfseries world\+Transform}
+\item 
+\mbox{\label{class_scene_graph_node_a45d5a5077493301feb7b1bd8173daaf3}} 
+\textbf{ Transform} {\bfseries local\+Transform}
+\item 
+\mbox{\label{class_scene_graph_node_a14cb72c9094c57b9440ffc9bfa10fe30}} 
+shared\+\_\+ptr$<$ \textbf{ Mesh} $>$ {\bfseries mesh}
+\item 
+\mbox{\label{class_scene_graph_node_a7ac64dabe79a5d47e5b231244b96cbba}} 
+shared\+\_\+ptr$<$ \textbf{ Material} $>$ {\bfseries material}
+\item 
+\mbox{\label{class_scene_graph_node_abd0737fcceb5f082bd142cc49d67a1a6}} 
+\textbf{ Scene\+Graph\+Node} $\ast$ {\bfseries parent}
+\item 
+\mbox{\label{class_scene_graph_node_ae1108b253923295db52d11dc0e98523e}} 
+vector$<$ shared\+\_\+ptr$<$ \textbf{ Scene\+Graph\+Node} $>$ $>$ {\bfseries children}
+\item 
+\mbox{\label{class_scene_graph_node_a7a78bbc2da6449c889450db4767ea83b}} 
+shared\+\_\+ptr$<$ \textbf{ Renderer} $>$ {\bfseries renderer}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A scene graph node class. 
+
+This class implements a scene graph node. By multiplying a parent\textquotesingle{}s transformation matrix to a node\textquotesingle{}s own, the node is affected by the parent. Every node has its own renderer which can later be passed to the scene. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_scene_graph_node_ab437f9e7a98b5a582f81841894dd15d7}} 
+\index{SceneGraphNode@{SceneGraphNode}!SceneGraphNode@{SceneGraphNode}}
+\index{SceneGraphNode@{SceneGraphNode}!SceneGraphNode@{SceneGraphNode}}
+\subsubsection{SceneGraphNode()}
+{\footnotesize\ttfamily Scene\+Graph\+Node\+::\+Scene\+Graph\+Node (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \textbf{ Mesh} $>$}]{a\+Mesh,  }\item[{shared\+\_\+ptr$<$ \textbf{ Material} $>$}]{a\+Material,  }\item[{\textbf{ Transform}}]{a\+Transform }\end{DoxyParamCaption})}
+
+
+
+Constructor for a \doxyref{Scene\+Graph\+Node}{p.}{class_scene_graph_node} instance. 
+
+The constructor is similar to a renderers constructor, which is logical since the node contains an own renderer. 
+\begin{DoxyParams}{Parameters}
+{\em a\+Mesh} & a \doxyref{Mesh}{p.}{class_mesh} \\
+\hline
+{\em a\+Matrerial} & a \doxyref{Material}{p.}{class_material} \\
+\hline
+{\em a\+Transform} & a \doxyref{Transform}{p.}{class_transform} \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_scene_graph_node_ae4d409d5bcad4f7abbf58f9efa1587ab}} 
+\index{SceneGraphNode@{SceneGraphNode}!addChild@{addChild}}
+\index{addChild@{addChild}!SceneGraphNode@{SceneGraphNode}}
+\subsubsection{addChild()}
+{\footnotesize\ttfamily void Scene\+Graph\+Node\+::add\+Child (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \textbf{ Scene\+Graph\+Node} $>$}]{a\+Node }\end{DoxyParamCaption})}
+
+
+
+Add child node. 
+
+This function adds a child to this node by making this the child nodes parent and adding the child node to this node\textquotesingle{}s children vector. 
+\begin{DoxyParams}{Parameters}
+{\em a\+Node} & a shared pointer to the node to add as a child \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_scene_graph_node_a55db80350e97bf93da102aa042e34741}} 
+\index{SceneGraphNode@{SceneGraphNode}!getRenderers@{getRenderers}}
+\index{getRenderers@{getRenderers}!SceneGraphNode@{SceneGraphNode}}
+\subsubsection{getRenderers()}
+{\footnotesize\ttfamily void Scene\+Graph\+Node\+::get\+Renderers (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \textbf{ Scene} $>$}]{a\+Scene }\end{DoxyParamCaption})}
+
+
+
+Add renderers to a scene. 
+
+This function allows the node to push its own and its childrens\textquotesingle{} renderers into the scene\textquotesingle{}s renderer vector. 
+\begin{DoxyParams}{Parameters}
+{\em a\+Scene} & a scene whose renderer vector will be filled with the scene graph\textquotesingle{}s renderers. \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_scene_graph_node_a1d982622273de9f7fed6ff31ae483aff}} 
+\index{SceneGraphNode@{SceneGraphNode}!update@{update}}
+\index{update@{update}!SceneGraphNode@{SceneGraphNode}}
+\subsubsection{update()}
+{\footnotesize\ttfamily void Scene\+Graph\+Node\+::update (\begin{DoxyParamCaption}\item[{float}]{a\+Timer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Update node\textquotesingle{}s transforms. 
+
+This function updates its own transform matrices according to the parent\textquotesingle{}s transforms and afterwards calls its childrens\textquotesingle{} update functions. 
+\begin{DoxyParams}{Parameters}
+{\em a\+Timer} & a timer that can be used when inheriting the function \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game\+Engine/Scene\+Graph\+Node.\+h\item 
+Game\+Engine/Scene\+Graph\+Node.\+cpp\end{DoxyCompactItemize}

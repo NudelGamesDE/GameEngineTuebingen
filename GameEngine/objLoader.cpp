@@ -6,7 +6,15 @@
 /*Expects all or no faces to have a material*/
 /*loadObj for THIS ENGINE only works for .obj files that contain vertices, uvs and normals*/
 
+/** \brief Load an obj file including mtl files
 
+This function parses obj files and corresponding mtl files into Meshes and Materials.
+\param path a path to the obj file
+\param meshes vector where parsed meshes can be stored
+\param materials vector where parsed materials can be stored
+\param mtlPath a path to the mtl file
+\return true on successful parsing
+*/
 bool loadObj(
 	const char *path,
 	std::vector<shared_ptr<Mesh>> &meshes,
@@ -127,15 +135,7 @@ bool loadObj(
 			fgets(stupidBuffer, 1000, file);
 		}
 	}
-	/*
-	std::printf("tempVer size: %i\n", tempVer.size());
-	std::printf("tempUvs size: %i\n", tempUvs.size());
-	std::printf("tempNor size: %i\n", tempNor.size());
-
-	std::printf("vertexIndices size: %i\n", vertexIndices.size());
-	std::printf("uvIndices: %i\n", uvIndices.size());
-	std::printf("normalIndices size: %i\n", normalIndices.size());
-	*/
+	
 	if (!vertexIndicesVector.empty()) {
 		for (int i = 0; i < vertexIndicesVector.size(); i++) {
 			for (unsigned int j = 0; j < vertexIndicesVector[i].size(); j++) {

@@ -1,0 +1,274 @@
+\section{Shader Class Reference}
+\label{class_shader}\index{Shader@{Shader}}
+
+
+A shader class.  
+
+
+
+
+{\ttfamily \#include $<$Shader.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Shader} (string a\+Vertex, string a\+Fragment)
+\begin{DoxyCompactList}\small\item\em Constructor for a \doxyref{Shader}{p.}{class_shader} instance. \end{DoxyCompactList}\item 
+void \textbf{ Bind} ()
+\begin{DoxyCompactList}\small\item\em Binds this shader. \end{DoxyCompactList}\item 
+void \textbf{ Uniform1f} (string a\+Name, float a\+Value)
+\begin{DoxyCompactList}\small\item\em Submit uniform float. \end{DoxyCompactList}\item 
+void \textbf{ Uniform2f} (string a\+Name, vec2 a\+Vec)
+\begin{DoxyCompactList}\small\item\em Submit uniform vec2. \end{DoxyCompactList}\item 
+void \textbf{ Uniform3f} (string a\+Name, vec3 a\+Vec)
+\begin{DoxyCompactList}\small\item\em Submit uniform vec3. \end{DoxyCompactList}\item 
+void \textbf{ Uniform4f} (string a\+Name, vec4 a\+Vec)
+\begin{DoxyCompactList}\small\item\em Submit uniform vec4. \end{DoxyCompactList}\item 
+void \textbf{ Uniform\+Mat4} (string a\+Name, mat4 a\+Mat)
+\begin{DoxyCompactList}\small\item\em Submit uniform mat4. \end{DoxyCompactList}\item 
+void \textbf{ Uniform1i} (string a\+Name, int aI)
+\begin{DoxyCompactList}\small\item\em Submit uniform integer. \end{DoxyCompactList}\item 
+void \textbf{ Uniform\+Lights} (vector$<$ vec3 $>$ a\+Positions, vector$<$ vec3 $>$ a\+Color, vector$<$ vec3 $>$ a\+Direction, vector$<$ int $>$ a\+Type)
+\begin{DoxyCompactList}\small\item\em Submit uniform lights. \end{DoxyCompactList}\item 
+\textbf{ $\sim$\+Shader} ()
+\begin{DoxyCompactList}\small\item\em Destroy \doxyref{Shader}{p.}{class_shader} instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static shared\+\_\+ptr$<$ \textbf{ Shader} $>$ \textbf{ Flat\+Textured} ()
+\begin{DoxyCompactList}\small\item\em Flat Textured \doxyref{Shader}{p.}{class_shader}. \end{DoxyCompactList}\item 
+static shared\+\_\+ptr$<$ \textbf{ Shader} $>$ \textbf{ Blinn\+Phong\+Textured} ()
+\begin{DoxyCompactList}\small\item\em Blinn Phong Textured \doxyref{Shader}{p.}{class_shader}. \end{DoxyCompactList}\item 
+static shared\+\_\+ptr$<$ \textbf{ Shader} $>$ \textbf{ Sky\+Box} ()
+\begin{DoxyCompactList}\small\item\em Sky box shader. \end{DoxyCompactList}\item 
+static shared\+\_\+ptr$<$ \textbf{ Shader} $>$ \textbf{ Terrain} ()
+\begin{DoxyCompactList}\small\item\em \doxyref{Terrain}{p.}{class_terrain} \doxyref{Shader}{p.}{class_shader}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A shader class. 
+
+This class creates a shader program from string sources (G\+L\+SL code) and implements functions for submitting uniform values to the shader. One can bind the shader by its unique ID. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_shader_a6c0d67b0937e4624747a7754eeebd96f}} 
+\index{Shader@{Shader}!Shader@{Shader}}
+\index{Shader@{Shader}!Shader@{Shader}}
+\subsubsection{Shader()}
+{\footnotesize\ttfamily Shader\+::\+Shader (\begin{DoxyParamCaption}\item[{string}]{a\+Vertex,  }\item[{string}]{a\+Fragment }\end{DoxyParamCaption})}
+
+
+
+Constructor for a \doxyref{Shader}{p.}{class_shader} instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Vertex} & a string containing the missing G\+L\+SL code including main function for the vertex shader \\
+\hline
+{\em a\+Fragment} & a string containing the missing G\+L\+SL code including main function for the fragment shader \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_shader_aff01df87e8a102f270b5b135a295e59d}} 
+\index{Shader@{Shader}!````~Shader@{$\sim$Shader}}
+\index{````~Shader@{$\sim$Shader}!Shader@{Shader}}
+\subsubsection{$\sim$Shader()}
+{\footnotesize\ttfamily Shader\+::$\sim$\+Shader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroy \doxyref{Shader}{p.}{class_shader} instance. 
+
+Destroys this instance. This is done by calling gl\+Delete\+Program. 
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_shader_a8b5c8c4788d011a65d158ef8428d1ece}} 
+\index{Shader@{Shader}!Bind@{Bind}}
+\index{Bind@{Bind}!Shader@{Shader}}
+\subsubsection{Bind()}
+{\footnotesize\ttfamily void Shader\+::\+Bind (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Binds this shader. 
+
+To use a shader one needs to call gl\+Use\+Program, which is done here. \mbox{\label{class_shader_af9ff88cf6cb91fb16cd2ba3b39c588bb}} 
+\index{Shader@{Shader}!BlinnPhongTextured@{BlinnPhongTextured}}
+\index{BlinnPhongTextured@{BlinnPhongTextured}!Shader@{Shader}}
+\subsubsection{BlinnPhongTextured()}
+{\footnotesize\ttfamily shared\+\_\+ptr$<$ \textbf{ Shader} $>$ Shader\+::\+Blinn\+Phong\+Textured (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Blinn Phong Textured \doxyref{Shader}{p.}{class_shader}. 
+
+\begin{DoxyReturn}{Returns}
+a shared pointer to a blinnphong textured shader 
+\end{DoxyReturn}
+\mbox{\label{class_shader_a90396edff65daa651f1ed7a378243927}} 
+\index{Shader@{Shader}!FlatTextured@{FlatTextured}}
+\index{FlatTextured@{FlatTextured}!Shader@{Shader}}
+\subsubsection{FlatTextured()}
+{\footnotesize\ttfamily shared\+\_\+ptr$<$ \textbf{ Shader} $>$ Shader\+::\+Flat\+Textured (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Flat Textured \doxyref{Shader}{p.}{class_shader}. 
+
+\begin{DoxyReturn}{Returns}
+a shared pointer to a flat textured shader 
+\end{DoxyReturn}
+\mbox{\label{class_shader_afe30fa66226c6f62816d0e9457436485}} 
+\index{Shader@{Shader}!SkyBox@{SkyBox}}
+\index{SkyBox@{SkyBox}!Shader@{Shader}}
+\subsubsection{SkyBox()}
+{\footnotesize\ttfamily shared\+\_\+ptr$<$ \textbf{ Shader} $>$ Shader\+::\+Sky\+Box (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Sky box shader. 
+
+\begin{DoxyReturn}{Returns}
+a shared pointer to a sky box shader 
+\end{DoxyReturn}
+\mbox{\label{class_shader_a162eca37b7fb34e3e2b2cbade95e71ba}} 
+\index{Shader@{Shader}!Terrain@{Terrain}}
+\index{Terrain@{Terrain}!Shader@{Shader}}
+\subsubsection{Terrain()}
+{\footnotesize\ttfamily shared\+\_\+ptr$<$ \textbf{ Shader} $>$ Shader\+::\+Terrain (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxyref{Terrain}{p.}{class_terrain} \doxyref{Shader}{p.}{class_shader}. 
+
+\begin{DoxyReturn}{Returns}
+a shared pointer to a terrain shader 
+\end{DoxyReturn}
+\mbox{\label{class_shader_a38a2006e2e7421a2af2e5aa11550e36f}} 
+\index{Shader@{Shader}!Uniform1f@{Uniform1f}}
+\index{Uniform1f@{Uniform1f}!Shader@{Shader}}
+\subsubsection{Uniform1f()}
+{\footnotesize\ttfamily void Shader\+::\+Uniform1f (\begin{DoxyParamCaption}\item[{string}]{a\+Name,  }\item[{float}]{a\+Value }\end{DoxyParamCaption})}
+
+
+
+Submit uniform float. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Name} & name of uniform variable specified in G\+L\+SL code \\
+\hline
+{\em a\+Value} & a float value \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_shader_aa71d071293079fabb1e6c27b226f49cb}} 
+\index{Shader@{Shader}!Uniform1i@{Uniform1i}}
+\index{Uniform1i@{Uniform1i}!Shader@{Shader}}
+\subsubsection{Uniform1i()}
+{\footnotesize\ttfamily void Shader\+::\+Uniform1i (\begin{DoxyParamCaption}\item[{string}]{a\+Name,  }\item[{int}]{aI }\end{DoxyParamCaption})}
+
+
+
+Submit uniform integer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Name} & name of uniform variable specified in G\+L\+SL code \\
+\hline
+{\em aI} & an integer value \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_shader_a18f0cdfd3d869296eb0ec83b6266cc19}} 
+\index{Shader@{Shader}!Uniform2f@{Uniform2f}}
+\index{Uniform2f@{Uniform2f}!Shader@{Shader}}
+\subsubsection{Uniform2f()}
+{\footnotesize\ttfamily void Shader\+::\+Uniform2f (\begin{DoxyParamCaption}\item[{string}]{a\+Name,  }\item[{vec2}]{a\+Vec }\end{DoxyParamCaption})}
+
+
+
+Submit uniform vec2. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Name} & name of uniform variable specified in G\+L\+SL code \\
+\hline
+{\em a\+Vec} & a vec2 value \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_shader_a77b02db0c15520a037d8f36953de9a2f}} 
+\index{Shader@{Shader}!Uniform3f@{Uniform3f}}
+\index{Uniform3f@{Uniform3f}!Shader@{Shader}}
+\subsubsection{Uniform3f()}
+{\footnotesize\ttfamily void Shader\+::\+Uniform3f (\begin{DoxyParamCaption}\item[{string}]{a\+Name,  }\item[{vec3}]{a\+Vec }\end{DoxyParamCaption})}
+
+
+
+Submit uniform vec3. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Name} & name of uniform variable specified in G\+L\+SL code \\
+\hline
+{\em a\+Vec} & a vec3 value \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_shader_a5b5d9d427eb90ac2cf39a802ec6b8748}} 
+\index{Shader@{Shader}!Uniform4f@{Uniform4f}}
+\index{Uniform4f@{Uniform4f}!Shader@{Shader}}
+\subsubsection{Uniform4f()}
+{\footnotesize\ttfamily void Shader\+::\+Uniform4f (\begin{DoxyParamCaption}\item[{string}]{a\+Name,  }\item[{vec4}]{a\+Vec }\end{DoxyParamCaption})}
+
+
+
+Submit uniform vec4. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Name} & name of uniform variable specified in G\+L\+SL code \\
+\hline
+{\em a\+Vec} & a vec4 value \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_shader_a9877b0966de94330532b1c1d19595f51}} 
+\index{Shader@{Shader}!UniformLights@{UniformLights}}
+\index{UniformLights@{UniformLights}!Shader@{Shader}}
+\subsubsection{UniformLights()}
+{\footnotesize\ttfamily void Shader\+::\+Uniform\+Lights (\begin{DoxyParamCaption}\item[{vector$<$ vec3 $>$}]{a\+Positions,  }\item[{vector$<$ vec3 $>$}]{a\+Color,  }\item[{vector$<$ vec3 $>$}]{a\+Direction,  }\item[{vector$<$ int $>$}]{a\+Type }\end{DoxyParamCaption})}
+
+
+
+Submit uniform lights. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Positions} & light positions \\
+\hline
+{\em a\+Color} & light colors \\
+\hline
+{\em a\+Direction} & light directions \\
+\hline
+{\em a\+Type} & light types \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_shader_ab646477233ff073af91e0c80752a062e}} 
+\index{Shader@{Shader}!UniformMat4@{UniformMat4}}
+\index{UniformMat4@{UniformMat4}!Shader@{Shader}}
+\subsubsection{UniformMat4()}
+{\footnotesize\ttfamily void Shader\+::\+Uniform\+Mat4 (\begin{DoxyParamCaption}\item[{string}]{a\+Name,  }\item[{mat4}]{a\+Mat }\end{DoxyParamCaption})}
+
+
+
+Submit uniform mat4. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Name} & name of uniform variable specified in G\+L\+SL code \\
+\hline
+{\em a\+Mat} & a mat4 value \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game\+Engine/Shader.\+h\item 
+Game\+Engine/Shader.\+cpp\end{DoxyCompactItemize}

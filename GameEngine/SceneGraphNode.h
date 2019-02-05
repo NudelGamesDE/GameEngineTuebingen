@@ -11,8 +11,12 @@
 using namespace std;
 using namespace glm;
 
-class SceneGraphNode {
+/** \brief A scene graph node class
 
+This class implements a scene graph node. By multiplying a parent's transformation matrix to a node's own, the node is affected by the parent.
+Every node has its own renderer which can later be passed to the scene.
+*/
+class SceneGraphNode {
 public:
 	SceneGraphNode(shared_ptr<Mesh> aMesh, shared_ptr<Material> aMaterial, Transform aTransform);
 	mat4 worldTransform;

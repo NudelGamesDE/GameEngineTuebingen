@@ -11,6 +11,10 @@
 using namespace std;
 using namespace glm;
 
+/** \brief A mesh class
+
+This class contains the vertices, uvs and normals of a mesh. This class is responsible for setting up buffers for and drawing vertices. It also checks for a hit while raycasting.
+*/
 class Mesh
 {
 	GLuint DataVBO;

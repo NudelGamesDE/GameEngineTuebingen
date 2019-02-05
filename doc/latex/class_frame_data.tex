@@ -1,0 +1,169 @@
+\section{Frame\+Data Class Reference}
+\label{class_frame_data}\index{FrameData@{FrameData}}
+
+
+A frame data class.  
+
+
+
+
+{\ttfamily \#include $<$Frame\+Data.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \textbf{ Is\+Key\+Down} (S\+D\+L\+\_\+\+Keycode a\+Key)
+\begin{DoxyCompactList}\small\item\em Check if key is down. \end{DoxyCompactList}\item 
+bool \textbf{ Is\+Key\+Up} (S\+D\+L\+\_\+\+Keycode a\+Key)
+\begin{DoxyCompactList}\small\item\em Check if key is up. \end{DoxyCompactList}\item 
+bool \textbf{ Is\+Key\+Pressed} (S\+D\+L\+\_\+\+Keycode a\+Key)
+\begin{DoxyCompactList}\small\item\em Check if key is pressed. \end{DoxyCompactList}\item 
+void \textbf{ Add\+Key\+Down} (S\+D\+L\+\_\+\+Keycode a\+Key)
+\begin{DoxyCompactList}\small\item\em Add key that is down. \end{DoxyCompactList}\item 
+void \textbf{ Add\+Key\+Up} (S\+D\+L\+\_\+\+Keycode a\+Key)
+\begin{DoxyCompactList}\small\item\em Add key that is up. \end{DoxyCompactList}\item 
+void \textbf{ Set\+Key\+Pressed} (shared\+\_\+ptr$<$ unordered\+\_\+set$<$ S\+D\+L\+\_\+\+Keycode $>$$>$ a\+Keys\+Pressed)
+\begin{DoxyCompactList}\small\item\em Setter for Keys\+Pressed. \end{DoxyCompactList}\item 
+shared\+\_\+ptr$<$ vec2 $>$ \textbf{ Get\+View\+Mouse\+Position} ()
+\begin{DoxyCompactList}\small\item\em Acquire mouse position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{class_frame_data_a3835c23375daaee0c92095e8d320faec}} 
+float {\bfseries delta\+Time}
+\item 
+\mbox{\label{class_frame_data_a5045812ad5d3887919017838c0423859}} 
+bool {\bfseries window\+Close\+Event}
+\item 
+\mbox{\label{class_frame_data_a8e0be8990b4bed347949f3668e6b9737}} 
+shared\+\_\+ptr$<$ vec2 $>$ {\bfseries Mouse\+Position}
+\item 
+\mbox{\label{class_frame_data_aede342bba42d1977db391f939c394483}} 
+vec2 {\bfseries Window\+Size}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A frame data class. 
+
+This frame data class is a container class for all kinds of useful information. This includes the time between frames, mouse position, which key is pressed and the window size. 
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_frame_data_a6e128b66488d6172a463a136ec51722c}} 
+\index{FrameData@{FrameData}!AddKeyDown@{AddKeyDown}}
+\index{AddKeyDown@{AddKeyDown}!FrameData@{FrameData}}
+\subsubsection{AddKeyDown()}
+{\footnotesize\ttfamily void Frame\+Data\+::\+Add\+Key\+Down (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Keycode}]{a\+Key }\end{DoxyParamCaption})}
+
+
+
+Add key that is down. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Key} & a key to add to Keys\+Down \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_frame_data_aed73d3ac1f6157d5af6c528bde9ac682}} 
+\index{FrameData@{FrameData}!AddKeyUp@{AddKeyUp}}
+\index{AddKeyUp@{AddKeyUp}!FrameData@{FrameData}}
+\subsubsection{AddKeyUp()}
+{\footnotesize\ttfamily void Frame\+Data\+::\+Add\+Key\+Up (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Keycode}]{a\+Key }\end{DoxyParamCaption})}
+
+
+
+Add key that is up. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Key} & a key to add to Keys\+Up \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_frame_data_a889c857cad48acc4c753032bc521d242}} 
+\index{FrameData@{FrameData}!GetViewMousePosition@{GetViewMousePosition}}
+\index{GetViewMousePosition@{GetViewMousePosition}!FrameData@{FrameData}}
+\subsubsection{GetViewMousePosition()}
+{\footnotesize\ttfamily shared\+\_\+ptr$<$ vec2 $>$ Frame\+Data\+::\+Get\+View\+Mouse\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Acquire mouse position. 
+
+Returns mouse position. \begin{DoxyReturn}{Returns}
+a shared pointer to a vec2 which holds x and y coordinate of the mouse on the screen 
+\end{DoxyReturn}
+\mbox{\label{class_frame_data_af88fb9f4c1769aff9607ae068974131c}} 
+\index{FrameData@{FrameData}!IsKeyDown@{IsKeyDown}}
+\index{IsKeyDown@{IsKeyDown}!FrameData@{FrameData}}
+\subsubsection{IsKeyDown()}
+{\footnotesize\ttfamily bool Frame\+Data\+::\+Is\+Key\+Down (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Keycode}]{a\+Key }\end{DoxyParamCaption})}
+
+
+
+Check if key is down. 
+
+This function checks Keys\+Down if it contains a\+Key. 
+\begin{DoxyParams}{Parameters}
+{\em a\+Key} & a key to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if key is down 
+\end{DoxyReturn}
+\mbox{\label{class_frame_data_ac7f44f5453c5c50001bf8ebbe021f048}} 
+\index{FrameData@{FrameData}!IsKeyPressed@{IsKeyPressed}}
+\index{IsKeyPressed@{IsKeyPressed}!FrameData@{FrameData}}
+\subsubsection{IsKeyPressed()}
+{\footnotesize\ttfamily bool Frame\+Data\+::\+Is\+Key\+Pressed (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Keycode}]{a\+Key }\end{DoxyParamCaption})}
+
+
+
+Check if key is pressed. 
+
+This function checks Keys\+Pressed if it contains a\+Key. 
+\begin{DoxyParams}{Parameters}
+{\em a\+Key} & a key to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if key is pressed 
+\end{DoxyReturn}
+\mbox{\label{class_frame_data_adb3ebfc77784082631b282abddb105eb}} 
+\index{FrameData@{FrameData}!IsKeyUp@{IsKeyUp}}
+\index{IsKeyUp@{IsKeyUp}!FrameData@{FrameData}}
+\subsubsection{IsKeyUp()}
+{\footnotesize\ttfamily bool Frame\+Data\+::\+Is\+Key\+Up (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Keycode}]{a\+Key }\end{DoxyParamCaption})}
+
+
+
+Check if key is up. 
+
+This function checks Keys\+Up if it contains a\+Key. 
+\begin{DoxyParams}{Parameters}
+{\em a\+Key} & a key to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if key is up 
+\end{DoxyReturn}
+\mbox{\label{class_frame_data_af76fe435123acbaa58f50cddd8ee0dcb}} 
+\index{FrameData@{FrameData}!SetKeyPressed@{SetKeyPressed}}
+\index{SetKeyPressed@{SetKeyPressed}!FrameData@{FrameData}}
+\subsubsection{SetKeyPressed()}
+{\footnotesize\ttfamily void Frame\+Data\+::\+Set\+Key\+Pressed (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ unordered\+\_\+set$<$ S\+D\+L\+\_\+\+Keycode $>$$>$}]{a\+Keys\+Pressed }\end{DoxyParamCaption})}
+
+
+
+Setter for Keys\+Pressed. 
+
+Assigns a\+Keys\+Pressed to Keys\+Pressed. 
+\begin{DoxyParams}{Parameters}
+{\em a\+Keys\+Pressed} & the parameter to assign \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game\+Engine/Frame\+Data.\+h\item 
+Game\+Engine/Frame\+Data.\+cpp\end{DoxyCompactItemize}

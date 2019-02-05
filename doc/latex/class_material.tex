@@ -1,0 +1,95 @@
+\section{Material Class Reference}
+\label{class_material}\index{Material@{Material}}
+
+
+A material class.  
+
+
+
+
+{\ttfamily \#include $<$Material.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{class_material_a137e987401b63eb7c6c27c3e38bc74b5}} 
+\textbf{ Material} ()
+\begin{DoxyCompactList}\small\item\em Constructor for a \doxyref{Material}{p.}{class_material} instance. \end{DoxyCompactList}\item 
+void \textbf{ Use} (mat4 $\ast$a\+Model, mat4 $\ast$a\+View, mat4 $\ast$a\+Inverse\+View, mat4 $\ast$a\+Projection, vector$<$ shared\+\_\+ptr$<$ \textbf{ Light} $>$$>$ a\+Lights)
+\begin{DoxyCompactList}\small\item\em Use material. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{class_material_af10de539067221637565ad0560b71d94}} 
+shared\+\_\+ptr$<$ \textbf{ Shader} $>$ {\bfseries Shader}
+\item 
+\mbox{\label{class_material_a5c38beca55ecd30f484cd80e8d004c84}} 
+shared\+\_\+ptr$<$ \textbf{ Texture} $>$ {\bfseries Color\+Texture}
+\item 
+\mbox{\label{class_material_a8ebc6a71f215606f95e018bdbb73f6bd}} 
+shared\+\_\+ptr$<$ \textbf{ Texture} $>$ {\bfseries Normal\+Texture}
+\item 
+\mbox{\label{class_material_a29d2dde03ef12bb02c4a2d21a2ca07fe}} 
+shared\+\_\+ptr$<$ \textbf{ Texture} $>$ {\bfseries Height\+Texture}
+\item 
+\mbox{\label{class_material_aa263f8a30d81c391d13c76c9610935aa}} 
+shared\+\_\+ptr$<$ \textbf{ Texture} $>$ {\bfseries Cubemap\+Texture}
+\item 
+\mbox{\label{class_material_a63bc3cce6af63f5f977962a9a035faae}} 
+char $\ast$ {\bfseries Name}
+\item 
+\mbox{\label{class_material_a8f08a68d25741c766dba63fee76a3562}} 
+vec3 {\bfseries Ambient\+Color}
+\item 
+\mbox{\label{class_material_a6064c9805c52f0959a6268676f8f651b}} 
+vec3 {\bfseries Specular\+Color}
+\item 
+\mbox{\label{class_material_a556669f748e0d53aa1eba2a053b8e2d0}} 
+vec3 {\bfseries Diffuse\+Color}
+\item 
+\mbox{\label{class_material_a81555901e7cad08aa23d4fa8d58c6aa2}} 
+unsigned short {\bfseries Illum}
+\item 
+\mbox{\label{class_material_aca8236a831b0c596baa6159ecc1cdc20}} 
+float {\bfseries Shininess}
+\item 
+\mbox{\label{class_material_aeba726c8fe1521aff2ace00231e14e3a}} 
+float {\bfseries Transparency}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A material class. 
+
+This class represents a material with its own shader, different kinds of textures (depending on the shader you use) and other lighting factors like ambient, specular and diffuse color. Basically, everything that has to do with transmitting data to the shader happens here. 
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_material_ac53e631a261a6df03a4133299a82eda4}} 
+\index{Material@{Material}!Use@{Use}}
+\index{Use@{Use}!Material@{Material}}
+\subsubsection{Use()}
+{\footnotesize\ttfamily void Material\+::\+Use (\begin{DoxyParamCaption}\item[{mat4 $\ast$}]{a\+Model,  }\item[{mat4 $\ast$}]{a\+View,  }\item[{mat4 $\ast$}]{a\+Inverse\+View,  }\item[{mat4 $\ast$}]{a\+Projection,  }\item[{vector$<$ shared\+\_\+ptr$<$ \textbf{ Light} $>$$>$}]{a\+Lights }\end{DoxyParamCaption})}
+
+
+
+Use material. 
+
+Using the material, meaning binding shaders and textures and sending important data and light information to the shader. 
+\begin{DoxyParams}{Parameters}
+{\em a\+Model} & a model matrix to use in shader \\
+\hline
+{\em a\+View} & a view matrix to use in shader \\
+\hline
+{\em a\+Inverse\+View} & a inverse view matrix to use in shader \\
+\hline
+{\em a\+Projection} & a projection matrix to use in shader \\
+\hline
+{\em a\+Lights} & a \doxyref{Light}{p.}{class_light} vector containing the lights that have to be considered in the shader \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game\+Engine/Material.\+h\item 
+Game\+Engine/Material.\+cpp\end{DoxyCompactItemize}

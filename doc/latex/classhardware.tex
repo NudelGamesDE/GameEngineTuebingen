@@ -1,0 +1,66 @@
+\section{hardware Class Reference}
+\label{classhardware}\index{hardware@{hardware}}
+
+
+A hardware class.  
+
+
+
+
+{\ttfamily \#include $<$hardware.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \textbf{ render\+\_\+time} (clock\+\_\+t starting\+\_\+point, clock\+\_\+t ending\+\_\+point)
+\begin{DoxyCompactList}\small\item\em Determines time to render a scene. \end{DoxyCompactList}\item 
+static void \textbf{ frames\+\_\+per\+\_\+second} (clock\+\_\+t starting\+\_\+point, clock\+\_\+t ending\+\_\+point)
+\begin{DoxyCompactList}\small\item\em Determines frames rendered per second. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A hardware class. 
+
+This class determines the time it takes to render a frame and the current frames per second. 
+
+\subsection{Member Function Documentation}
+\mbox{\label{classhardware_a34e3f2b304945ac833208484d50df42e}} 
+\index{hardware@{hardware}!frames\_per\_second@{frames\_per\_second}}
+\index{frames\_per\_second@{frames\_per\_second}!hardware@{hardware}}
+\subsubsection{frames\_per\_second()}
+{\footnotesize\ttfamily void hardware\+::frames\+\_\+per\+\_\+second (\begin{DoxyParamCaption}\item[{clock\+\_\+t}]{starting\+\_\+point,  }\item[{clock\+\_\+t}]{ending\+\_\+point }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Determines frames rendered per second. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em starting\+\_\+point} & starting point of time measuring \\
+\hline
+{\em ending\+\_\+point} & ending point of time measuring \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classhardware_ad6c6d0db2e613e2356ac47eb823f3e61}} 
+\index{hardware@{hardware}!render\_time@{render\_time}}
+\index{render\_time@{render\_time}!hardware@{hardware}}
+\subsubsection{render\_time()}
+{\footnotesize\ttfamily void hardware\+::render\+\_\+time (\begin{DoxyParamCaption}\item[{clock\+\_\+t}]{starting\+\_\+point,  }\item[{clock\+\_\+t}]{ending\+\_\+point }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Determines time to render a scene. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em starting\+\_\+point} & starting point of time measuring \\
+\hline
+{\em ending\+\_\+point} & ending point of time measuring \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game\+Engine/hardware.\+h\item 
+Game\+Engine/hardware.\+cpp\end{DoxyCompactItemize}

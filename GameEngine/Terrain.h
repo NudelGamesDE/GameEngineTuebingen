@@ -4,6 +4,10 @@
 #include <functional>
 #include "Renderer.h"
 
+/** \brief A terrain class
+
+This class represents a terrain. It allows the terrain to be created with height textures and its own material, allowing different resolutions.
+*/
 class Terrain
 {
 	std::shared_ptr<Renderer> TerrainRenderer;

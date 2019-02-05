@@ -1,5 +1,9 @@
 #include "Scene.h"
 
+/** \brief Draw scene
+
+This function draws the scene with all its treats. It extracts the needed matrices from the camera and passes them to the renderers while calling their draw functions.
+*/
 void Scene::Draw()
 {
 	if (!camera)return;
@@ -21,6 +25,12 @@ void Scene::Draw()
 		Renderers[i]->Draw(&viewMatrix, &inverseViewMatrix, &projection, Lights);
 }
 
+/** \brief Checks for intersection
+
+This function checks for an intersection of a ray and all renderer's meshes by calling their Intersect functions.
+\param aRay an incoming ray
+\return a RayHit
+*/
 shared_ptr<RayHit> Scene::Intersect(Ray& aRay)
 {
 	shared_ptr<RayHit> ret = nullptr;

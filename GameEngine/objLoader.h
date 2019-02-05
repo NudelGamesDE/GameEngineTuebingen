@@ -1,3 +1,6 @@
+#ifndef OBJLOADER_HPP
+#define OBJLOADER_HPP
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
@@ -10,8 +13,8 @@
 #include <glm\glm.hpp>
 using namespace glm;
 
-#ifndef OBJLOADER_HPP
-#define OBJLOADER_HPP
+/** \brief functions for loading obj files
+*/
 
 bool loadObj(
 	const char *path,

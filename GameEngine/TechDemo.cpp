@@ -221,6 +221,7 @@ void TechDemo::Start()
 	}
 	Timer = 0.0f;
 	CalcBigTree(BigTree, Timer);
+	the_woot = make_shared<bvh::bvh_nope*>(bvh::initialise_bvh(*scene));
 }
 
 string TechDemo::GetWindowName()

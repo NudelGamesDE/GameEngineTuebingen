@@ -1,0 +1,119 @@
+\section{bvh Class Reference}
+\label{classbvh}\index{bvh@{bvh}}
+
+
+A bvh class.  
+
+
+
+
+{\ttfamily \#include $<$bvh.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ bvh\+\_\+nope}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ bvh\+::bvh\+\_\+nope} $\ast$ \textbf{ initialise\+\_\+bvh} (\textbf{ Scene} the\+\_\+scene)
+\begin{DoxyCompactList}\small\item\em Initialize bvh. \end{DoxyCompactList}\item 
+static \textbf{ bvh\+\_\+nope} $\ast$ \textbf{ generate\+\_\+bvh\+\_\+tree} (vector$<$ shared\+\_\+ptr$<$ \textbf{ Renderer} $>$$>$ objects)
+\begin{DoxyCompactList}\small\item\em Generates bvh tree. \end{DoxyCompactList}\item 
+static \textbf{ bvh\+\_\+nope} $\ast$ \textbf{ generate\+\_\+bvh\+\_\+nope} (int x, int y, int z, int nx, int ny, int nz, vector$<$ shared\+\_\+ptr$<$ \textbf{ Renderer} $>$$>$ obj, \textbf{ bvh\+\_\+nope} $\ast$l, \textbf{ bvh\+\_\+nope} $\ast$r)
+\begin{DoxyCompactList}\small\item\em Generates a bvh node. \end{DoxyCompactList}\item 
+static float \textbf{ difference} (float x, float y)
+\begin{DoxyCompactList}\small\item\em Calculates Difference. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A bvh class. 
+
+This class represents a bvh tree for collision detection. 
+
+\subsection{Member Function Documentation}
+\mbox{\label{classbvh_af03de72dbe5093bf25f20e298c3795e3}} 
+\index{bvh@{bvh}!difference@{difference}}
+\index{difference@{difference}!bvh@{bvh}}
+\subsubsection{difference()}
+{\footnotesize\ttfamily float bvh\+::difference (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Calculates Difference. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & a float \\
+\hline
+{\em y} & a float \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classbvh_a73de9aff9a9efb6fb38d861bed1beb70}} 
+\index{bvh@{bvh}!generate\_bvh\_nope@{generate\_bvh\_nope}}
+\index{generate\_bvh\_nope@{generate\_bvh\_nope}!bvh@{bvh}}
+\subsubsection{generate\_bvh\_nope()}
+{\footnotesize\ttfamily \textbf{ bvh\+::bvh\+\_\+nope} $\ast$ bvh\+::generate\+\_\+bvh\+\_\+nope (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{z,  }\item[{int}]{nx,  }\item[{int}]{ny,  }\item[{int}]{nz,  }\item[{vector$<$ shared\+\_\+ptr$<$ \textbf{ Renderer} $>$$>$}]{obj,  }\item[{\textbf{ bvh\+\_\+nope} $\ast$}]{l,  }\item[{\textbf{ bvh\+\_\+nope} $\ast$}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Generates a bvh node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & maximum x \\
+\hline
+{\em y} & maximum y \\
+\hline
+{\em z} & maximum z \\
+\hline
+{\em nx} & minimum x \\
+\hline
+{\em ny} & minimum y \\
+\hline
+{\em nz} & minimum z \\
+\hline
+{\em obj} & a vector of renderers \\
+\hline
+{\em l} & left child node \\
+\hline
+{\em r} & right child node \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classbvh_af5f95b71ce1d9599314f74eba483b5b3}} 
+\index{bvh@{bvh}!generate\_bvh\_tree@{generate\_bvh\_tree}}
+\index{generate\_bvh\_tree@{generate\_bvh\_tree}!bvh@{bvh}}
+\subsubsection{generate\_bvh\_tree()}
+{\footnotesize\ttfamily \textbf{ bvh\+::bvh\+\_\+nope} $\ast$ bvh\+::generate\+\_\+bvh\+\_\+tree (\begin{DoxyParamCaption}\item[{vector$<$ shared\+\_\+ptr$<$ \textbf{ Renderer} $>$$>$}]{objects }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Generates bvh tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em objects} & a vector of renderers \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classbvh_a4c03ea54e4a3aef55440e24c09948726}} 
+\index{bvh@{bvh}!initialise\_bvh@{initialise\_bvh}}
+\index{initialise\_bvh@{initialise\_bvh}!bvh@{bvh}}
+\subsubsection{initialise\_bvh()}
+{\footnotesize\ttfamily \textbf{ bvh\+::bvh\+\_\+nope} $\ast$ bvh\+::initialise\+\_\+bvh (\begin{DoxyParamCaption}\item[{\textbf{ Scene}}]{the\+\_\+scene }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Initialize bvh. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+scene} & a scene to apply bvh to \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game\+Engine/bvh.\+h\item 
+Game\+Engine/bvh.\+cpp\end{DoxyCompactItemize}

@@ -10,6 +10,11 @@
 using namespace glm;
 using namespace std;
 
+/**	\brief A material class
+
+This class represents a material with its own shader, different kinds of textures (depending on the shader you use) and other lighting factors like ambient, specular and diffuse color.
+Basically, everything that has to do with transmitting data to the shader happens here.
+*/
 class Material
 {
 public:
