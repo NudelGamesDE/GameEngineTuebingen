@@ -24,12 +24,12 @@ shared_ptr<Mesh> GenerateMesh()
 		positions.push_back(vec3(-1, 1, 0)*0.5f);
 		for (int i = 0; i < 6; i++)
 			normals.push_back(vec3(0, 0, -1));
-		coords.push_back(vec2(0, 0));
-		coords.push_back(vec2(1, 0));
-		coords.push_back(vec2(1, 1));
-		coords.push_back(vec2(0, 0));
-		coords.push_back(vec2(1, 1));
 		coords.push_back(vec2(0, 1));
+		coords.push_back(vec2(1, 1));
+		coords.push_back(vec2(1, 0));
+		coords.push_back(vec2(0, 1));
+		coords.push_back(vec2(1, 0));
+		coords.push_back(vec2(0, 0));
 		cachedMesh = make_shared<Mesh>(positions, coords, normals);
 	}
 	return cachedMesh;
