@@ -25,6 +25,7 @@
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="bvh.cpp" />
     <ClCompile Include="collision.cpp" />
+    <ClCompile Include="FinalDemo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -53,5 +54,6 @@
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="bvh.h" />
     <ClInclude Include="collision.h" />
+    <ClInclude Include="FinalDemo.h" />
   </ItemGroup>
 </Project>

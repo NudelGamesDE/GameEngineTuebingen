@@ -28,6 +28,7 @@ class Engine
 	SDL_GLContext GLContext = nullptr;
 	clock_t timer = clock();
 	shared_ptr<unordered_set<SDL_Keycode>> KeysPressed = make_shared<unordered_set<SDL_Keycode>>();
+	bool Mouse1, Mouse2;
 	shared_ptr<vec2> MousePosition;
 
 	bool InitSDL();

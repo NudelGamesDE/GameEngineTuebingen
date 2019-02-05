@@ -142,10 +142,18 @@ void Engine::HandleEvents(shared_ptr<FrameData> aFrameData)
 			KeysPressed->erase(_event.key.keysym.sym);
 			break;
 		case SDL_MOUSEBUTTONDOWN:
-			//_event.button.button
+			switch (_event.button.button)
+			{
+			case SDL_BUTTON_LEFT: aFrameData->Mouse1Down = true; Mouse1 = true; break;
+			case SDL_BUTTON_RIGHT: aFrameData->Mouse2Down = true; Mouse2 = true; break;
+			}
 			break;
 		case SDL_MOUSEBUTTONUP:
-			//_event.button.button
+			switch (_event.button.button)
+			{
+			case SDL_BUTTON_LEFT: aFrameData->Mouse1Up = true; Mouse1 = false; break;
+			case SDL_BUTTON_RIGHT: aFrameData->Mouse2Up = true; Mouse2 = false; break;
+			}
 			break;
 		case SDL_MOUSEMOTION:
 			//_event.wheel.windowID
@@ -177,6 +185,8 @@ shared_ptr<FrameData> Engine::GenerateFrameData()
 	timer = newTimer;
 	ret->deltaTime = deltaTime / float(CLOCKS_PER_SEC);
 	ret->SetKeyPressed(KeysPressed);
+	ret->Mouse1Pressed = Mouse1;
+	ret->Mouse2Pressed = Mouse1;
 	int width;
 	int height;
 	SDL_GetWindowSize(Window, &width, &height);

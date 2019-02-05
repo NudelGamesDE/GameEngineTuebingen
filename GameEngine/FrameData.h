@@ -19,6 +19,8 @@ class FrameData
 	unordered_set<SDL_Keycode> KeysUp;
 	shared_ptr<unordered_set<SDL_Keycode>> KeysPressed;
 public:
+	bool Mouse1Down, Mouse1Pressed, Mouse1Up;
+	bool Mouse2Down, Mouse2Pressed, Mouse2Up;
 	float deltaTime;
 	bool windowCloseEvent;
 	shared_ptr<vec2> MousePosition;

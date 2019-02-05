@@ -85,16 +85,10 @@ void ParticleSystem::Update(float aDeltaTime, shared_ptr<Camera> aCamera)
 
 void ParticleSystem::Clear()
 {
-	for (auto particle = Particles.begin(); particle < Particles.end(); particle++)
+	Particles.erase(std::remove_if(Particles.begin(), Particles.end(), [this](Particle aParticle)
 	{
-		for (auto renderer = scene->Renderers.begin(); renderer < scene->Renderers.end(); renderer++)
-			if (*renderer == particle->renderer)
-			{
-				scene->Renderers.erase(renderer);
-				renderer--;
-			}
-		Particles.erase(particle);
-		particle--;
-	}
+		scene->Renderers.erase(std::remove_if(scene->Renderers.begin(), scene->Renderers.end(), [this, aParticle](shared_ptr<Renderer> aRenderer) {return aRenderer == aParticle.renderer; }), scene->Renderers.end());
+		return true;
+	}), Particles.end());
 }
 
