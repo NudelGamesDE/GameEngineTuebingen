@@ -1,1 +1,3 @@
-Die lib Dateien sind in den zip Dateien in Glew, Sdl2 und Sdl2 Image enthalten. Einfach entpacken
+# Game Engine for the game engine architecture module of Tübingen University
+
+A game engine only made for the purpose of getting a good grate. Shouldn't be used as is.
